@@ -15,7 +15,7 @@
  * =============================================================================
  */
 import * as posenet from '@tensorflow-models/posenet'
-import React from 'React'
+import React from 'react'
 
 import {drawBoundingBox, drawKeypoints, drawSkeleton} from './posenet_utils'
 
