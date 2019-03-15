@@ -16,6 +16,7 @@
  */
 import * as posenet from '@tensorflow-models/posenet'
 import React from 'react'
+import Board from './board'
 
 import {drawBoundingBox, drawKeypoints, drawSkeleton} from './posenet_utils'
 
@@ -203,6 +204,7 @@ export default class PunchABug extends React.Component {
   }
 
   render() {
+    console.log('up to date!')
     return (
       <React.Fragment>
         <div id="loading">Loading the model...</div>
@@ -218,6 +220,7 @@ export default class PunchABug extends React.Component {
               display: 'none'
             }}
           />
+          <Board />
           <canvas id="output" />
         </div>
       </React.Fragment>
