@@ -17,10 +17,16 @@
 import * as posenet from '@tensorflow-models/posenet'
 import React from 'react'
 import Board from './board'
+import {connect} from 'react-redux'
 
-import {drawBoundingBox, drawKeypoints, drawSkeleton} from './posenet_utils'
+import {
+  drawBoundingBox,
+  drawKeypoints,
+  drawSkeleton,
+  hitAMole
+} from './posenet_utils'
 
-export default class PunchABug extends React.Component {
+class PunchABug extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -110,7 +116,7 @@ export default class PunchABug extends React.Component {
     canvas.width = videoWidth
     canvas.height = videoHeight
 
-    async function poseDetectionFrame() {
+    const poseDetectionFrame = async () => {
       // Scale an image down to a certain factor. Too large of an image will slow
       // down the GPU
       const imageScaleFactor = guiState.input.imageScaleFactor
@@ -146,6 +152,8 @@ export default class PunchABug extends React.Component {
       // scores
       poses.forEach(({score, keypoints}) => {
         if (score >= minPoseConfidence) {
+          hitAMole(this.props.moleLocations, keypoints, minPartConfidence, ctx)
+
           if (guiState.output.showPoints) {
             drawKeypoints(keypoints, minPartConfidence, ctx)
           }
@@ -204,7 +212,6 @@ export default class PunchABug extends React.Component {
   }
 
   render() {
-    console.log('up to date!')
     return (
       <React.Fragment>
         <div id="loading">Loading the model...</div>
@@ -227,3 +234,9 @@ export default class PunchABug extends React.Component {
     )
   }
 }
+
+const mapStateToProps = state => ({
+  moleLocations: state.board.moles
+})
+
+export default connect(mapStateToProps)(PunchABug)

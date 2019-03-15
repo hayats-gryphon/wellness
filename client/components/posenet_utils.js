@@ -26,14 +26,35 @@ function toTuple({y, x}) {
 }
 
 export function drawPoint(ctx, y, x, r, color) {
-  if (x > 20 && x < 170 && y > 10 && y < 110) {
-    console.log('i got hit')
-  }
-
   ctx.beginPath()
   ctx.arc(x, y, r, 0, 2 * Math.PI)
   ctx.fillStyle = color
   ctx.fill()
+}
+
+export function hitAMole(moles, keypoints, minConfidence, ctx) {
+  for (let i = 0; i < keypoints.length; i++) {
+    const keypoint = keypoints[i]
+
+    if (keypoint.score < minConfidence) {
+      continue
+    }
+
+    const {y, x} = keypoint.position
+
+    if (i === 0) {
+      moles.map(mole => {
+        const {top, right, bottom, left} = mole
+        if (x > left && x < right && y > top - 120 && y < bottom - 120) {
+          console.log('mole coords', mole.x, mole.y)
+          console.log('nose coords', x, y)
+
+          //include offset next time
+          //https://stackoverflow.com/questions/442404/retrieve-the-position-x-y-of-an-html-element
+        }
+      })
+    }
+  }
 }
 
 /**
@@ -80,9 +101,6 @@ export function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
     }
 
     const {y, x} = keypoint.position
-
-    ctx.fillStyle = 'green'
-    ctx.fillRect(20, 10, 150, 100)
 
     drawPoint(ctx, y * scale, x * scale, 3, color)
   }
