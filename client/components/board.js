@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {gotMoles} from '../store/board'
+import Hole from './hole'
 
 class Board extends React.Component {
   constructor(props) {
@@ -19,6 +20,13 @@ class Board extends React.Component {
         {hasBug: false}
       ]
     }
+
+    this.soundRef = React.createRef()
+    this.holeRef = React.createRef()
+  }
+
+  componentDidMount() {
+    this.soundRef.current.play()
   }
 
   render() {
@@ -26,31 +34,44 @@ class Board extends React.Component {
       const randomHoleIndex = Math.floor(
         Math.random() * this.state.holes.length
       )
-      this.state.holes[randomHoleIndex].classList.toggle('mole')
+      console.log('RANDOM HOLE INDEX =====>', randomHoleIndex)
 
-      const moleElements = document.getElementsByClassName('mole')
-      const moles = Array.from(moleElements)
-      // const moles = Array.from(document.getElementsByClassName('mole'))
-      const moleCoords = moles.map((mole, idx) => ({
-        coords: mole.getBoundingClientRect(),
-        el: moleElements[idx]
-      }))
-      this.props.updateMoles(moleCoords)
+      this.setState(prevState => {
+        const originalState = prevState.holes[randomHoleIndex].hasBug
+        const updatedHoles = [...prevState.holes]
+        const updatedHole = {hasBug: !originalState}
+        updatedHoles[randomHoleIndex] = updatedHole
+
+        return {
+          holes: updatedHoles
+        }
+      })
+
+      // console.log('THIS STATE=====>', this.state)
+      // const moleElements = document.getElementsByClassName('mole')
+      // const moles = Array.from(moleElements)
+      // const moleCoords = moles.map((mole, idx) => ({
+      //   coords: mole.getBoundingClientRect(),
+      //   el: moleElements[idx]
+      // }))
+      // this.props.updateMoles(moleCoords)
     }, 3000)
 
     return (
-      <div id="whack-a-mole" style={{position: 'fixed'}}>
-        <div id="" />
-        <div className="hole" />
-        <div className="hole" />
-        <div className="hole" />
-        <div className="hole" />
-        <div className="face-space" />
-        <div className="hole" />
-        <div className="hole" />
-        <div className="hole" />
-        <div className="hole" />
-      </div>
+      <>
+        <audio
+          src="/bgMusic.mp3"
+          ref={this.soundRef}
+          preload="auto"
+          controls="none"
+          style={{display: 'none'}}
+        />
+        <div id="whack-a-mole" style={{position: 'fixed'}}>
+          <div id="" />
+
+          {this.state.holes.map((hole, idx) => <Hole key={idx} />)}
+        </div>
+      </>
     )
   }
 }
