@@ -61,12 +61,12 @@ export function hitAMole(moles, keypoints, minConfidence, ctx) {
 
     if (i === 0) {
       moles.map(mole => {
-        const {top, right, bottom, left} = mole
+        const {top, right, bottom, left} = mole.coords
+        const moleElement = mole.el
         if (x > left && x < right && y > top - 120 && y < bottom - 120) {
+          moleElement.classList.toggle('mole')
           mySound.play()
-          console.log('mole coords', mole.x, mole.y)
-          console.log('nose coords', x, y)
-
+          
           //include offset next time
           //https://stackoverflow.com/questions/442404/retrieve-the-position-x-y-of-an-html-element
         }

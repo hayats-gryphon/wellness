@@ -18,8 +18,13 @@ class Board extends React.Component {
     setInterval(() => {
       const randomHoleIndex = Math.floor(Math.random() * holes.length)
       holes[randomHoleIndex].classList.toggle('mole')
-      const moles = Array.from(document.getElementsByClassName('mole'))
-      const moleCoords = moles.map(mole => mole.getBoundingClientRect())
+      const moleElements = document.getElementsByClassName('mole')
+      const moles = Array.from(moleElements)
+      // const moles = Array.from(document.getElementsByClassName('mole'))
+      const moleCoords = moles.map((mole, idx) => ({
+        coords: mole.getBoundingClientRect(),
+        el: moleElements[idx]
+      }))
       this.props.updateMoles(moleCoords)
     }, 3000)
 
