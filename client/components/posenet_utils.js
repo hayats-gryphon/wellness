@@ -59,14 +59,15 @@ export function hitAMole(moles, keypoints, minConfidence, ctx) {
 
     const {y, x} = keypoint.position
 
+    // Here we are taking special action only for keypoints[0] because that's the nose!
     if (i === 0) {
-      moles.map(mole => {
+      moles.forEach(mole => {
         const {top, right, bottom, left} = mole.coords
         const moleElement = mole.el
         if (x > left && x < right && y > top - 120 && y < bottom - 120) {
           moleElement.classList.toggle('mole')
           mySound.play()
-          
+
           //include offset next time
           //https://stackoverflow.com/questions/442404/retrieve-the-position-x-y-of-an-html-element
         }
@@ -141,39 +142,6 @@ export function drawBoundingBox(keypoints, ctx) {
 
   ctx.strokeStyle = boundingBoxColor
   ctx.stroke()
-}
-
-/**
- * Converts an arary of pixel data into an ImageData object
- */
-export async function renderToCanvas(a, ctx) {
-  const [height, width] = a.shape
-  const imageData = new ImageData(width, height)
-
-  const data = await a.data()
-
-  for (let i = 0; i < height * width; ++i) {
-    const j = i * 4
-    const k = i * 3
-
-    imageData.data[j + 0] = data[k + 0]
-    imageData.data[j + 1] = data[k + 1]
-    imageData.data[j + 2] = data[k + 2]
-    imageData.data[j + 3] = 255
-  }
-
-  ctx.putImageData(imageData, 0, 0)
-}
-
-/**
- * Draw an image on a canvas
- */
-export function renderImageToCanvas(image, size, canvas) {
-  canvas.width = size[0]
-  canvas.height = size[1]
-  const ctx = canvas.getContext('2d')
-
-  ctx.drawImage(image, 0, 0)
 }
 
 /**
