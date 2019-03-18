@@ -48,12 +48,9 @@ class Board extends React.Component {
     )
   }
 }
-const mapStateToProps = state => ({
-  videoLoaded: state.board.videoLoaded
-})
 
 const mapDispatchToProps = dispatch => ({
   updateMoles: moles => dispatch(gotMoles(moles))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Board)
+export default connect(null, mapDispatchToProps)(Board)
