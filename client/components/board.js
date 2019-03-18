@@ -20,7 +20,6 @@ class Board extends React.Component {
       holes[randomHoleIndex].classList.toggle('mole')
       const moleElements = document.getElementsByClassName('mole')
       const moles = Array.from(moleElements)
-      // const moles = Array.from(document.getElementsByClassName('mole'))
       const moleCoords = moles.map((mole, idx) => ({
         coords: mole.getBoundingClientRect(),
         el: moleElements[idx]
