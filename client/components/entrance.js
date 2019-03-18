@@ -10,7 +10,7 @@ export default class EntracePage extends React.Component {
       <div>
         <h3>Welcome</h3>
         <Link to="/punchabug">
-          <button>Let's Play</button>
+          <button>Let Us Play</button>
         </Link>
       </div>
     )
