@@ -32,7 +32,24 @@ export function drawPoint(ctx, y, x, r, color) {
   ctx.fill()
 }
 
+function sound(src) {
+  this.sound = document.createElement('audio')
+  this.sound.src = src
+  this.sound.setAttribute('preload', 'auto')
+  this.sound.setAttribute('controls', 'none')
+  this.sound.style.display = 'none'
+  document.body.appendChild(this.sound)
+  this.play = function() {
+    this.sound.play()
+  }
+  this.stop = function() {
+    this.sound.pause()
+  }
+}
+
 export function hitAMole(moles, keypoints, minConfidence, ctx) {
+  let mySound = new sound('/splat_sound.mp3')
+
   for (let i = 0; i < keypoints.length; i++) {
     const keypoint = keypoints[i]
 
@@ -48,8 +65,8 @@ export function hitAMole(moles, keypoints, minConfidence, ctx) {
         const moleElement = mole.el
         if (x > left && x < right && y > top - 120 && y < bottom - 120) {
           moleElement.classList.toggle('mole')
-          // console.log('mole coords', mole.x, mole.y)
-          // console.log('nose coords', x, y)
+          mySound.play()
+          
           //include offset next time
           //https://stackoverflow.com/questions/442404/retrieve-the-position-x-y-of-an-html-element
         }

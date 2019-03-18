@@ -30,23 +30,41 @@ form div {
 }
 
 .hole {
-  background-image: url('hole.png');
+  background-image: url('leaf-only.png');
   background-size: contain;
   width: 110px;
-  height: 123px;
-  margin: 10px 40px 5px 40px;
+  height: 100px;
+  margin: 30px 40px 5px 40px;
 }
 
 .mole {
-  background-image: url('mole.png');
-  /* background-size: contain;
-  width: 110px;
-  height: 123px;
-  margin: 10px 40px 5px 40px */
+  background-image: url('bug-with-leaf.png');
 }
 
 .face-space {
   width: 110px;
-  height: 123px;
-  margin: 10px 40px 5px 40px;
+  height: 100px;
+  margin: 30px 40px 5px 40px;
+}
+
+.end-game-score {
+  position: relative;
+  animation: moveright 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes moveright {
+  from {
+    left: 0%;
+  }
+  to {
+    left: 50%;
+  }
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
 }
