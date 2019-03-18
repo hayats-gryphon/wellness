@@ -5,14 +5,29 @@ import {gotMoles} from '../store/board'
 class Board extends React.Component {
   constructor(props) {
     super(props)
+
+    this.state = {
+      holes: [
+        {hasBug: false},
+        {hasBug: false},
+        {hasBug: false},
+        {hasBug: false},
+        {isFace: true},
+        {hasBug: false},
+        {hasBug: false},
+        {hasBug: false},
+        {hasBug: false}
+      ]
+    }
   }
 
   render() {
-    const holes = document.getElementsByClassName('hole')
-
     setInterval(() => {
-      const randomHoleIndex = Math.floor(Math.random() * holes.length)
-      holes[randomHoleIndex].classList.toggle('mole')
+      const randomHoleIndex = Math.floor(
+        Math.random() * this.state.holes.length
+      )
+      this.state.holes[randomHoleIndex].classList.toggle('mole')
+
       const moleElements = document.getElementsByClassName('mole')
       const moles = Array.from(moleElements)
       // const moles = Array.from(document.getElementsByClassName('mole'))
