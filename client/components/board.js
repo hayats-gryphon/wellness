@@ -5,6 +5,11 @@ import {gotMoles} from '../store/board'
 class Board extends React.Component {
   constructor(props) {
     super(props)
+    this.soundRef = React.createRef()
+  }
+
+  componentDidMount() {
+    this.soundRef.current.play()
   }
 
   render() {
@@ -19,24 +24,36 @@ class Board extends React.Component {
     }, 3000)
 
     return (
-      <div id="whack-a-mole" style={{position: 'fixed'}}>
-        <div id="" />
-        <div className="hole" />
-        <div className="hole" />
-        <div className="hole" />
-        <div className="hole" />
-        <div className="face-space" />
-        <div className="hole" />
-        <div className="hole" />
-        <div className="hole" />
-        <div className="hole" />
-      </div>
+      <>
+        <audio
+          src="/bgMusic.mp3"
+          ref={this.soundRef}
+          preload="auto"
+          controls="none"
+          style={{display: 'none'}}
+        />
+        <div id="whack-a-mole" style={{position: 'fixed'}}>
+          <div id="" />
+          <div className="hole" />
+          <div className="hole" />
+          <div className="hole" />
+          <div className="hole" />
+          <div className="face-space" />
+          <div className="hole" />
+          <div className="hole" />
+          <div className="hole" />
+          <div className="hole" />
+        </div>
+      </>
     )
   }
 }
+const mapStateToProps = state => ({
+  videoLoaded: state.board.videoLoaded
+})
 
 const mapDispatchToProps = dispatch => ({
   updateMoles: moles => dispatch(gotMoles(moles))
 })
 
-export default connect(null, mapDispatchToProps)(Board)
+export default connect(mapStateToProps, mapDispatchToProps)(Board)

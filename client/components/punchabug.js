@@ -18,6 +18,7 @@ import * as posenet from '@tensorflow-models/posenet'
 import React from 'react'
 import Board from './board'
 import {connect} from 'react-redux'
+import {videoLoaded} from '../store/board'
 
 import {
   drawBoundingBox,
@@ -97,7 +98,7 @@ class PunchABug extends React.Component {
   loadVideo = async () => {
     const video = await this.setupCamera()
     video.play()
-
+    this.props.updateVideoLoaded()
     return video
   }
 
@@ -227,7 +228,7 @@ class PunchABug extends React.Component {
               display: 'none'
             }}
           />
-          <Board />
+          {this.props.videoLoaded ? <Board /> : <div />}
           <canvas id="output" />
         </div>
       </React.Fragment>
@@ -236,7 +237,14 @@ class PunchABug extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  moleLocations: state.board.moles
+  moleLocations: state.board.moles,
+  videoLoaded: state.board.videoLoaded
 })
 
-export default connect(mapStateToProps)(PunchABug)
+const mapDispatchToProps = dispatch => ({
+  updateVideoLoaded: () => {
+    dispatch(videoLoaded())
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(PunchABug)
