@@ -19,7 +19,7 @@ import React from 'react'
 import Board from './board'
 import {connect} from 'react-redux'
 import {videoLoaded} from '../store/board'
-
+import {updateScore} from '../store/scoreboard'
 import {drawKeypoints, hitAMole} from './posenet_utils'
 
 class PunchABug extends React.Component {
@@ -149,7 +149,8 @@ class PunchABug extends React.Component {
             this.props.holeLocations,
             keypoints,
             minPartConfidence,
-            this.splatSoundRef
+            this.splatSoundRef,
+            this.props.updateScore
           )
           if (guiState.output.showPoints) {
             drawKeypoints(keypoints, minPartConfidence, ctx)
@@ -237,6 +238,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   updateVideoLoaded: () => {
     dispatch(videoLoaded())
+  },
+  updateScore: increaseBy => {
+    dispatch(updateScore(increaseBy))
   }
 })
 

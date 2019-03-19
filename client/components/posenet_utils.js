@@ -24,7 +24,13 @@ export function drawPoint(ctx, y, x, r) {
   ctx.fill()
 }
 
-export const hitAMole = (holes, keypoints, minConfidence, soundElem) => {
+export const hitAMole = (
+  holes,
+  keypoints,
+  minConfidence,
+  soundElem,
+  updateScore
+) => {
   for (let i = 0; i < keypoints.length; i++) {
     const keypoint = keypoints[i]
 
@@ -38,10 +44,14 @@ export const hitAMole = (holes, keypoints, minConfidence, soundElem) => {
     if (i === 0) {
       holes.forEach(hole => {
         const {top, right, bottom, left} = hole.coords
-        const holeElement = hole.el
+        const holeRef = hole.el
         if (x > left && x < right && y > top - 120 && y < bottom - 120) {
-          holeElement.classList.toggle('mole')
-          soundElem.current.play()
+          if (Array.from(holeRef.classList).includes('mole')) {
+            holeRef.classList.toggle('mole')
+            soundElem.current.play()
+            updateScore(1)
+          }
+
           //include offset next time
           //https://stackoverflow.com/questions/442404/retrieve-the-position-x-y-of-an-html-element
         }
