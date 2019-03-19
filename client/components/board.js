@@ -47,7 +47,6 @@ class Board extends React.Component {
         el: this[`holeRef${i}`].current
       })
     }
-    console.log('holeRefArr', holeRefArr)
     this.props.updateHoles(holeRefArr)
 
     setInterval(() => {
@@ -62,8 +61,6 @@ class Board extends React.Component {
           holes: updatedHoles
         }
       })
-
-      console.log('THIS STATE=====>', this.state)
     }, 3000)
   }
 
