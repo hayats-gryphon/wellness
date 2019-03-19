@@ -40,6 +40,7 @@ export const hitAMole = (moles, keypoints, minConfidence, soundElem) => {
         const {top, right, bottom, left} = mole.coords
         const moleElement = mole.el
         if (x > left && x < right && y > top - 120 && y < bottom - 120) {
+          console.log('moleElement', moleElement)
           moleElement.classList.toggle('mole')
           soundElem.current.play()
           //include offset next time

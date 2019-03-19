@@ -22,6 +22,7 @@ class Board extends React.Component {
     }
 
     this.soundRef = React.createRef()
+    this.holeRef0 = React.createRef()
     this.holeRef1 = React.createRef()
     this.holeRef2 = React.createRef()
     this.holeRef3 = React.createRef()
@@ -30,13 +31,25 @@ class Board extends React.Component {
     this.holeRef6 = React.createRef()
     this.holeRef7 = React.createRef()
     this.holeRef8 = React.createRef()
-    this.holeRef9 = React.createRef()
+    this.playDiv = React.createRef()
 
     this.generateRandomIdx = this.generateRandomIdx.bind(this)
   }
 
   componentDidMount() {
     this.soundRef.current.play()
+    let holeRefArr = []
+
+    for (let i = 0; i < this.state.holes.length; i++) {
+      const coords = this[`holeRef${i}`].current.getBoundingClientRect()
+      holeRefArr.push({
+        coords,
+        el: this[`holeRef${i}`].current
+      })
+    }
+    console.log('holeRefArr', holeRefArr)
+    this.props.updateMoles(holeRefArr)
+
     setInterval(() => {
       const randomHoleIndex = this.generateRandomIdx()
       this.setState(prevState => {
@@ -50,14 +63,7 @@ class Board extends React.Component {
         }
       })
 
-      // console.log('THIS STATE=====>', this.state)
-      // const moleElements = document.getElementsByClassName('mole')
-      // const moles = Array.from(moleElements)
-      // const moleCoords = moles.map((mole, idx) => ({
-      //   coords: mole.getBoundingClientRect(),
-      //   el: moleElements[idx]
-      // }))
-      // this.props.updateMoles(moleCoords)
+      console.log('THIS STATE=====>', this.state)
     }, 3000)
   }
 
@@ -78,15 +84,20 @@ class Board extends React.Component {
         />
         <div id="whack-a-mole" style={{position: 'fixed'}}>
           <div id="" />
-
-          {this.state.holes.map((hole, idx) => (
-            <Hole
-              tempRef={`this.holeRef${idx + 1}`}
-              key={idx}
-              hasBug={this.state.holes[idx].hasBug}
-              idx={idx}
-            />
-          ))}
+          {this.state.holes.map((hole, idx) => {
+            return (
+              <div
+                key={idx}
+                ref={this[`holeRef${idx}`]}
+                className={
+                  idx === 4
+                    ? 'face-space'
+                    : this.state.holes[idx].hasBug ? 'mole hole' : 'hole'
+                }
+              />
+            )
+          })}
+          <div ref={this.playDiv} />
         </div>
       </>
     )

@@ -12,22 +12,32 @@ import React from 'react'
 //   }
 // }
 
-class Hole extends React.Component {
-  constructor(props) {
-    super(props)
-  }
+const Hole = React.forwardRef((props, ref) => {
+  console.log('ref', ref)
+  return (
+    <div
+      ref={ref}
+      className={
+        props.idx === 4 ? 'face-space' : props.hasBug ? 'mole hole' : 'hole'
+      }
+    />
+  )
+})
 
-  render() {
-    let divType
-    if (this.props.idx === 4) {
-      divType = <div className="face-space" />
-      console.log('this is ref', this.props.tempRef)
-    } else {
-      divType = <div className={this.props.hasBug ? 'mole hole' : 'hole'} />
-      console.log('this is ref inside else', this.props.tempRef)
-    }
-    return divType
-  }
-}
+// class Hole extends React.Component {
+//   constructor(props) {
+//     super(props)
+//   }
+
+//   render() {
+//     let divType
+//     if (this.props.idx === 4) {
+//       divType = <div ref= {this.props.ref} className="face-space" />
+//     } else {
+//       divType = <div ref= {this.props.ref} className={this.props.hasBug ? 'mole hole' : 'hole'} />
+//     }
+//     return divType
+//   }
+// }
 
 export default Hole
