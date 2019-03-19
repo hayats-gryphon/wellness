@@ -1,21 +1,21 @@
 /**
  * ACTION TYPES
  */
-const GOT_MOLES = 'GOT_MOLES'
+const GOT_HOLES = 'GOT_HOLES'
 const VIDEO_LOADED = 'VIDEO_LOADED'
 
 /**
  * INITIAL STATE
  */
 const initialState = {
-  moles: [],
+  holes: [],
   videoLoaded: false
 }
 
 /**
  * ACTION CREATORS
  */
-export const gotMoles = moles => ({type: GOT_MOLES, moles})
+export const gotHoles = holes => ({type: GOT_HOLES, holes})
 export const videoLoaded = () => ({type: VIDEO_LOADED})
 
 /**
@@ -23,8 +23,8 @@ export const videoLoaded = () => ({type: VIDEO_LOADED})
  */
 export default function(state = initialState, action) {
   switch (action.type) {
-    case GOT_MOLES:
-      return {...state, moles: action.moles}
+    case GOT_HOLES:
+      return {...state, holes: action.holes}
     case VIDEO_LOADED:
       return {...state, videoLoaded: true}
     default:

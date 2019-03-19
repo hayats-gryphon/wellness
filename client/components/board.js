@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {gotMoles} from '../store/board'
+import {gotHoles} from '../store/board'
 import Hole from './hole'
 
 class Board extends React.Component {
@@ -48,7 +48,7 @@ class Board extends React.Component {
       })
     }
     console.log('holeRefArr', holeRefArr)
-    this.props.updateMoles(holeRefArr)
+    this.props.updateHoles(holeRefArr)
 
     setInterval(() => {
       const randomHoleIndex = this.generateRandomIdx()
@@ -105,7 +105,7 @@ class Board extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  updateMoles: moles => dispatch(gotMoles(moles))
+  updateHoles: holes => dispatch(gotHoles(holes))
 })
 
 export default connect(null, mapDispatchToProps)(Board)

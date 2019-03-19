@@ -146,7 +146,7 @@ class PunchABug extends React.Component {
       poses.forEach(({score, keypoints}) => {
         if (score >= minPoseConfidence) {
           hitAMole(
-            this.props.moleLocations,
+            this.props.holeLocations,
             keypoints,
             minPartConfidence,
             this.splatSoundRef
@@ -230,7 +230,7 @@ class PunchABug extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  moleLocations: state.board.moles,
+  holeLocations: state.board.holes,
   videoLoaded: state.board.videoLoaded
 })
 
