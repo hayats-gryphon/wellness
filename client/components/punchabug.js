@@ -169,7 +169,12 @@ class PunchABug extends React.Component {
    */
   bindPage = async () => {
     // Load the PoseNet model weights with architecture 0.75
-    const net = await posenet.load(0.75)
+    let net
+    try {
+      net = await posenet.load(0.75)
+    } catch (error) {
+      console.log('Unable to load posenet')
+    }
 
     this.loadingRef.current.style.display = 'none'
     this.mainRef.current.style.display = 'block'

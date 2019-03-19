@@ -34,8 +34,9 @@ export const hitAMole = (moles, keypoints, minConfidence, soundElem) => {
 
     const {y, x} = keypoint.position
 
+    // Here we are taking special action only for keypoints[0] because that's the nose!
     if (i === 0) {
-      moles.map(mole => {
+      moles.forEach(mole => {
         const {top, right, bottom, left} = mole.coords
         const moleElement = mole.el
         if (x > left && x < right && y > top - 120 && y < bottom - 120) {
