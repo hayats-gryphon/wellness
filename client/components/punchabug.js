@@ -48,7 +48,8 @@ class PunchABug extends React.Component {
           showPoints: true,
           showVideo: true
         },
-        net: null
+        net: null,
+        request: 0
       }
     }
   }
@@ -158,7 +159,10 @@ class PunchABug extends React.Component {
         }
       })
 
-      requestAnimationFrame(poseDetectionFrame)
+      this.setState({
+        request: requestAnimationFrame(poseDetectionFrame)
+      })
+      console.log('this.request ', this.state.request)
     }
 
     poseDetectionFrame()
@@ -204,6 +208,11 @@ class PunchABug extends React.Component {
       navigator.webkitGetUserMedia ||
       navigator.mozGetUserMedia
     this.bindPage()
+  }
+
+  componentWillUnmount() {
+    console.log('unmounting from punchabug', this.state.request)
+    cancelAnimationFrame(this.state.request)
   }
 
   render() {
