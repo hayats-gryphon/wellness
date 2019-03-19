@@ -24,7 +24,7 @@ export function drawPoint(ctx, y, x, r) {
   ctx.fill()
 }
 
-export const hitAMole = (moles, keypoints, minConfidence, soundElem) => {
+export const hitAMole = (holes, keypoints, minConfidence, soundElem) => {
   for (let i = 0; i < keypoints.length; i++) {
     const keypoint = keypoints[i]
 
@@ -36,11 +36,11 @@ export const hitAMole = (moles, keypoints, minConfidence, soundElem) => {
 
     // Here we are taking special action only for keypoints[0] because that's the nose!
     if (i === 0) {
-      moles.forEach(mole => {
-        const {top, right, bottom, left} = mole.coords
-        const moleElement = mole.el
+      holes.forEach(hole => {
+        const {top, right, bottom, left} = hole.coords
+        const holeElement = hole.el
         if (x > left && x < right && y > top - 120 && y < bottom - 120) {
-          moleElement.classList.toggle('mole')
+          holeElement.classList.toggle('mole')
           soundElem.current.play()
           //include offset next time
           //https://stackoverflow.com/questions/442404/retrieve-the-position-x-y-of-an-html-element
