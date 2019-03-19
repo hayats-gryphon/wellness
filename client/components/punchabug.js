@@ -20,16 +20,16 @@ import Board from './board'
 import {connect} from 'react-redux'
 import {videoLoaded} from '../store/board'
 
-import {
-  drawBoundingBox,
-  drawKeypoints,
-  drawSkeleton,
-  hitAMole
-} from './posenet_utils'
+import {drawKeypoints, hitAMole} from './posenet_utils'
 
 class PunchABug extends React.Component {
   constructor() {
     super()
+    this.splatSoundRef = React.createRef()
+    this.loadingRef = React.createRef()
+    this.mainRef = React.createRef()
+    this.videoRef = React.createRef()
+    this.outputRef = React.createRef()
     this.state = {
       videoWidth: 600,
       videoHeight: 500,
@@ -44,17 +44,9 @@ class PunchABug extends React.Component {
           minPoseConfidence: 0.1,
           minPartConfidence: 0.5
         },
-        multiPoseDetection: {
-          maxPoseDetections: 5,
-          minPoseConfidence: 0.15,
-          minPartConfidence: 0.1,
-          nmsRadius: 30.0
-        },
         output: {
-          showVideo: true,
-          showSkeleton: true,
           showPoints: true,
-          showBoundingBox: false
+          showVideo: true
         },
         net: null
       }
@@ -73,7 +65,7 @@ class PunchABug extends React.Component {
       )
     }
 
-    const video = document.getElementById('video')
+    const video = this.videoRef.current
     video.width = videoWidth
     video.height = videoHeight
 
@@ -109,7 +101,7 @@ class PunchABug extends React.Component {
   detectPoseInRealTime = video => {
     const {guiState, videoWidth, videoHeight} = this.state
 
-    const canvas = document.getElementById('output')
+    const canvas = this.outputRef.current
     const ctx = canvas.getContext('2d')
     // since images are being fed from a webcam
     const flipHorizontal = true
@@ -153,16 +145,14 @@ class PunchABug extends React.Component {
       // scores
       poses.forEach(({score, keypoints}) => {
         if (score >= minPoseConfidence) {
-          hitAMole(this.props.moleLocations, keypoints, minPartConfidence, ctx)
-
+          hitAMole(
+            this.props.moleLocations,
+            keypoints,
+            minPartConfidence,
+            this.splatSoundRef
+          )
           if (guiState.output.showPoints) {
             drawKeypoints(keypoints, minPartConfidence, ctx)
-          }
-          if (guiState.output.showSkeleton) {
-            drawSkeleton(keypoints, minPartConfidence, ctx)
-          }
-          if (guiState.output.showBoundingBox) {
-            drawBoundingBox(keypoints, ctx)
           }
         }
       })
@@ -179,21 +169,24 @@ class PunchABug extends React.Component {
    */
   bindPage = async () => {
     // Load the PoseNet model weights with architecture 0.75
-    const net = await posenet.load(0.75)
+    let net
+    try {
+      net = await posenet.load(0.75)
+    } catch (error) {
+      console.log('Unable to load posenet')
+    }
 
-    document.getElementById('loading').style.display = 'none'
-    document.getElementById('main').style.display = 'block'
+    this.loadingRef.current.style.display = 'none'
+    this.mainRef.current.style.display = 'block'
 
     let video
 
     try {
       video = await this.loadVideo()
     } catch (e) {
-      let info = document.getElementById('info')
-      info.textContent =
-        'this browser does not support video capture,' +
-        'or this device does not have a camera'
-      info.style.display = 'block'
+      console.error(
+        'this browser does not support video capture, or this device does not have a camera'
+      )
       throw e
     }
 
@@ -214,24 +207,24 @@ class PunchABug extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
-        <div id="loading">Loading the model...</div>
-        <div id="main" style={{display: 'none'}}>
-          <video
-            id="video"
-            playsInline
-            style={{
-              MozTransform: 'scaleX(-1)',
-              OTransform: 'scaleX(-1)',
-              WebkitTransform: 'scaleX(-1)',
-              transform: 'scaleX(-1)',
-              display: 'none'
-            }}
-          />
-          {this.props.videoLoaded ? <Board /> : <div />}
-          <canvas id="output" />
+      <>
+        <div ref={this.loadingRef} id="loading">
+          Loading the model...
         </div>
-      </React.Fragment>
+        <div ref={this.mainRef} id="main" style={{display: 'none'}}>
+          <audio
+            src="/splat_sound.mp3"
+            id="splat-sound"
+            ref={this.splatSoundRef}
+            preload="auto"
+            controls="none"
+            style={{display: 'none'}}
+          />
+          <video ref={this.videoRef} id="video" playsInline />
+          {this.props.videoLoaded ? <Board /> : <div />}
+          <canvas ref={this.outputRef} />
+        </div>
+      </>
     )
   }
 }

@@ -22,20 +22,23 @@ class Board extends React.Component {
     }
 
     this.soundRef = React.createRef()
-    this.holeRef = React.createRef()
+    this.holeRef1 = React.createRef()
+    this.holeRef2 = React.createRef()
+    this.holeRef3 = React.createRef()
+    this.holeRef4 = React.createRef()
+    this.holeRef5 = React.createRef()
+    this.holeRef6 = React.createRef()
+    this.holeRef7 = React.createRef()
+    this.holeRef8 = React.createRef()
+    this.holeRef9 = React.createRef()
+
+    this.generateRandomIdx = this.generateRandomIdx.bind(this)
   }
 
   componentDidMount() {
     this.soundRef.current.play()
-  }
-
-  render() {
     setInterval(() => {
-      const randomHoleIndex = Math.floor(
-        Math.random() * this.state.holes.length
-      )
-      console.log('RANDOM HOLE INDEX =====>', randomHoleIndex)
-
+      const randomHoleIndex = this.generateRandomIdx()
       this.setState(prevState => {
         const originalState = prevState.holes[randomHoleIndex].hasBug
         const updatedHoles = [...prevState.holes]
@@ -56,7 +59,14 @@ class Board extends React.Component {
       // }))
       // this.props.updateMoles(moleCoords)
     }, 3000)
+  }
 
+  generateRandomIdx() {
+    const randomIdx = Math.floor(Math.random() * this.state.holes.length)
+    return randomIdx === 4 ? this.generateRandomIdx() : randomIdx
+  }
+
+  render() {
     return (
       <>
         <audio
@@ -69,7 +79,14 @@ class Board extends React.Component {
         <div id="whack-a-mole" style={{position: 'fixed'}}>
           <div id="" />
 
-          {this.state.holes.map((hole, idx) => <Hole key={idx} />)}
+          {this.state.holes.map((hole, idx) => (
+            <Hole
+              tempRef={`this.holeRef${idx + 1}`}
+              key={idx}
+              hasBug={this.state.holes[idx].hasBug}
+              idx={idx}
+            />
+          ))}
         </div>
       </>
     )
