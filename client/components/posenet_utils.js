@@ -39,7 +39,6 @@ export const hitAMole = (holes, keypoints, minConfidence, soundElem) => {
       holes.forEach(hole => {
         const {top, right, bottom, left} = hole.coords
         const holeElement = hole.el
-        console.log('holeElement', holeElement)
         if (x > left && x < right && y > top - 120 && y < bottom - 120) {
           holeElement.classList.toggle('mole')
           soundElem.current.play()
