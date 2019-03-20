@@ -177,11 +177,7 @@ class PunchABug extends React.Component {
     try {
       net = await posenet.load(0.75)
     } catch (error) {
-      
-      
-      
-      
-      .log('Unable to load posenet')
+      console.log('Unable to load posenet')
     }
 
     this.loadingRef.current.style.display = 'none'
