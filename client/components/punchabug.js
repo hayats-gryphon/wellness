@@ -162,7 +162,6 @@ class PunchABug extends React.Component {
       this.setState({
         request: requestAnimationFrame(poseDetectionFrame)
       })
-      console.log('this.request ', this.state.request)
     }
 
     poseDetectionFrame()
@@ -211,11 +210,11 @@ class PunchABug extends React.Component {
   }
 
   componentWillUnmount() {
-    console.log('unmounting from punchabug', this.state.request)
     cancelAnimationFrame(this.state.request)
   }
 
   render() {
+    // console.log('props', this.props)
     return (
       <>
         <div ref={this.loadingRef} id="loading">
