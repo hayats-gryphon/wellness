@@ -8,7 +8,8 @@ import {
   UserHome,
   PunchABug,
   EndOfGame,
-  EntrancePage
+  EntrancePage,
+  Menu
 } from './components'
 
 import {me} from './store'
@@ -38,6 +39,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/punchabug" component={PunchABug} />
         <Route path="/end-of-game" component={EndOfGame} />
+        <Route path="/menu" component={Menu} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

@@ -217,6 +217,7 @@ class PunchABug extends React.Component {
   render() {
     return (
       <>
+        <img src="images/punchabug-logo.png" />
         <div ref={this.loadingRef} id="loading">
           Loading the model...
         </div>
