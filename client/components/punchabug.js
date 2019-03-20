@@ -20,6 +20,7 @@ import Board from './board'
 import {connect} from 'react-redux'
 import {videoLoaded} from '../store/board'
 import {updateScore} from '../store/scoreboard'
+import Scoreboard from './scoreboard'
 import {drawKeypoints, hitAMole} from './posenet_utils'
 
 class PunchABug extends React.Component {
@@ -48,8 +49,7 @@ class PunchABug extends React.Component {
           showPoints: true,
           showVideo: true
         },
-        net: null,
-        request: 0
+        net: null
       }
     }
   }
@@ -159,9 +159,7 @@ class PunchABug extends React.Component {
         }
       })
 
-      this.setState({
-        request: requestAnimationFrame(poseDetectionFrame)
-      })
+      requestAnimationFrame(poseDetectionFrame)
     }
 
     poseDetectionFrame()
@@ -209,14 +207,10 @@ class PunchABug extends React.Component {
     this.bindPage()
   }
 
-  componentWillUnmount() {
-    console.log('unmounting from punchabug', this.state.request)
-    cancelAnimationFrame(this.state.request)
-  }
-
   render() {
     return (
       <>
+        <Scoreboard />
         <div ref={this.loadingRef} id="loading">
           Loading the model...
         </div>
