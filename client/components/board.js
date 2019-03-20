@@ -1,7 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {gotHoles} from '../store/board'
-import Hole from './hole'
 import {withRouter} from 'react-router-dom'
 
 class Board extends React.Component {
@@ -36,7 +35,7 @@ class Board extends React.Component {
     this.playDiv = React.createRef()
     this.intervalId = 0
     this.countdownId = 0
-    
+
     this.generateRandomIdx = this.generateRandomIdx.bind(this)
   }
 
