@@ -32,6 +32,7 @@ class Board extends React.Component {
     this.holeRef7 = React.createRef()
     this.holeRef8 = React.createRef()
     this.playDiv = React.createRef()
+    this.intervalId = 0
 
     this.generateRandomIdx = this.generateRandomIdx.bind(this)
   }
@@ -49,7 +50,7 @@ class Board extends React.Component {
     }
     this.props.updateHoles(holeRefArr)
 
-    setInterval(() => {
+    this.intervalId = setInterval(() => {
       const randomHoleIndex = this.generateRandomIdx()
       this.setState(prevState => {
         const originalState = prevState.holes[randomHoleIndex].hasBug
@@ -62,6 +63,10 @@ class Board extends React.Component {
         }
       })
     }, 3000)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalId)
   }
 
   generateRandomIdx() {
