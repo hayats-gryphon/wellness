@@ -12,13 +12,20 @@ import {
 } from './components'
 
 import {me} from './store'
+import {getHighScoreFromUser} from './store/scoreboard'
 
 /**
  * COMPONENT
  */
 class Routes extends Component {
-  componentDidMount() {
-    this.props.loadInitialData()
+  async componentDidMount() {
+    await this.props.loadInitialData()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.isLoggedIn !== prevProps.isLoggedIn) {
+      this.props.fetchHighScore(this.props.userHighScore)
+    }
   }
 
   render() {
@@ -51,7 +58,8 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    userHighScore: Number(state.user.highscore)
   }
 }
 
@@ -59,6 +67,9 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me())
+    },
+    fetchHighScore(highscore) {
+      dispatch(getHighScoreFromUser(highscore))
     }
   }
 }
