@@ -20,6 +20,8 @@ import Board from './board'
 import {connect} from 'react-redux'
 import {videoLoaded} from '../store/board'
 import {updateScore} from '../store/scoreboard'
+import Scoreboard from './scoreboard'
+
 import {drawKeypoints, hitAMole} from './posenet_utils'
 
 class PunchABug extends React.Component {
@@ -217,6 +219,7 @@ class PunchABug extends React.Component {
     // console.log('props', this.props)
     return (
       <>
+        <Scoreboard />
         <div ref={this.loadingRef} id="loading">
           Loading the model...
         </div>

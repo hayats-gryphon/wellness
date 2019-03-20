@@ -36,6 +36,7 @@ class Board extends React.Component {
     this.playDiv = React.createRef()
     this.intervalId = 0
     this.countdownId = 0
+    
     this.generateRandomIdx = this.generateRandomIdx.bind(this)
   }
 
@@ -90,6 +91,10 @@ class Board extends React.Component {
 
   redirect = () => {
     setTimeout(() => this.props.history.push(`/end-of-game`), 1000)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalId)
   }
 
   generateRandomIdx() {
