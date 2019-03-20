@@ -162,7 +162,6 @@ class PunchABug extends React.Component {
       this.setState({
         request: requestAnimationFrame(poseDetectionFrame)
       })
-      console.log('this.request ', this.state.request)
     }
 
     poseDetectionFrame()
@@ -178,7 +177,11 @@ class PunchABug extends React.Component {
     try {
       net = await posenet.load(0.75)
     } catch (error) {
-      console.log('Unable to load posenet')
+      
+      
+      
+      
+      .log('Unable to load posenet')
     }
 
     this.loadingRef.current.style.display = 'none'
