@@ -21,8 +21,8 @@ form div {
 }
 
 #whack-a-mole {
+  position: absolute;
   background-color: transparent;
-  /* border: solid 20px #000; */
   padding: 20px;
   width: 600px;
   display: flex;
@@ -85,9 +85,21 @@ form div {
   display: none;
 }
 
+#grandparent {
+  height: 100vh;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+#play-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+}
+
 #timer {
-  position: fixed;
-  top: 600px;
-  left: 200px;
+  position: absolute;
   background-color: rgba(255, 255, 255, 0.3);
 }

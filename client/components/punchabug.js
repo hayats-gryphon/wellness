@@ -183,7 +183,7 @@ class PunchABug extends React.Component {
     }
 
     this.loadingRef.current.style.display = 'none'
-    this.mainRef.current.style.display = 'block'
+    this.mainRef.current.style.display = 'inline-block'
 
     let video
 
@@ -216,27 +216,21 @@ class PunchABug extends React.Component {
   }
 
   render() {
-    // console.log('props', this.props)
     return (
-      <>
-        <Scoreboard />
-        <div ref={this.loadingRef} id="loading">
-          Loading the model...
+      <div id="grandparent">
+        <div id="play-container">
+          <Scoreboard />
+          <h2 id="timer" ref={this.timer} />
+          <div ref={this.loadingRef} id="loading">
+            Loading the model...
+          </div>
+          <div ref={this.mainRef} style={{display: 'none'}} id="main">
+            {this.props.videoLoaded ? <Board /> : <div />}
+            <video ref={this.videoRef} id="video" playsInline />
+            <canvas ref={this.outputRef} />
+          </div>
         </div>
-        <div ref={this.mainRef} id="main" style={{display: 'none'}}>
-          <audio
-            src="/splat_sound.mp3"
-            id="splat-sound"
-            ref={this.splatSoundRef}
-            preload="auto"
-            controls="none"
-            style={{display: 'none'}}
-          />
-          <video ref={this.videoRef} id="video" playsInline />
-          {this.props.videoLoaded ? <Board /> : <div />}
-          <canvas ref={this.outputRef} />
-        </div>
-      </>
+      </div>
     )
   }
 }

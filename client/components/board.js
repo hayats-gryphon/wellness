@@ -36,7 +36,7 @@ class Board extends React.Component {
     this.playDiv = React.createRef()
     this.intervalId = 0
     this.countdownId = 0
-    
+
     this.generateRandomIdx = this.generateRandomIdx.bind(this)
   }
 
@@ -81,7 +81,7 @@ class Board extends React.Component {
         this.soundRef.current.pause()
         this.redirect()
       }
-    }, 1000)
+    }, 1000000)
   }
 
   componentWillUnmount() {
@@ -104,7 +104,7 @@ class Board extends React.Component {
 
   render() {
     return (
-      <>
+      <div>
         <audio
           src="/bgMusic.mp3"
           ref={this.soundRef}
@@ -113,7 +113,7 @@ class Board extends React.Component {
           style={{display: 'none'}}
         />
 
-        <div id="whack-a-mole" style={{position: 'fixed'}}>
+        <div id="whack-a-mole">
           <div id="" />
           {this.state.holes.map((hole, idx) => {
             return (
@@ -131,7 +131,7 @@ class Board extends React.Component {
           <div ref={this.playDiv} />
         </div>
         <h2 id="timer" ref={this.timer} />
-      </>
+      </div>
     )
   }
 }
