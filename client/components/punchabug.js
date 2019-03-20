@@ -32,6 +32,7 @@ class PunchABug extends React.Component {
     this.mainRef = React.createRef()
     this.videoRef = React.createRef()
     this.outputRef = React.createRef()
+    this.timer = React.createRef()
     this.state = {
       videoWidth: 600,
       videoHeight: 500,
@@ -219,13 +220,17 @@ class PunchABug extends React.Component {
     return (
       <div id="grandparent">
         <div id="play-container">
-          <Scoreboard />
-          <h2 id="timer" ref={this.timer} />
+          <div id="score-timer">
+            <Scoreboard />
+            <h2 id="timer" ref={this.timer}>
+              4
+            </h2>
+          </div>
           <div ref={this.loadingRef} id="loading">
             Loading the model...
           </div>
           <div ref={this.mainRef} style={{display: 'none'}} id="main">
-            {this.props.videoLoaded ? <Board /> : <div />}
+            {this.props.videoLoaded ? <Board timerRef={this.timer} /> : <div />}
             <video ref={this.videoRef} id="video" playsInline />
             <canvas ref={this.outputRef} />
           </div>
