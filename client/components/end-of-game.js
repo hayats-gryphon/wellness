@@ -1,11 +1,20 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {LeaderBoard} from '../components'
-import {updateHighScore} from '../store/scoreboard'
+import {updateHighScore, resetScore} from '../store/scoreboard'
+import {withRouter} from 'react-router-dom'
 
 class EndOfGame extends React.Component {
   constructor(props) {
     super(props)
+
+    this.resetHandler = this.resetHandler.bind(this)
+  }
+
+  resetHandler(event) {
+    event.preventDefault()
+    this.props.resetScore()
+    this.props.history.push(`/punchabug`)
   }
 
   componentDidMount() {
@@ -29,6 +38,13 @@ class EndOfGame extends React.Component {
         <div>
           <LeaderBoard />
         </div>
+        <button
+          type="button"
+          className="play-again-btn"
+          onClick={this.resetHandler}
+        >
+          Play Again
+        </button>
       </div>
     )
   }
@@ -43,9 +59,15 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateUserHighScore: (userId, score) =>
+    updateUserHighScore: (userId, score) => {
       dispatch(updateHighScore(userId, score))
+    },
+    resetScore: () => {
+      dispatch(resetScore())
+    }
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EndOfGame)
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(EndOfGame)
+)

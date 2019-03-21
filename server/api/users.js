@@ -25,3 +25,17 @@ router.put('/:userId', async (req, res, next) => {
     next(err)
   }
 })
+
+router.get('/leaderboard', async (req, res, next) => {
+  try {
+    const leaderboard = await User.findAll({
+      order: [['highscore', 'DESC']],
+
+      limit: 5
+    })
+
+    res.json(leaderboard)
+  } catch (err) {
+    next(err)
+  }
+})
