@@ -43,7 +43,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    // fetchUserHighScore: userId => dispatch(fetchUserHighScore(userId)),
     updateUserHighScore: (userId, score) =>
       dispatch(updateHighScore(userId, score))
   }
