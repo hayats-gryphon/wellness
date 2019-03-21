@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {gotHoles} from '../store/board'
 import Hole from './hole'
+import {withRouter} from 'react-router-dom'
 
 class Board extends React.Component {
   constructor(props) {
@@ -18,9 +19,10 @@ class Board extends React.Component {
         {hasBug: false},
         {hasBug: false},
         {hasBug: false}
-      ]
+      ],
+      countdownTimer: 10
     }
-
+    this.timer = React.createRef()
     this.soundRef = React.createRef()
     this.holeRef0 = React.createRef()
     this.holeRef1 = React.createRef()
@@ -33,6 +35,7 @@ class Board extends React.Component {
     this.holeRef8 = React.createRef()
     this.playDiv = React.createRef()
     this.intervalId = 0
+    this.countdownId = 0
 
     this.generateRandomIdx = this.generateRandomIdx.bind(this)
   }
@@ -62,7 +65,32 @@ class Board extends React.Component {
           holes: updatedHoles
         }
       })
-    }, 3000)
+    }, 1000)
+
+    this.countdownId = setInterval(() => {
+      this.setState(prevState => {
+        prevState.countdownTimer--
+      })
+      this.timer.current.textContent = `Countdown Timer: ${
+        this.state.countdownTimer
+      }`
+      if (this.state.countdownTimer === 0) {
+        this.timer.current.textContent = 'Round Over!'
+        clearInterval(this.intervalId)
+        clearInterval(this.countdownId)
+        this.soundRef.current.pause()
+        this.redirect()
+      }
+    }, 1000)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalId)
+    clearInterval(this.countdownId)
+  }
+
+  redirect = () => {
+    setTimeout(() => this.props.history.push(`/end-of-game`), 1000)
   }
 
   componentWillUnmount() {
@@ -84,6 +112,7 @@ class Board extends React.Component {
           controls="none"
           style={{display: 'none'}}
         />
+
         <div id="whack-a-mole" style={{position: 'fixed'}}>
           <div id="" />
           {this.state.holes.map((hole, idx) => {
@@ -101,6 +130,7 @@ class Board extends React.Component {
           })}
           <div ref={this.playDiv} />
         </div>
+        <h2 id="timer" ref={this.timer} />
       </>
     )
   }
@@ -110,4 +140,4 @@ const mapDispatchToProps = dispatch => ({
   updateHoles: holes => dispatch(gotHoles(holes))
 })
 
-export default connect(null, mapDispatchToProps)(Board)
+export default withRouter(connect(null, mapDispatchToProps)(Board))

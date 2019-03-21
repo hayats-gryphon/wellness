@@ -20,6 +20,8 @@ import Board from './board'
 import {connect} from 'react-redux'
 import {videoLoaded} from '../store/board'
 import {updateScore} from '../store/scoreboard'
+import Scoreboard from './scoreboard'
+
 import {drawKeypoints, hitAMole} from './posenet_utils'
 
 class PunchABug extends React.Component {
@@ -210,14 +212,18 @@ class PunchABug extends React.Component {
   }
 
   componentWillUnmount() {
-    console.log('unmounting from punchabug', this.state.request)
     cancelAnimationFrame(this.state.request)
   }
 
   render() {
+    // console.log('props', this.props)
     return (
       <>
-        <img src="images/punchabug-logo.png" />
+        <div className="game-logo">
+          <img src="images/punchabug-logo.png" />
+        </div>
+
+        <Scoreboard />
         <div ref={this.loadingRef} id="loading">
           Loading the model...
         </div>
