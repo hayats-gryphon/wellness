@@ -81,7 +81,7 @@ class Board extends React.Component {
         this.soundRef.current.pause()
         this.redirect()
       }
-    }, 1000000)
+    }, 1000)
   }
 
   componentWillUnmount() {

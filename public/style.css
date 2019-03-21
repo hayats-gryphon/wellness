@@ -106,4 +106,5 @@ form div {
 
 #score-timer {
   display: flex;
+  justify-content: space-between;
 }

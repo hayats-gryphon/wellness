@@ -222,9 +222,7 @@ class PunchABug extends React.Component {
         <div id="play-container">
           <div id="score-timer">
             <Scoreboard />
-            <h2 id="timer" ref={this.timer}>
-              4
-            </h2>
+            <h2 id="timer" ref={this.timer} />
           </div>
           <div ref={this.loadingRef} id="loading">
             Loading the model...
