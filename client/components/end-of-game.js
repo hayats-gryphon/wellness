@@ -1,25 +1,28 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {LeaderBoard} from '../components'
-import {fetchUserHighScore} from '../store/scoreboard'
+import {updateHighScore} from '../store/scoreboard'
 
 class EndOfGame extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
   }
+
   componentDidMount() {
-    console.log(' this is user id', this.props.user.id)
-    this.props.fetchUserHighScore(this.props.user.id)
+    if (this.props.isLoggedIn) {
+      if (this.props.score > this.props.highScore) {
+        this.props.updateUserHighScore(this.props.user.id, this.props.score)
+      }
+    }
   }
 
   render() {
-    console.log('this is the user', this.props.user)
     return (
       <div>
         <img className="center" src="/smashedbug.png" />
         <h2 className="end-game-score">SCORE: {this.props.score}</h2>
         <h2 className="end-game-score">
-          {this.props.user ? (
+          {this.props.isLoggedIn ? (
             <div>YOUR HIGH SCORE: {this.props.highScore}</div>
           ) : null}
         </h2>
@@ -33,13 +36,16 @@ class EndOfGame extends React.Component {
 
 const mapStateToProps = state => ({
   user: state.user,
+  isLoggedIn: !!state.user.id,
   score: state.scoreboard.score,
   highScore: state.scoreboard.highScore
 })
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchUserHighScore: userId => dispatch(fetchUserHighScore(userId))
+    // fetchUserHighScore: userId => dispatch(fetchUserHighScore(userId)),
+    updateUserHighScore: (userId, score) =>
+      dispatch(updateHighScore(userId, score))
   }
 }
 

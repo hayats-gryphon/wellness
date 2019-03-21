@@ -16,11 +16,12 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/:userId', async (req, res, next) => {
+router.put('/:userId', async (req, res, next) => {
   try {
+    console.log('THIS ISSSSSS REQ.BODY', req.body)
     const user = await User.findById(req.params.userId)
-    const highScore = user.highscore
-    res.json(highScore)
+    await user.update({highscore: req.body.score})
+    res.json(user.highscore)
   } catch (err) {
     next(err)
   }

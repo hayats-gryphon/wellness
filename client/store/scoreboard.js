@@ -37,12 +37,14 @@ export const updateScore = increaseBy => ({type: UPDATE_SCORE, increaseBy})
  * THUNK CREATOR
  */
 
-export const fetchUserHighScore = userId => async dispatch => {
-  console.log('HEEEEREEEEEEE  inside scoreBoard')
-  const {data} = await Axios.get(`/api/users/${userId}`)
-  console.log('data inside component', data.highScore)
-}
+// export const fetchUserHighScore = userId => async dispatch => {
+//   const {data} = await Axios.get(`/api/users/${userId}`)
+// }
 
+export const updateHighScore = (userId, score) => async dispatch => {
+  const {data} = await Axios.put(`/api/users/${userId}`, {score: score})
+  dispatch(updateUserHighScore(data))
+}
 /**
  * REDUCER
  */
