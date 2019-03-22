@@ -29,13 +29,6 @@ form div {
 }
 /*--------GAME PAGE----------*/
 
-.game-container {
-  width: 100%;
-  height: 100vh;
-  background: url('images/game-screen.png');
-  background-size: cover;
-}
-
 #whack-a-mole {
   position: absolute;
   background-color: transparent;
@@ -94,7 +87,7 @@ form div {
   position: fixed;
   top: 0;
   left: 0;
-  background: url('images/start-screen-2.png');
+  background: url('images/game-screen.png');
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -143,11 +136,20 @@ form div {
   margin: 20px;
 }
 
+.grow {
+  transition: all 0.2s ease-in-out;
+}
+.grow:hover {
+  transform: scale(1.2);
+}
+
 /*---------PUNCHABUG GAME----------*/
 .game-logo img {
   width: 700px;
   max-width: 100%;
   max-height: 450px;
+  display: flex;
+  align-self: center;
 }
 
 @keyframes moveright {
@@ -180,6 +182,8 @@ form div {
   justify-content: center;
   align-items: center;
   display: flex;
+  background: url('images/game-screen.png');
+  background-size: cover;
 }
 
 #play-container {
@@ -197,3 +201,18 @@ form div {
   display: flex;
   justify-content: space-between;
 }
+
+/*-------END OF GAME-------*/
+#end-of-game-container {
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background: url('images/game-screen.png');
+  background-size: cover;
+}
+
+/* #leaderboard {
+  background: url('images/leaderboard.png');
+  background-size: cover;
+} */

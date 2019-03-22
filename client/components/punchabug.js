@@ -219,34 +219,40 @@ class PunchABug extends React.Component {
 
   render() {
     return (
-      <div id="grandparent">
-        <div className="game-logo">
-          <img src="images/punchabug-logo.png" />
+      <>
+        <div id="grandparent">
+          <div id="play-container">
+            <div className="game-logo">
+              <img src="images/punchabug-logo.png" />
+            </div>
+            <div id="score-timer">
+              <Scoreboard />
+              <h2 id="timer" ref={this.timer}>
+                Playtime
+              </h2>
+              <audio
+                src="/no2.mp3"
+                ref={this.splatSoundRef}
+                preload="auto"
+                controls="none"
+                style={{display: 'none'}}
+              />
+            </div>
+            <div ref={this.loadingRef} id="loading">
+              Loading the model...
+            </div>
+            <div ref={this.mainRef} style={{display: 'none'}} id="main">
+              {this.props.videoLoaded ? (
+                <Board timerRef={this.timer} />
+              ) : (
+                <div />
+              )}
+              <video ref={this.videoRef} id="video" playsInline />
+              <canvas ref={this.outputRef} />
+            </div>
+          </div>
         </div>
-        <div id="play-container">
-          <div id="score-timer">
-            <Scoreboard />
-            <h2 id="timer" ref={this.timer}>
-              Playtime
-            </h2>
-            <audio
-              src="/splat_sound.mp3"
-              ref={this.splatSoundRef}
-              preload="auto"
-              controls="none"
-              style={{display: 'none'}}
-            />
-          </div>
-          <div ref={this.loadingRef} id="loading">
-            Loading the model...
-          </div>
-          <div ref={this.mainRef} style={{display: 'none'}} id="main">
-            {this.props.videoLoaded ? <Board timerRef={this.timer} /> : <div />}
-            <video ref={this.videoRef} id="video" playsInline />
-            <canvas ref={this.outputRef} />
-          </div>
-        </div>
-      </div>
+      </>
     )
   }
 }
