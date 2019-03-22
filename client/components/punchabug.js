@@ -27,10 +27,12 @@ class PunchABug extends React.Component {
   constructor() {
     super()
     this.splatSoundRef = React.createRef()
+    this.splatSoundRef = React.createRef()
     this.loadingRef = React.createRef()
     this.mainRef = React.createRef()
     this.videoRef = React.createRef()
     this.outputRef = React.createRef()
+    this.timer = React.createRef()
     this.state = {
       videoWidth: 600,
       videoHeight: 500,
@@ -152,7 +154,8 @@ class PunchABug extends React.Component {
             keypoints,
             minPartConfidence,
             this.splatSoundRef,
-            this.props.updateScore
+            this.props.updateScore,
+            this.mainRef
           )
           if (guiState.output.showPoints) {
             drawKeypoints(keypoints, minPartConfidence, ctx)
@@ -182,7 +185,7 @@ class PunchABug extends React.Component {
     }
 
     this.loadingRef.current.style.display = 'none'
-    this.mainRef.current.style.display = 'block'
+    this.mainRef.current.style.display = 'inline-block'
 
     let video
 
@@ -216,25 +219,31 @@ class PunchABug extends React.Component {
 
   render() {
     return (
-      <>
-        <Scoreboard />
-        <div ref={this.loadingRef} id="loading">
-          Loading the model...
+      <div id="grandparent">
+        <div id="play-container">
+          <div id="score-timer">
+            <Scoreboard />
+            <h2 id="timer" ref={this.timer}>
+              Playtime
+            </h2>
+            <audio
+              src="/splat_sound.mp3"
+              ref={this.splatSoundRef}
+              preload="auto"
+              controls="none"
+              style={{display: 'none'}}
+            />
+          </div>
+          <div ref={this.loadingRef} id="loading">
+            Loading the model...
+          </div>
+          <div ref={this.mainRef} style={{display: 'none'}} id="main">
+            {this.props.videoLoaded ? <Board timerRef={this.timer} /> : <div />}
+            <video ref={this.videoRef} id="video" playsInline />
+            <canvas ref={this.outputRef} />
+          </div>
         </div>
-        <div ref={this.mainRef} id="main" style={{display: 'none'}}>
-          <audio
-            src="/splat_sound.mp3"
-            id="splat-sound"
-            ref={this.splatSoundRef}
-            preload="auto"
-            controls="none"
-            style={{display: 'none'}}
-          />
-          <video ref={this.videoRef} id="video" playsInline />
-          {this.props.videoLoaded ? <Board /> : <div />}
-          <canvas ref={this.outputRef} />
-        </div>
-      </>
+      </div>
     )
   }
 }

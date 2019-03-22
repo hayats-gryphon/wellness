@@ -18,10 +18,12 @@
 const color = 'aqua'
 
 export function drawPoint(ctx, y, x, r) {
-  ctx.beginPath()
-  ctx.arc(x, y, r, 0, 2 * Math.PI)
-  ctx.fillStyle = color
-  ctx.fill()
+  let baseImage = new Image()
+  baseImage.src = '/swat.png'
+
+  baseImage.onload = function() {
+    ctx.drawImage(baseImage, x - 30, y - 30)
+  }
 }
 
 export const hitAMole = (
@@ -29,7 +31,8 @@ export const hitAMole = (
   keypoints,
   minConfidence,
   soundElem,
-  updateScore
+  updateScore,
+  parentBox
 ) => {
   for (let i = 0; i < keypoints.length; i++) {
     const keypoint = keypoints[i]
@@ -37,23 +40,25 @@ export const hitAMole = (
     if (keypoint.score < minConfidence) {
       continue
     }
-
+    let parent = parentBox.current.getBoundingClientRect()
     const {y, x} = keypoint.position
 
     // Here we are taking special action only for keypoints[0] because that's the nose!
     if (i === 0) {
       holes.forEach(hole => {
-        const {top, right, bottom, left} = hole.coords
         const holeRef = hole.el
-        if (x > left && x < right && y > top - 120 && y < bottom - 120) {
+        const holeBox = holeRef.getBoundingClientRect()
+        const left = holeBox.left - parent.left
+        const right = holeBox.right - parent.left
+        const top = holeBox.top - parent.top
+        const bottom = holeBox.bottom - parent.top
+
+        if (x > left && x < right && y > top && y < bottom) {
           if (Array.from(holeRef.classList).includes('mole')) {
             holeRef.classList.toggle('mole')
             soundElem.current.play()
             updateScore(1)
           }
-
-          //include offset next time
-          //https://stackoverflow.com/questions/442404/retrieve-the-position-x-y-of-an-html-element
         }
       })
     }
@@ -64,15 +69,10 @@ export const hitAMole = (
  * Draw pose keypoints onto a canvas
  */
 export function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
-  for (let i = 0; i < keypoints.length; i++) {
-    const keypoint = keypoints[i]
+  let noseKeypoint = keypoints[0]
 
-    if (keypoint.score < minConfidence) {
-      continue
-    }
-
-    const {y, x} = keypoint.position
-
+  if (noseKeypoint.score > minConfidence) {
+    const {y, x} = noseKeypoint.position
     drawPoint(ctx, y * scale, x * scale, 3, color)
   }
 }
