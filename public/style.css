@@ -27,6 +27,14 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+/*--------GAME PAGE----------*/
+
+.game-container {
+  width: 100%;
+  height: 100vh;
+  background: url('images/game-screen.png');
+  background-size: cover;
+}
 
 #whack-a-mole {
   position: absolute;
@@ -86,7 +94,7 @@ form div {
   position: fixed;
   top: 0;
   left: 0;
-  background: url('images/start-screen-without-logo.png');
+  background: url('images/start-screen-2.png');
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;

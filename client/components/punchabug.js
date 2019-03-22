@@ -16,11 +16,10 @@
  */
 import * as posenet from '@tensorflow-models/posenet'
 import React from 'react'
-import Board from './board'
+import {Board, Scoreboard} from '../components'
 import {connect} from 'react-redux'
 import {videoLoaded} from '../store/board'
 import {updateScore} from '../store/scoreboard'
-import Scoreboard from './scoreboard'
 
 import {drawKeypoints, hitAMole} from './posenet_utils'
 
