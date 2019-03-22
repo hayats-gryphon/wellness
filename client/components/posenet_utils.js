@@ -18,13 +18,14 @@
 const color = 'aqua'
 
 export function drawPoint(ctx, y, x, r) {
-  ctx.beginPath()
-  ctx.arc(x, y, r, 0, 2 * Math.PI)
-  ctx.fillStyle = color
-  ctx.fill()
+  let baseImage = new Image()
+  baseImage.src = '/swat.png'
+
+  baseImage.onload = function() {
+    ctx.drawImage(baseImage, x - 30, y - 30)
+  }
 }
 
-// eslint-disable-next-line max-params
 export const hitAMole = (
   holes,
   keypoints,
@@ -68,15 +69,10 @@ export const hitAMole = (
  * Draw pose keypoints onto a canvas
  */
 export function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
-  for (let i = 0; i < keypoints.length; i++) {
-    const keypoint = keypoints[i]
+  let noseKeypoint = keypoints[0]
 
-    if (keypoint.score < minConfidence) {
-      continue
-    }
-
-    const {y, x} = keypoint.position
-
+  if (noseKeypoint.score > minConfidence) {
+    const {y, x} = noseKeypoint.position
     drawPoint(ctx, y * scale, x * scale, 3, color)
   }
 }
