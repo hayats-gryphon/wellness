@@ -25,7 +25,7 @@ class LearderBoard extends React.Component {
               return (
                 <tr key={leader.id} id="row">
                   <td id={leader.id}>{leader.highscore}</td>
-                  <td id={leader.id}>{leader.email}</td>
+                  <td id={leader.id}>{leader.name}</td>
                 </tr>
               )
             })}
