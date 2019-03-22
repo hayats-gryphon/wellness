@@ -57,11 +57,14 @@ export default function(state = defaultScore, action) {
         ...state,
         highScore: action.highScore
       }
-    case UPDATE_SCORE:
+    case UPDATE_SCORE: {
+      let newScore = state.score + action.increaseBy
+      if (newScore < 0) newScore = 0
       return {
         ...state,
-        score: state.score + action.increaseBy
+        score: newScore
       }
+    }
     case RESET_SCORE:
       return {
         ...state,

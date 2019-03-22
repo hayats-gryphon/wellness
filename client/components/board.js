@@ -9,15 +9,15 @@ class Board extends React.Component {
 
     this.state = {
       holes: [
-        {hasBug: false},
-        {hasBug: false},
-        {hasBug: false},
-        {hasBug: false},
+        {hasBug: false, hasFlower: false},
+        {hasBug: false, hasFlower: false},
+        {hasBug: false, hasFlower: false},
+        {hasBug: false, hasFlower: false},
         {isFace: true},
-        {hasBug: false},
-        {hasBug: false},
-        {hasBug: false},
-        {hasBug: false}
+        {hasBug: false, hasFlower: false},
+        {hasBug: false, hasFlower: false},
+        {hasBug: false, hasFlower: false},
+        {hasBug: false, hasFlower: false}
       ],
       countdownTimer: 10
     }
@@ -34,66 +34,98 @@ class Board extends React.Component {
     this.playDiv = React.createRef()
     this.intervalId = 0
     this.countdownId = 0
+    this.hardIntervalId = 0
 
     this.generateRandomIdx = this.generateRandomIdx.bind(this)
   }
 
   componentDidMount() {
-    console.log('this.props.timerRef', this.props.timerRef)
     this.soundRef.current.play()
     let holeRefArr = []
 
     for (let i = 0; i < this.state.holes.length; i++) {
-      const coords = this[`holeRef${i}`].current.getBoundingClientRect()
-      holeRefArr.push({
-        coords,
-        el: this[`holeRef${i}`].current
-      })
+      holeRefArr.push(this[`holeRef${i}`].current)
     }
+
     this.props.updateHoles(holeRefArr)
 
-    this.intervalId = setInterval(() => {
-      const randomHoleIndex = this.generateRandomIdx()
-      this.setState(prevState => {
-        const originalState = prevState.holes[randomHoleIndex].hasBug
-        const updatedHoles = [...prevState.holes]
-        const updatedHole = {hasBug: !originalState}
-        updatedHoles[randomHoleIndex] = updatedHole
+    if (
+      this.props.location.pathname === '/punchabug' ||
+      this.props.location.pathname === '/punchabug-hard'
+    ) {
+      this.intervalId = setInterval(() => {
+        this.generateBug()
+      }, 300)
+    }
 
-        return {
-          holes: updatedHoles
-        }
-      })
-    }, 1000)
+    if (this.props.location.pathname === '/punchabug-beginner') {
+      this.intervalId = setInterval(() => {
+        this.generateBug()
+      }, 1000)
+    }
+
+    if (this.props.location.pathname === '/punchabug-hard') {
+      this.hardIntervalId = setInterval(() => {
+        this.generateFlower()
+      }, 1500)
+    }
 
     this.countdownId = setInterval(() => {
-      this.setState(prevState => {
-        prevState.countdownTimer--
-      })
-      this.props.timerRef.current.textContent = `Countdown Timer: ${
-        this.state.countdownTimer
-      }`
-      if (this.state.countdownTimer === 0) {
-        this.props.timerRef.current.textContent = 'Round Over!'
-        clearInterval(this.intervalId)
-        clearInterval(this.countdownId)
-        this.soundRef.current.pause()
-        this.redirect()
-      }
+      this.countdown()
     }, 1000)
   }
 
   componentWillUnmount() {
     clearInterval(this.intervalId)
     clearInterval(this.countdownId)
+    clearInterval(this.hardIntervalId)
+  }
+
+  generateBug = () => {
+    const randomHoleIndex = this.generateRandomIdx()
+    this.setState(prevState => {
+      const originalState = prevState.holes[randomHoleIndex].hasBug
+      const updatedHoles = [...prevState.holes]
+      const updatedHole = {hasBug: !originalState}
+      updatedHoles[randomHoleIndex] = updatedHole
+      return {
+        holes: updatedHoles
+      }
+    })
+  }
+
+  countdown = () => {
+    this.setState(prevState => {
+      prevState.countdownTimer--
+    })
+    this.props.timerRef.current.textContent = `Countdown Timer: ${
+      this.state.countdownTimer
+    }`
+    if (this.state.countdownTimer === 0) {
+      this.props.timerRef.current.textContent = 'Round Over!'
+      clearInterval(this.intervalId)
+      clearInterval(this.countdownId)
+      clearInterval(this.hardIntervalId)
+      this.soundRef.current.pause()
+      this.redirect()
+    }
+  }
+
+  generateFlower = () => {
+    const randomHoleIndex = this.generateRandomIdx()
+    this.setState(prevState => {
+      const originalState = prevState.holes[randomHoleIndex]
+      const updatedHoles = [...prevState.holes]
+      const updatedHole = {hasBug: false, hasFlower: !originalState.hasFlower}
+      updatedHoles[randomHoleIndex] = updatedHole
+      return {
+        holes: updatedHoles
+      }
+    })
   }
 
   redirect = () => {
     setTimeout(() => this.props.history.push(`/end-of-game`), 1000)
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.intervalId)
   }
 
   generateRandomIdx() {
@@ -122,14 +154,15 @@ class Board extends React.Component {
                 className={
                   idx === 4
                     ? 'face-space'
-                    : this.state.holes[idx].hasBug ? 'mole hole' : 'hole'
+                    : this.state.holes[idx].hasFlower
+                      ? 'flower hole'
+                      : this.state.holes[idx].hasBug ? 'mole hole' : 'hole'
                 }
               />
             )
           })}
           <div ref={this.playDiv} />
         </div>
-        {/* <h2 id="timer" ref={this.timer} /> */}
       </div>
     )
   }

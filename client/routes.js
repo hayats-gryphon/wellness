@@ -37,6 +37,8 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/punchabug" component={PunchABug} />
+        <Route path="/punchabug-beginner" component={PunchABug} />
+        <Route path="/punchabug-hard" component={PunchABug} />
         <Route path="/end-of-game" component={EndOfGame} />
         {isLoggedIn && (
           <Switch>
