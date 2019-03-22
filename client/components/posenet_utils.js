@@ -45,8 +45,7 @@ export const hitAMole = (
 
     // Here we are taking special action only for keypoints[0] because that's the nose!
     if (i === 0) {
-      holes.forEach(hole => {
-        const holeRef = hole.el
+      holes.forEach(holeRef => {
         const holeBox = holeRef.getBoundingClientRect()
         const left = holeBox.left - parent.left
         const right = holeBox.right - parent.left
@@ -58,6 +57,11 @@ export const hitAMole = (
             holeRef.classList.toggle('mole')
             soundElem.current.play()
             updateScore(1)
+          }
+          if (Array.from(holeRef.classList).includes('flower')) {
+            holeRef.classList.toggle('flower')
+            soundElem.current.play()
+            updateScore(-1)
           }
         }
       })

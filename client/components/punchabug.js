@@ -27,12 +27,13 @@ class PunchABug extends React.Component {
   constructor() {
     super()
     this.splatSoundRef = React.createRef()
-    this.splatSoundRef = React.createRef()
+    this.playContainerRef = React.createRef()
     this.loadingRef = React.createRef()
     this.mainRef = React.createRef()
     this.videoRef = React.createRef()
     this.outputRef = React.createRef()
-    this.timer = React.createRef()
+    this.timerRef = React.createRef()
+    this.errorMsgRef = React.createRef()
     this.state = {
       videoWidth: 600,
       videoHeight: 500,
@@ -192,9 +193,9 @@ class PunchABug extends React.Component {
     try {
       video = await this.loadVideo()
     } catch (e) {
-      console.error(
-        'this browser does not support video capture, or this device does not have a camera'
-      )
+      this.errorMsgRef.current.textContent =
+        'This browser does not support video capture, or this device does not have a camera. Please try with another browser or device!'
+      this.playContainerRef.current.style.display = 'none'
       throw e
     }
 
@@ -219,40 +220,39 @@ class PunchABug extends React.Component {
 
   render() {
     return (
-      <>
-        <div id="grandparent">
-          <div id="play-container">
-            <div className="game-logo">
-              <img src="images/punchabug-logo.png" />
-            </div>
-            <div id="score-timer">
-              <Scoreboard />
-              <h2 id="timer" ref={this.timer}>
-                Playtime
-              </h2>
-              <audio
-                src="/no2.mp3"
-                ref={this.splatSoundRef}
-                preload="auto"
-                controls="none"
-                style={{display: 'none'}}
-              />
-            </div>
-            <div ref={this.loadingRef} id="loading">
-              Loading the model...
-            </div>
-            <div ref={this.mainRef} style={{display: 'none'}} id="main">
-              {this.props.videoLoaded ? (
-                <Board timerRef={this.timer} />
-              ) : (
-                <div />
-              )}
-              <video ref={this.videoRef} id="video" playsInline />
-              <canvas ref={this.outputRef} />
-            </div>
+      <div id="grandparent">
+        <div id="play-container" ref={this.playContainerRef}>
+          <div className="game-logo">
+            <img src="images/punchabug-logo.png" />
+          </div>
+          <div id="score-timer">
+            <Scoreboard />
+            <h2 id="timer" ref={this.timerRef}>
+              Playtime
+            </h2>
+            <audio
+              src="/splat_sound.mp3"
+              ref={this.splatSoundRef}
+              preload="auto"
+              controls="none"
+              style={{display: 'none'}}
+            />
+          </div>
+          <div ref={this.loadingRef} id="loading">
+            Loading the model...
+          </div>
+          <div ref={this.mainRef} style={{display: 'none'}} id="main">
+            {this.props.videoLoaded ? (
+              <Board timerRef={this.timerRef} />
+            ) : (
+              <div />
+            )}
+            <video ref={this.videoRef} id="video" playsInline />
+            <canvas ref={this.outputRef} />
           </div>
         </div>
-      </>
+        <div ref={this.errorMsgRef} />
+      </div>
     )
   }
 }

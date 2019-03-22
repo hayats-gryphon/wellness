@@ -50,6 +50,10 @@ form div {
   background-image: url('bug-with-leaf.png');
 }
 
+.flower {
+  background-image: url('flower-with-leaf.png');
+}
+
 .face-space {
   width: 110px;
   height: 100px;
