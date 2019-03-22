@@ -21,7 +21,6 @@ class Board extends React.Component {
       ],
       countdownTimer: 10
     }
-    this.timer = React.createRef()
     this.soundRef = React.createRef()
     this.holeRef0 = React.createRef()
     this.holeRef1 = React.createRef()
@@ -40,6 +39,7 @@ class Board extends React.Component {
   }
 
   componentDidMount() {
+    console.log('this.props.timerRef', this.props.timerRef)
     this.soundRef.current.play()
     let holeRefArr = []
 
@@ -70,11 +70,11 @@ class Board extends React.Component {
       this.setState(prevState => {
         prevState.countdownTimer--
       })
-      this.timer.current.textContent = `Countdown Timer: ${
+      this.props.timerRef.current.textContent = `Countdown Timer: ${
         this.state.countdownTimer
       }`
       if (this.state.countdownTimer === 0) {
-        this.timer.current.textContent = 'Round Over!'
+        this.props.timerRef.current.textContent = 'Round Over!'
         clearInterval(this.intervalId)
         clearInterval(this.countdownId)
         this.soundRef.current.pause()
@@ -103,7 +103,7 @@ class Board extends React.Component {
 
   render() {
     return (
-      <>
+      <div>
         <audio
           src="/bgMusic.mp3"
           ref={this.soundRef}
@@ -112,7 +112,7 @@ class Board extends React.Component {
           style={{display: 'none'}}
         />
 
-        <div id="whack-a-mole" style={{position: 'fixed'}}>
+        <div id="whack-a-mole">
           <div id="" />
           {this.state.holes.map((hole, idx) => {
             return (
@@ -129,8 +129,8 @@ class Board extends React.Component {
           })}
           <div ref={this.playDiv} />
         </div>
-        <h2 id="timer" ref={this.timer} />
-      </>
+        {/* <h2 id="timer" ref={this.timer} /> */}
+      </div>
     )
   }
 }
