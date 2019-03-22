@@ -33,6 +33,7 @@ export const me = () => async dispatch => {
 export const auth = (name, password, method) => async dispatch => {
   let res
   try {
+    console.log('auth reached; method is ', method)
     res = await axios.post(`/auth/${method}`, {name, password})
   } catch (authError) {
     return dispatch(getUser({error: authError}))
@@ -40,7 +41,7 @@ export const auth = (name, password, method) => async dispatch => {
 
   try {
     dispatch(getUser(res.data))
-    history.push('/punchabug')
+    history.push('/')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
   }

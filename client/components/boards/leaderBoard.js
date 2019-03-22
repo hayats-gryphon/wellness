@@ -21,7 +21,6 @@ class LearderBoard extends React.Component {
               <td id="cell0-0">High Score</td>
               <td id="cell0-1">Name</td>
             </tr>
-
             {this.props.leaderboard.map(leader => {
               return (
                 <tr key={leader.id} id="row">

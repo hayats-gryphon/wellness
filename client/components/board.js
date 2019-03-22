@@ -105,7 +105,7 @@ class Board extends React.Component {
     return (
       <div>
         <audio
-          src="/theme_song.mp3"
+          src="/theme-song.mp3"
           ref={this.soundRef}
           preload="auto"
           controls="none"
