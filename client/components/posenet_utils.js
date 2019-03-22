@@ -24,12 +24,14 @@ export function drawPoint(ctx, y, x, r) {
   ctx.fill()
 }
 
+// eslint-disable-next-line max-params
 export const hitAMole = (
   holes,
   keypoints,
   minConfidence,
   soundElem,
-  updateScore
+  updateScore,
+  parentBox
 ) => {
   for (let i = 0; i < keypoints.length; i++) {
     const keypoint = keypoints[i]
@@ -37,23 +39,25 @@ export const hitAMole = (
     if (keypoint.score < minConfidence) {
       continue
     }
-
+    let parent = parentBox.current.getBoundingClientRect()
     const {y, x} = keypoint.position
 
     // Here we are taking special action only for keypoints[0] because that's the nose!
     if (i === 0) {
       holes.forEach(hole => {
-        const {top, right, bottom, left} = hole.coords
         const holeRef = hole.el
-        if (x > left && x < right && y > top - 120 && y < bottom - 120) {
+        const holeBox = holeRef.getBoundingClientRect()
+        const left = holeBox.left - parent.left
+        const right = holeBox.right - parent.left
+        const top = holeBox.top - parent.top
+        const bottom = holeBox.bottom - parent.top
+
+        if (x > left && x < right && y > top && y < bottom) {
           if (Array.from(holeRef.classList).includes('mole')) {
             holeRef.classList.toggle('mole')
             soundElem.current.play()
             updateScore(1)
           }
-
-          //include offset next time
-          //https://stackoverflow.com/questions/442404/retrieve-the-position-x-y-of-an-html-element
         }
       })
     }
