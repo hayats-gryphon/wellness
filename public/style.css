@@ -298,3 +298,16 @@ form div {
   font-size: 20px;
   color: #5a7e26;
 }
+
+.back-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.all-button {
+  display: flex;
+  align-self: flex-end;
+  align-items: center;
+  width: 100px;
+}

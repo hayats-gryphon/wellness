@@ -1,9 +1,12 @@
 import React from 'react'
-
+import {Link} from 'react-router-dom'
 /**
  * COMPONENT
  */
 export default class Instruction extends React.Component {
+  constructor() {
+    super()
+  }
   render() {
     return (
       <div className="outer-div">
@@ -25,10 +28,15 @@ export default class Instruction extends React.Component {
               </p>
             </div>
           </div>
+          <div className="back-button">
+            <Link to="/">
+              {/* place holder for the image */}
+              <button type="button" name="all-button">
+                back
+              </button>
+            </Link>
+          </div>
         </div>
-        <button type="button" name="back-button">
-          BACK
-        </button>
       </div>
     )
   }
