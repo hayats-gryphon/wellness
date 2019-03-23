@@ -17,13 +17,27 @@
 
 const color = 'aqua'
 
-export function drawPoint(ctx, y, x, r) {
+export function drawPoint(ctx, y, x) {
   let baseImage = new Image()
   baseImage.src = '/swat.png'
 
   baseImage.onload = function() {
     ctx.drawImage(baseImage, x - 30, y - 30)
   }
+}
+
+export function generateRandomSound() {
+  let randomIdx = Math.floor(Math.random() * 5)
+  const sounds = [
+    '/no2.mp3',
+    '/Hey 1.mp3',
+    '/Hey 2.mp3',
+    '/Hey 3.mp3',
+    '/no2.mp3'
+  ]
+
+  const sound = sounds[randomIdx]
+  return sound
 }
 
 export const hitAMole = (
@@ -57,11 +71,17 @@ export const hitAMole = (
         if (x > left && x < right && y > top && y < bottom) {
           if (Array.from(holeRef.classList).includes('mole')) {
             holeRef.classList.toggle('mole')
+            const randomSound = generateRandomSound()
+            soundElem.current.src = randomSound
+            soundElem.current.load()
             soundElem.current.play()
             updateScore(1)
           }
           if (Array.from(holeRef.classList).includes('flower')) {
             holeRef.classList.toggle('flower')
+            const randomSound = generateRandomSound()
+            soundElem.current.src = randomSound
+            soundElem.current.load()
             soundElem.current.play()
             updateScore(-1)
           }

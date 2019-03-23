@@ -19,13 +19,14 @@ import React from 'react'
 import {Board, Scoreboard} from '../components'
 import {connect} from 'react-redux'
 import {videoLoaded} from '../store/board'
-import {updateScore} from '../store/scoreboard'
+import {updateScore, resetScore} from '../store/scoreboard'
 
 import {drawKeypoints, hitAMole} from './posenet_utils'
 
 class PunchABug extends React.Component {
   constructor() {
     super()
+
     this.splatSoundRef = React.createRef()
     this.playContainerRef = React.createRef()
     this.loadingRef = React.createRef()
@@ -34,6 +35,7 @@ class PunchABug extends React.Component {
     this.outputRef = React.createRef()
     this.timerRef = React.createRef()
     this.errorMsgRef = React.createRef()
+    this.readyRef = React.createRef()
     this.state = {
       videoWidth: 600,
       videoHeight: 500,
@@ -216,6 +218,7 @@ class PunchABug extends React.Component {
 
   componentWillUnmount() {
     cancelAnimationFrame(this.state.request)
+    clearInterval(this.soundIntervalId)
   }
 
   render() {
@@ -228,7 +231,7 @@ class PunchABug extends React.Component {
           <div id="score-timer">
             <Scoreboard />
             <h2 id="timer" ref={this.timerRef}>
-              Playtime
+              Get Ready...
             </h2>
             <audio
               src="/no2.mp3"
@@ -237,7 +240,9 @@ class PunchABug extends React.Component {
               controls="none"
               style={{display: 'none'}}
             />
+
             <button
+              type="button"
               onClick={() => {
                 if (window.confirm('Are you sure you want to exit?')) {
                   this.props.history.push('/')
@@ -252,7 +257,7 @@ class PunchABug extends React.Component {
           </div>
           <div ref={this.mainRef} style={{display: 'none'}} id="main">
             {this.props.videoLoaded ? (
-              <Board timerRef={this.timerRef} />
+              <Board timerRef={this.timerRef} readyRef={this.readyRef} />
             ) : (
               <div />
             )}
@@ -277,6 +282,9 @@ const mapDispatchToProps = dispatch => ({
   },
   updateScore: increaseBy => {
     dispatch(updateScore(increaseBy))
+  },
+  resetScore: () => {
+    dispatch(resetScore())
   }
 })
 
