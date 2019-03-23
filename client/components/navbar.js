@@ -18,8 +18,14 @@ const Menu = ({handleClick, isLoggedIn}) => (
     ) : (
       <div className="entrance-menu">
         {/* The navbar will show these links before you log in */}
+        <Link className="grow" to="/punchabug-beginner">
+          Beginner
+        </Link>
         <Link className="grow" to="/punchabug">
-          Play
+          Medium
+        </Link>
+        <Link className="grow" to="/punchabug-hard">
+          Hard
         </Link>
         <Link className="grow" to="/login">
           Login
