@@ -26,6 +26,7 @@ import {drawKeypoints, hitAMole} from './posenet_utils'
 class PunchABug extends React.Component {
   constructor() {
     super()
+
     this.splatSoundRef = React.createRef()
     this.playContainerRef = React.createRef()
     this.loadingRef = React.createRef()
@@ -217,6 +218,7 @@ class PunchABug extends React.Component {
 
   componentWillUnmount() {
     cancelAnimationFrame(this.state.request)
+    clearInterval(this.soundIntervalId)
   }
 
   render() {
@@ -238,7 +240,9 @@ class PunchABug extends React.Component {
               controls="none"
               style={{display: 'none'}}
             />
+
             <button
+              type="button"
               onClick={() => {
                 if (window.confirm('Are you sure you want to exit?')) {
                   this.props.history.push('/')
