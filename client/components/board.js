@@ -19,7 +19,7 @@ class Board extends React.Component {
         {hasBug: false, hasFlower: false},
         {hasBug: false, hasFlower: false}
       ],
-      countdownTimer: 10,
+      countdownTimer: 20,
       readyCountdown: 8
     }
     this.soundRef = React.createRef()
@@ -61,43 +61,54 @@ class Board extends React.Component {
       if (this.state.readyCountdown === -1) {
         this.props.timerRef.current.textContent = `GO!`
 
-        if (
-          this.props.location.pathname === '/punchabug' ||
-          this.props.location.pathname === '/punchabug-hard'
-        ) {
-          this.intervalId = setInterval(() => {
-            this.generateBug()
-          }, 300)
-        }
+    if (this.props.location.pathname === '/punchabug-beginner') {
+      this.beginnerIntervalId = setInterval(() => {
+        this.generateBug()
+      }, 1000)
+    }
 
-        if (this.props.location.pathname === '/punchabug-beginner') {
-          this.intervalId = setInterval(() => {
-            this.generateBug()
-          }, 1000)
-        }
+    if (this.props.location.pathname === '/punchabug') {
+      this.intervalId = setInterval(() => {
+        this.generateBug()
+      }, 600)
+      this.flowerIntervalId = setInterval(() => {
+        this.generateFlower()
+      }, 3000)
+    }
 
-        if (this.props.location.pathname === '/punchabug-hard') {
-          this.hardIntervalId = setInterval(() => {
-            this.generateFlower()
-          }, 1500)
-        }
-        this.countdownId = setInterval(() => {
-          this.countdown()
-        }, 1000)
-      }
+    if (this.props.location.pathname === '/punchabug-hard') {
+      this.hardIntervalId = setInterval(() => {
+        this.generateBug()
+      }, 500)
+      this.hardFlowerIntervalId = setInterval(() => {
+        this.generateFlower()
+      }, 2400)
+    }
+
+    this.countdownId = setInterval(() => {
+      this.countdown()
     }, 1000)
   }
 
   componentWillUnmount() {
     this.soundRef.current.pause()
+    clearInterval(this.beginnerIntervalId)
     clearInterval(this.intervalId)
-    clearInterval(this.countdownId)
+    clearInterval(this.flowerIntervalId)
     clearInterval(this.hardIntervalId)
+    clearInterval(this.hardFlowerIntervalId)
+    clearInterval(this.countdownId)
     clearInterval(this.readyCountdownId)
   }
 
   generateBug = () => {
     const randomHoleIndex = this.generateRandomIdx()
+    console.log(
+      'randomHoleIndex',
+      randomHoleIndex,
+      'this.state.countdownTimer',
+      this.state.countdownTimer
+    )
     this.setState(prevState => {
       const originalState = prevState.holes[randomHoleIndex].hasBug
       const updatedHoles = [...prevState.holes]
@@ -148,7 +159,7 @@ class Board extends React.Component {
     return (
       <div>
         <audio
-          src="/bgMusic.mp3"
+          src="/theme-song.mp3"
           ref={this.soundRef}
           preload="auto"
           controls="none"

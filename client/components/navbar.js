@@ -4,28 +4,40 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
-  <div>
-    <nav>
-      {isLoggedIn ? (
-        <div>
-          {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-          <Link to="/punchabug">Puncha Bug</Link>
+const Menu = ({handleClick, name, isLoggedIn}) => (
+  <div className="menu-container">
+    {isLoggedIn ? (
+      <div>
+        <div className="user-welcome">
+          <h3>Welcome, {name}!</h3>
         </div>
-      ) : (
-        <div>
+        <div className="entrance-menu">
           {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-          <Link to="/punchabug">Puncha Bug</Link>
+          <Link className="grow" to="/punchabug-beginner">
+            Beginner
+          </Link>
+          <Link className="grow" to="/punchabug">
+            Medium
+          </Link>
+          <Link className="grow" to="/punchabug-hard">
+            Hard
+          </Link>
         </div>
-      )}
-    </nav>
-    <hr />
+      </div>
+    ) : (
+      <div className="entrance-menu">
+        {/* The navbar will show these links before you log in */}
+        <Link className="grow" to="/punchabug-beginner">
+          Beginner
+        </Link>
+        <Link className="grow" to="/punchabug">
+          Medium
+        </Link>
+        <Link className="grow" to="/punchabug-hard">
+          Hard
+        </Link>
+      </div>
+    )}
   </div>
 )
 
@@ -34,7 +46,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    name: state.user.name
   }
 }
 
@@ -46,12 +59,12 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(mapState, mapDispatch)(Navbar)
+export default connect(mapState, mapDispatch)(Menu)
 
 /**
  * PROP TYPES
  */
-Navbar.propTypes = {
+Menu.propTypes = {
   handleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }

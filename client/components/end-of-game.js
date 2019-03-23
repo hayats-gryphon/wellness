@@ -2,7 +2,10 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {LeaderBoard} from '../components'
 import {updateHighScore, resetScore} from '../store/scoreboard'
+import {withRouter} from 'react-router-dom'
+import {Footer} from './index'
 import {fetchLeaderboard} from '../store/leaderboard'
+
 class EndOfGame extends React.Component {
   constructor(props) {
     super(props)
@@ -27,7 +30,7 @@ class EndOfGame extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="menu-container">
         <img className="center" src="/smashedbug.png" />
         <h2 className="end-game-score">SCORE: {this.props.score}</h2>
         <h2 className="end-game-score">
@@ -38,6 +41,7 @@ class EndOfGame extends React.Component {
         <div>
           <LeaderBoard />
         </div>
+        <Footer />
         <button
           type="button"
           className="play-again-btn"

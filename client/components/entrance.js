@@ -1,18 +1,18 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Menu, Footer} from './index'
 
 /**
  * COMPONENT
  */
 
-export default class EntracePage extends React.Component {
+export default class EntrancePage extends React.Component {
   render() {
     return (
-      <div className="entrance-container">
-        <div className="play-button">
-          <Link to="/punchabug">
-            <img src="images/play-button.png" />
-          </Link>
+      <div className="outer-div">
+        <div className="entrance-container">
+          <img className="media" src="images/punchabug-logo.png" />
+          <Menu />
+          <Footer />
         </div>
       </div>
     )
