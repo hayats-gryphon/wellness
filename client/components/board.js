@@ -80,7 +80,7 @@ class Board extends React.Component {
           }, 2400)
           this.hardBeeIntervalId = setInterval(() => {
             this.generateBee()
-          }, 2400)
+          }, 4800)
         }
         this.countdownId = setInterval(() => {
           this.countdown()
@@ -130,8 +130,6 @@ class Board extends React.Component {
     let currRef = this[`holeRef${randomHoleIndex}`].current
     let classNames = Array.from(currRef.classList)
     if (classNames.includes('mole')) {
-      console.log('this is the currRef', currRef)
-      console.log('this is the classNames', classNames)
       randomHoleIndex = this.generateRandomIdx()
       currRef = this[`holeRef${randomHoleIndex}`].current
     }
