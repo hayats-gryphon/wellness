@@ -8,19 +8,11 @@ class Board extends React.Component {
     super(props)
 
     this.state = {
-      holes: [
-        {hasBug: false, hasFlower: false},
-        {hasBug: false, hasFlower: false},
-        {hasBug: false, hasFlower: false},
-        {hasBug: false, hasFlower: false},
-        {isFace: true},
-        {hasBug: false, hasFlower: false},
-        {hasBug: false, hasFlower: false},
-        {hasBug: false, hasFlower: false},
-        {hasBug: false, hasFlower: false}
-      ],
-      countdownTimer: 25
+      countdownTimer: 20,
+      readyCountdown: 8,
+      numOfHoles: 9
     }
+
     this.soundRef = React.createRef()
     this.holeRef0 = React.createRef()
     this.holeRef1 = React.createRef()
@@ -35,105 +27,107 @@ class Board extends React.Component {
     this.intervalId = 0
     this.countdownId = 0
     this.hardIntervalId = 0
-
-    this.generateRandomIdx = this.generateRandomIdx.bind(this)
+    this.readyCountdownId = 0
   }
 
   componentDidMount() {
     this.soundRef.current.play()
     let holeRefArr = []
 
-    for (let i = 0; i < this.state.holes.length; i++) {
+    for (let i = 0; i < this.state.numOfHoles; i++) {
       holeRefArr.push(this[`holeRef${i}`].current)
     }
 
     this.props.updateHoles(holeRefArr)
 
-    if (this.props.location.pathname === '/punchabug-beginner') {
-      this.beginnerIntervalId = setInterval(() => {
-        this.generateBug()
-      }, 1000)
-    }
+    this.readyCountdownId = setInterval(() => {
+      this.props.timerRef.current.textContent = `Get Ready...${
+        this.state.readyCountdown
+      }`
+      this.setState(prevState => {
+        prevState.readyCountdown--
+      })
 
-    if (this.props.location.pathname === '/punchabug') {
-      this.intervalId = setInterval(() => {
-        this.generateBug()
-      }, 600)
-      this.flowerIntervalId = setInterval(() => {
-        this.generateFlower()
-      }, 3000)
-    }
+      if (this.state.readyCountdown === -1) {
+        clearInterval(this.readyCountdownId)
+        this.props.timerRef.current.textContent = `GO!`
 
-    if (this.props.location.pathname === '/punchabug-hard') {
-      this.hardIntervalId = setInterval(() => {
-        this.generateBug()
-      }, 500)
-      this.hardFlowerIntervalId = setInterval(() => {
-        this.generateFlower()
-      }, 2400)
-    }
+        if (this.props.location.pathname === '/punchabug-beginner') {
+          this.beginnerIntervalId = setInterval(() => {
+            this.generateBug()
+          }, 1000)
+        }
 
-    this.countdownId = setInterval(() => {
-      this.countdown()
+        if (this.props.location.pathname === '/punchabug') {
+          this.intervalId = setInterval(() => {
+            this.generateBug()
+          }, 800)
+
+          this.flowerIntervalId = setInterval(() => {
+            this.generateFlower()
+          }, 3000)
+        }
+
+        if (this.props.location.pathname === '/punchabug-hard') {
+          this.hardIntervalId = setInterval(() => {
+            this.generateBug()
+          }, 700)
+          this.hardFlowerIntervalId = setInterval(() => {
+            this.generateFlower()
+          }, 2400)
+        }
+
+        this.countdownId = setInterval(() => {
+          this.countdown()
+        }, 1000)
+      }
     }, 1000)
   }
 
   componentWillUnmount() {
+    this.soundRef.current.pause()
     clearInterval(this.beginnerIntervalId)
     clearInterval(this.intervalId)
     clearInterval(this.flowerIntervalId)
     clearInterval(this.hardIntervalId)
     clearInterval(this.hardFlowerIntervalId)
     clearInterval(this.countdownId)
+    clearInterval(this.readyCountdownId)
   }
 
   generateBug = () => {
     const randomHoleIndex = this.generateRandomIdx()
-    console.log(
-      'randomHoleIndex',
-      randomHoleIndex,
-      'this.state.countdownTimer',
-      this.state.countdownTimer
-    )
-    this.setState(prevState => {
-      const originalState = prevState.holes[randomHoleIndex].hasBug
-      const updatedHoles = [...prevState.holes]
-      const updatedHole = {hasBug: !originalState}
-      updatedHoles[randomHoleIndex] = updatedHole
-      return {
-        holes: updatedHoles
-      }
-    })
+    let currRef = this[`holeRef${randomHoleIndex}`].current
+    let classNames = Array.from(currRef.classList)
+    if (classNames.includes('flower')) currRef.classList.toggle('flower')
+    currRef.classList.toggle('mole')
   }
 
   countdown = () => {
     this.setState(prevState => {
       prevState.countdownTimer--
     })
+
     this.props.timerRef.current.textContent = `Countdown Timer: ${
       this.state.countdownTimer
     }`
+
     if (this.state.countdownTimer === 0) {
       this.props.timerRef.current.textContent = 'Round Over!'
-      clearInterval(this.intervalId)
-      clearInterval(this.countdownId)
-      clearInterval(this.hardIntervalId)
-      this.soundRef.current.pause()
+
       this.redirect()
     }
   }
 
   generateFlower = () => {
-    const randomHoleIndex = this.generateRandomIdx()
-    this.setState(prevState => {
-      const originalState = prevState.holes[randomHoleIndex]
-      const updatedHoles = [...prevState.holes]
-      const updatedHole = {hasBug: false, hasFlower: !originalState.hasFlower}
-      updatedHoles[randomHoleIndex] = updatedHole
-      return {
-        holes: updatedHoles
-      }
-    })
+    let randomHoleIndex = this.generateRandomIdx()
+    let currRef = this[`holeRef${randomHoleIndex}`].current
+    let classNames = Array.from(currRef.classList)
+    if (classNames.includes('mole')) {
+      randomHoleIndex = this.generateRandomIdx()
+      currRef = this[`holeRef${randomHoleIndex}`].current
+    }
+    currRef.classList.toggle('flower')
   }
 
   redirect = () => {
@@ -141,7 +135,7 @@ class Board extends React.Component {
   }
 
   generateRandomIdx() {
-    const randomIdx = Math.floor(Math.random() * this.state.holes.length)
+    const randomIdx = Math.floor(Math.random() * this.state.numOfHoles)
     return randomIdx === 4 ? this.generateRandomIdx() : randomIdx
   }
 
@@ -157,22 +151,17 @@ class Board extends React.Component {
         />
 
         <div id="whack-a-mole">
-          <div id="" />
-          {this.state.holes.map((hole, idx) => {
-            return (
-              <div
-                key={idx}
-                ref={this[`holeRef${idx}`]}
-                className={
-                  idx === 4
-                    ? 'face-space'
-                    : this.state.holes[idx].hasFlower
-                      ? 'flower hole'
-                      : this.state.holes[idx].hasBug ? 'mole hole' : 'hole'
-                }
-              />
-            )
-          })}
+          {Array(this.state.numOfHoles)
+            .fill('')
+            .map((hole, idx) => {
+              return (
+                <div
+                  key={idx}
+                  ref={this[`holeRef${idx}`]}
+                  className={idx === 4 ? 'face-space' : 'hole'}
+                />
+              )
+            })}
           <div ref={this.playDiv} />
         </div>
       </div>
