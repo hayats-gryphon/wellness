@@ -1,5 +1,5 @@
 import React from 'react'
-import {Menu} from './index'
+import {Menu, Footer} from './index'
 
 /**
  * COMPONENT
@@ -12,6 +12,7 @@ export default class EntrancePage extends React.Component {
         <div className="entrance-container">
           <img className="media" src="images/punchabug-logo.png" />
           <Menu />
+          <Footer />
         </div>
       </div>
     )

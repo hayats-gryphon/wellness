@@ -9,11 +9,15 @@ const Menu = ({handleClick, isLoggedIn}) => (
     {isLoggedIn ? (
       <div className="entrance-menu">
         {/* The navbar will show these links after you log in */}
-        <Link to="/home">Home</Link>
-        <a href="#" onClick={handleClick}>
-          Logout
-        </a>
-        <Link to="/punchabug">Puncha Bug</Link>
+        <Link className="grow" to="/punchabug-beginner">
+          Beginner
+        </Link>
+        <Link className="grow" to="/punchabug">
+          Medium
+        </Link>
+        <Link className="grow" to="/punchabug-hard">
+          Hard
+        </Link>
       </div>
     ) : (
       <div className="entrance-menu">
@@ -26,12 +30,6 @@ const Menu = ({handleClick, isLoggedIn}) => (
         </Link>
         <Link className="grow" to="/punchabug-hard">
           Hard
-        </Link>
-        <Link className="grow" to="/login">
-          Login
-        </Link>
-        <Link className="grow" to="/signup">
-          Sign Up
         </Link>
       </div>
     )}
