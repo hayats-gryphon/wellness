@@ -43,8 +43,7 @@ export const auth = (name, password, method, highscore) => async dispatch => {
   }
 
   try {
-    //dispatch(getUser(res.data))
-    dispatch(me())
+    dispatch(getUser(res.data))
     history.push('/')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
