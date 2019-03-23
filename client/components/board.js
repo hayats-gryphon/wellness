@@ -14,7 +14,6 @@ class Board extends React.Component {
     }
 
     this.soundRef = React.createRef()
-    this.bugSoundRef = React.createRef()
     this.randomRef = React.createRef()
     this.holeRef0 = React.createRef()
     this.holeRef1 = React.createRef()
