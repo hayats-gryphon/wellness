@@ -38,9 +38,19 @@ export const resetScore = () => ({type: RESET_SCORE})
 /**
  * THUNK CREATOR
  */
-export const updateHighScore = (userId, score) => async dispatch => {
-  const {data} = await Axios.put(`/api/users/${userId}`, {score: score})
-  dispatch(updateUserHighScore(data))
+export const updateHighScore = (userId, score) => {
+  return async dispatch => {
+    if (userId) {
+      try {
+        const {data} = await Axios.put(`/api/users/${userId}`, {score: score})
+        dispatch(updateUserHighScore(Number(data)))
+      } catch (error) {
+        console.error(error)
+      }
+    } else {
+      dispatch(updateUserHighScore(score))
+    }
+  }
 }
 /**
  * REDUCER

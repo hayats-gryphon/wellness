@@ -94,10 +94,8 @@ class EndOfGame extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.isLoggedIn) {
-      if (this.props.score > this.props.highScore) {
-        this.props.updateUserHighScore(this.props.user.id, this.props.score)
-      }
+    if (this.props.score > this.props.highScore) {
+      this.props.updateUserHighScore(this.props.user.id, this.props.score)
     }
     this.props.fetchLeaderboard()
   }

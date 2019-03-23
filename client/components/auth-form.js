@@ -8,8 +8,7 @@ import scoreboard from '../store/scoreboard'
  * COMPONENT
  */
 const AuthForm = props => {
-  const {name, displayName, handleSubmit, error} = props
-
+  const {name, displayName, handleSubmit, error, highscore} = props
   return (
     <div>
       <form onSubmit={handleSubmit} name={name}>
@@ -26,7 +25,8 @@ const AuthForm = props => {
           <input name="password" type="password" />
         </div>
         <div>
-          <input name="savescore" type="checkbox" /> <small>Save score?</small>
+          <input name="savescore" type="checkbox" value={highscore} />{' '}
+          <small>Save score?</small>
         </div>
         <div>
           <button type="submit">{displayName}</button>
@@ -49,7 +49,8 @@ const mapLogin = state => {
   return {
     name: 'login',
     displayName: 'Login',
-    error: state.user.error
+    error: state.user.error,
+    highscore: state.scoreboard.highScore
   }
 }
 
@@ -57,7 +58,8 @@ const mapSignup = state => {
   return {
     name: 'signup',
     displayName: 'Sign Up',
-    error: state.user.error
+    error: state.user.error,
+    highscore: state.scoreboard.highScore
   }
 }
 
@@ -68,8 +70,11 @@ const mapDispatch = dispatch => {
       const formName = evt.target.name
       const username = evt.target.username.value
       const password = evt.target.password.value
-      const saveScore = evt.target.savescore.checked
-      dispatch(auth(username, password, formName, saveScore))
+      let highscore = 0
+      if (evt.target.savescore.checked) {
+        highscore = evt.target.savescore.value
+      }
+      dispatch(auth(username, password, formName, highscore))
     }
   }
 }
@@ -84,5 +89,6 @@ AuthForm.propTypes = {
   name: PropTypes.string.isRequired,
   displayName: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  error: PropTypes.object
+  error: PropTypes.object,
+  highscore: PropTypes.number
 }

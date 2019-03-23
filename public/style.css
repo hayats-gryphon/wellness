@@ -1,7 +1,15 @@
 /*-------FONTS------*/
+
+/* @font-face {
+  font-family: 'dotty';
+  src: url('/public/fonts/dotty.woff2') format('woff2'), url('/public/fonts/dotty.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+} */
+
 @font-face {
   font-family: 'dotty';
-  src: url('dotty.woff2') format('woff2'), url('dotty.woff') format('woff');
+  src: url('/public/fonts/dotty.ttf') format('ttf');
   font-weight: normal;
   font-style: normal;
 }
@@ -105,12 +113,18 @@ form div {
   align-self: center;
 }
 
+.user-welcome {
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+}
+
 /*----------NAVBAR----------*/
 .menu-container {
   display: flex;
   margin: 0 auto;
   justify-content: center;
-  height: 100%;
+  height: 70%;
   padding: 0;
   margin: 0;
   display: -webkit-box;
