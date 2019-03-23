@@ -1,5 +1,9 @@
 const isDev = process.env.NODE_ENV === 'development'
 
+const PATHS = {
+  build: path.join(__dirname, './src/public')
+}
+
 module.exports = {
   mode: isDev ? 'development' : 'production',
   entry: [
@@ -8,7 +12,8 @@ module.exports = {
   ],
   output: {
     path: __dirname,
-    filename: './public/bundle.js'
+    filename: './public/bundle.js',
+    publicPath: PATHS.build
   },
   resolve: {
     extensions: ['.js', '.jsx']
@@ -25,8 +30,8 @@ module.exports = {
         loader: 'babel-loader'
       },
       {
-        test: /\.(jpg|png|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
-        loader: 'file-loader'
+        test: /\.(jpe?g|png|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
+        loader: 'url-loader?limit=100000'
       }
     ]
   }
