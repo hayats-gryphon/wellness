@@ -19,7 +19,7 @@ class Board extends React.Component {
         {hasBug: false, hasFlower: false},
         {hasBug: false, hasFlower: false}
       ],
-      countdownTimer: 20
+      countdownTimer: 25
     }
     this.soundRef = React.createRef()
     this.holeRef0 = React.createRef()
@@ -49,25 +49,28 @@ class Board extends React.Component {
 
     this.props.updateHoles(holeRefArr)
 
-    if (
-      this.props.location.pathname === '/punchabug' ||
-      this.props.location.pathname === '/punchabug-hard'
-    ) {
-      this.intervalId = setInterval(() => {
-        this.generateBug()
-      }, 300)
-    }
-
     if (this.props.location.pathname === '/punchabug-beginner') {
-      this.intervalId = setInterval(() => {
+      this.beginnerIntervalId = setInterval(() => {
         this.generateBug()
       }, 1000)
     }
 
+    if (this.props.location.pathname === '/punchabug') {
+      this.intervalId = setInterval(() => {
+        this.generateBug()
+      }, 600)
+      this.flowerIntervalId = setInterval(() => {
+        this.generateFlower()
+      }, 3000)
+    }
+
     if (this.props.location.pathname === '/punchabug-hard') {
       this.hardIntervalId = setInterval(() => {
+        this.generateBug()
+      }, 500)
+      this.hardFlowerIntervalId = setInterval(() => {
         this.generateFlower()
-      }, 1500)
+      }, 2400)
     }
 
     this.countdownId = setInterval(() => {
@@ -76,13 +79,22 @@ class Board extends React.Component {
   }
 
   componentWillUnmount() {
+    clearInterval(this.beginnerIntervalId)
     clearInterval(this.intervalId)
-    clearInterval(this.countdownId)
+    clearInterval(this.flowerIntervalId)
     clearInterval(this.hardIntervalId)
+    clearInterval(this.hardFlowerIntervalId)
+    clearInterval(this.countdownId)
   }
 
   generateBug = () => {
     const randomHoleIndex = this.generateRandomIdx()
+    console.log(
+      'randomHoleIndex',
+      randomHoleIndex,
+      'this.state.countdownTimer',
+      this.state.countdownTimer
+    )
     this.setState(prevState => {
       const originalState = prevState.holes[randomHoleIndex].hasBug
       const updatedHoles = [...prevState.holes]

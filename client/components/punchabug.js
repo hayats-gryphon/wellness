@@ -237,6 +237,15 @@ class PunchABug extends React.Component {
               controls="none"
               style={{display: 'none'}}
             />
+            <button
+              onClick={() => {
+                if (window.confirm('Are you sure you want to exit?')) {
+                  this.props.history.push('/')
+                }
+              }}
+            >
+              EXIT
+            </button>
           </div>
           <div ref={this.loadingRef} id="loading">
             Loading the model...
