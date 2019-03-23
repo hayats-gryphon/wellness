@@ -7,9 +7,17 @@
   font-style: normal;
 } */
 
-@font-face {
+/* @font-face {
   font-family: 'dotty';
   src: url('/public/fonts/dotty.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+} */
+
+@font-face {
+  font-family: 'dotty';
+  src: url('/public/fonts/dotty.woff') format('woff2'),
+    url('/public/fonts/dotty.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
