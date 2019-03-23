@@ -219,6 +219,7 @@ class PunchABug extends React.Component {
 
   componentWillUnmount() {
     cancelAnimationFrame(this.state.request)
+    // clearInterval(this.soundIntervalId)
   }
 
   generateRandomIdx() {
@@ -227,15 +228,24 @@ class PunchABug extends React.Component {
   }
 
   generateRandomSound() {
-    let idx = this.generateRandomIdx(1, 5)
-
-    let mySounds = ['sound1', 'sound2', 'sound3', 'sound4', 'sound5']
-
-    const sound = mySounds[idx]
-
-    console.log('CURRENT SOUND======>', sound)
+    let randomIdx = this.generateRandomIdx(1, 4)
+    const sounds = [
+      '/Hey 1.mp3',
+      '/Hey 2.mp3',
+      '/Hey 3.mp3',
+      '/Hey 4.mp3',
+      '/no2.mp3'
+    ]
+    // const sounds = ['/no2.mp3']
+    const sound = sounds[randomIdx]
+    console.log('GETTING CURRENT SOUND======>', sound)
     return sound
   }
+
+  // soundIntervalId = setInterval(() => {
+  //   this.generateRandomSound()
+  //   console.log('interval sound====>')
+  // }, 3000)
 
   render() {
     return (
@@ -257,6 +267,7 @@ class PunchABug extends React.Component {
               style={{display: 'none'}}
             />
             <button
+              type="button"
               onClick={() => {
                 if (window.confirm('Are you sure you want to exit?')) {
                   this.props.history.push('/')

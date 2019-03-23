@@ -26,6 +26,28 @@ export function drawPoint(ctx, y, x, r) {
   }
 }
 
+export const generateRandomIdd = () => {
+  const randomIdx = Math.floor(Math.random() * 5)
+  return randomIdx
+}
+
+export const generateRandomSound = generateRandomIdx => {
+  let idx = generateRandomIdx(1, 5)
+
+  let mySounds = [
+    'public/Hey 1.mp3',
+    'public/Hey 2.mp3',
+    'public/Hey 3.mp3',
+    'public/Hey 4.mp3',
+    'public/no2.mp3'
+  ]
+
+  const sound = mySounds[idx]
+
+  console.log('CURRENT SOUND======>', sound)
+  return sound
+}
+
 export const hitAMole = (
   holes,
   keypoints,
