@@ -13,6 +13,9 @@ const Menu = ({handleClick, name, isLoggedIn}) => (
         </div>
         <div className="entrance-menu">
           {/* The navbar will show these links before you log in */}
+          <Link className="grow" to="/instruction">
+            Instruction
+          </Link>
           <Link className="grow" to="/punchabug-beginner">
             Beginner
           </Link>
@@ -27,6 +30,9 @@ const Menu = ({handleClick, name, isLoggedIn}) => (
     ) : (
       <div className="entrance-menu">
         {/* The navbar will show these links before you log in */}
+        <Link className="grow" to="/instruction">
+          Instruction
+        </Link>
         <Link className="grow" to="/punchabug-beginner">
           Beginner
         </Link>

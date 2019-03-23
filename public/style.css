@@ -240,3 +240,67 @@ form div {
   background: url('images/leaderboard.png');
   background-size: cover;
 } */
+
+/*---------instruction--------*/
+.how-to {
+  font-size: 70px;
+  font-weight: normal;
+  text-align: center;
+  line-height: 150%;
+  padding-bottom: 10px;
+  margin-top: 150px;
+  margin-bottom: 30px;
+  z-index: 2;
+  position: relative;
+  font-family: 'dotty';
+  color: #5a7f26;
+}
+
+.instruction-container {
+  height: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px;
+  margin: 0px;
+  font-family: 'dotty';
+}
+
+.instruction {
+  width: 600px;
+  text-align: center;
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+  font-family: 'dotty';
+}
+
+.instruction h2 {
+  color: #5a7f26;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: 'dotty';
+  font-size: 30px;
+}
+
+.instruction p {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-family: 'dotty';
+  font-size: 20px;
+  color: #5a7e26;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.all-button {
+  display: flex;
+  align-self: flex-end;
+  align-items: center;
+  width: 100px;
+}

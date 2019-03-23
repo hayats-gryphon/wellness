@@ -8,7 +8,8 @@ import {
   PunchABug,
   EndOfGame,
   EntrancePage,
-  Menu
+  Menu,
+  Instruction
 } from './components'
 
 import {me} from './store'
@@ -40,6 +41,7 @@ class Routes extends Component {
         <Route path="/punchabug-beginner" component={PunchABug} />
         <Route path="/punchabug-hard" component={PunchABug} />
         <Route path="/end-of-game" component={EndOfGame} />
+        <Route path="/instruction" component={Instruction} />
         <Route path="/menu" component={Menu} />
         {isLoggedIn && (
           <Switch>

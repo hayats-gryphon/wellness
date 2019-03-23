@@ -24,7 +24,6 @@ const getLeaderboard = leaderboard => ({type: GET_LEADERBOARD, leaderboard})
  */
 export const fetchLeaderboard = () => async dispatch => {
   const {data} = await Axios.get(`/api/users/leaderboard`)
-  console.log('LEADERBOARD======>', data)
   dispatch(getLeaderboard(data))
 }
 /**
