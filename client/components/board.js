@@ -22,6 +22,7 @@ class Board extends React.Component {
       countdownTimer: 25
     }
     this.soundRef = React.createRef()
+    this.bugSoundRef = React.createRef()
     this.randomRef = React.createRef()
     this.holeRef0 = React.createRef()
     this.holeRef1 = React.createRef()

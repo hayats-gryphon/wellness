@@ -26,6 +26,7 @@ import {drawKeypoints, hitAMole} from './posenet_utils'
 class PunchABug extends React.Component {
   constructor() {
     super()
+
     this.splatSoundRef = React.createRef()
     this.playContainerRef = React.createRef()
     this.loadingRef = React.createRef()
@@ -56,9 +57,6 @@ class PunchABug extends React.Component {
         request: 0
       }
     }
-
-    this.generateRandomSound = this.generateRandomSound.bind(this)
-    this.generateRandomIdx = this.generateRandomIdx.bind(this)
   }
 
   /**
@@ -219,33 +217,8 @@ class PunchABug extends React.Component {
 
   componentWillUnmount() {
     cancelAnimationFrame(this.state.request)
-    // clearInterval(this.soundIntervalId)
+    clearInterval(this.soundIntervalId)
   }
-
-  generateRandomIdx() {
-    const randomIdx = Math.floor(Math.random() * 5)
-    return randomIdx
-  }
-
-  generateRandomSound() {
-    let randomIdx = this.generateRandomIdx(1, 4)
-    const sounds = [
-      '/Hey 1.mp3',
-      '/Hey 2.mp3',
-      '/Hey 3.mp3',
-      '/Hey 4.mp3',
-      '/no2.mp3'
-    ]
-    // const sounds = ['/no2.mp3']
-    const sound = sounds[randomIdx]
-    console.log('GETTING CURRENT SOUND======>', sound)
-    return sound
-  }
-
-  // soundIntervalId = setInterval(() => {
-  //   this.generateRandomSound()
-  //   console.log('interval sound====>')
-  // }, 3000)
 
   render() {
     return (
@@ -260,12 +233,13 @@ class PunchABug extends React.Component {
               Playtime
             </h2>
             <audio
-              src={this.generateRandomSound()}
+              src="/no2.mp3"
               ref={this.splatSoundRef}
               preload="auto"
               controls="none"
               style={{display: 'none'}}
             />
+
             <button
               type="button"
               onClick={() => {

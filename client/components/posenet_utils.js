@@ -26,25 +26,17 @@ export function drawPoint(ctx, y, x, r) {
   }
 }
 
-export const generateRandomIdd = () => {
-  const randomIdx = Math.floor(Math.random() * 5)
-  return randomIdx
-}
-
-export const generateRandomSound = generateRandomIdx => {
-  let idx = generateRandomIdx(1, 5)
-
-  let mySounds = [
-    'public/Hey 1.mp3',
-    'public/Hey 2.mp3',
-    'public/Hey 3.mp3',
-    'public/Hey 4.mp3',
-    'public/no2.mp3'
+export function generateRandomSound() {
+  let randomIdx = Math.floor(Math.random() * 5)
+  const sounds = [
+    '/no2.mp3',
+    '/Hey 1.mp3',
+    '/Hey 2.mp3',
+    '/Hey 3.mp3',
+    '/no2.mp3'
   ]
 
-  const sound = mySounds[idx]
-
-  console.log('CURRENT SOUND======>', sound)
+  const sound = sounds[randomIdx]
   return sound
 }
 
@@ -77,11 +69,17 @@ export const hitAMole = (
         if (x > left && x < right && y > top && y < bottom) {
           if (Array.from(holeRef.classList).includes('mole')) {
             holeRef.classList.toggle('mole')
+            const randomSound = generateRandomSound()
+            soundElem.current.src = randomSound
+            soundElem.current.load()
             soundElem.current.play()
             updateScore(1)
           }
           if (Array.from(holeRef.classList).includes('flower')) {
             holeRef.classList.toggle('flower')
+            const randomSound = generateRandomSound()
+            soundElem.current.src = randomSound
+            soundElem.current.load()
             soundElem.current.play()
             updateScore(-1)
           }
