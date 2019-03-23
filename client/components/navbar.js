@@ -4,16 +4,25 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
-const Menu = ({handleClick, isLoggedIn}) => (
+const Menu = ({handleClick, name, isLoggedIn}) => (
   <div className="menu-container">
     {isLoggedIn ? (
-      <div className="entrance-menu">
-        {/* The navbar will show these links after you log in */}
-        <Link to="/home">Home</Link>
-        <a href="#" onClick={handleClick}>
-          Logout
-        </a>
-        <Link to="/punchabug">Puncha Bug</Link>
+      <div>
+        <div className="user-welcome">
+          <h3>Welcome, {name}!</h3>
+        </div>
+        <div className="entrance-menu">
+          {/* The navbar will show these links before you log in */}
+          <Link className="grow" to="/punchabug-beginner">
+            Beginner
+          </Link>
+          <Link className="grow" to="/punchabug">
+            Medium
+          </Link>
+          <Link className="grow" to="/punchabug-hard">
+            Hard
+          </Link>
+        </div>
       </div>
     ) : (
       <div className="entrance-menu">
@@ -27,12 +36,6 @@ const Menu = ({handleClick, isLoggedIn}) => (
         <Link className="grow" to="/punchabug-hard">
           Hard
         </Link>
-        <Link className="grow" to="/login">
-          Login
-        </Link>
-        <Link className="grow" to="/signup">
-          Sign Up
-        </Link>
       </div>
     )}
   </div>
@@ -43,7 +46,8 @@ const Menu = ({handleClick, isLoggedIn}) => (
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    name: state.user.name
   }
 }
 
