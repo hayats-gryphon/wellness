@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
+import scoreboard from '../store/scoreboard'
 
 /**
  * COMPONENT
@@ -23,6 +24,9 @@ const AuthForm = props => {
             <small>Password</small>
           </label>
           <input name="password" type="password" />
+        </div>
+        <div>
+          <input name="savescore" type="checkbox" /> <small>Save score?</small>
         </div>
         <div>
           <button type="submit">{displayName}</button>
@@ -64,15 +68,8 @@ const mapDispatch = dispatch => {
       const formName = evt.target.name
       const username = evt.target.username.value
       const password = evt.target.password.value
-      console.log(
-        'nuserame',
-        username,
-        'password',
-        password,
-        'formName',
-        formName
-      )
-      dispatch(auth(username, password, formName))
+      const saveScore = evt.target.savescore.checked
+      dispatch(auth(username, password, formName, saveScore))
     }
   }
 }

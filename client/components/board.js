@@ -89,12 +89,6 @@ class Board extends React.Component {
 
   generateBug = () => {
     const randomHoleIndex = this.generateRandomIdx()
-    console.log(
-      'randomHoleIndex',
-      randomHoleIndex,
-      'this.state.countdownTimer',
-      this.state.countdownTimer
-    )
     this.setState(prevState => {
       const originalState = prevState.holes[randomHoleIndex].hasBug
       const updatedHoles = [...prevState.holes]
