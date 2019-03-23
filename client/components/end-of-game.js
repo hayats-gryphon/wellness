@@ -28,7 +28,7 @@ class EndOfGame extends React.Component {
 
   render() {
     return (
-      <div id="end-of-game-container">
+      <div id="menu-container">
         <img className="center" src="/smashedbug.png" />
         <h2 className="end-game-score">SCORE: {this.props.score}</h2>
         <h2 className="end-game-score">
