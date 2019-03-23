@@ -19,7 +19,7 @@ class Board extends React.Component {
         {hasBug: false, hasFlower: false},
         {hasBug: false, hasFlower: false}
       ],
-      countdownTimer: 10
+      countdownTimer: 20
     }
     this.soundRef = React.createRef()
     this.holeRef0 = React.createRef()

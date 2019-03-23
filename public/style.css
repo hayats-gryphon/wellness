@@ -216,6 +216,19 @@ form div {
   background-size: cover;
 }
 
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.footer-menu a {
+  display: inline-block;
+  width: 33%;
+  text-align: center;
+}
 /* #leaderboard {
   background: url('images/leaderboard.png');
   background-size: cover;
