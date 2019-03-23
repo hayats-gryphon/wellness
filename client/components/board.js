@@ -36,10 +36,7 @@ class Board extends React.Component {
     this.intervalId = 0
     this.countdownId = 0
     this.hardIntervalId = 0
-    this.delayTimerId = 0
     this.readyCountdownId = 0
-
-    this.generateRandomIdx = this.generateRandomIdx.bind(this)
   }
 
   componentDidMount() {
@@ -60,8 +57,10 @@ class Board extends React.Component {
       this.setState(prevState => {
         prevState.readyCountdown--
       })
+
       if (this.state.readyCountdown === -1) {
         this.props.timerRef.current.textContent = `GO!`
+
         if (
           this.props.location.pathname === '/punchabug' ||
           this.props.location.pathname === '/punchabug-hard'
@@ -90,6 +89,7 @@ class Board extends React.Component {
   }
 
   componentWillUnmount() {
+    this.soundRef.current.pause()
     clearInterval(this.intervalId)
     clearInterval(this.countdownId)
     clearInterval(this.hardIntervalId)
@@ -118,11 +118,6 @@ class Board extends React.Component {
     }`
     if (this.state.countdownTimer === 0) {
       this.props.timerRef.current.textContent = 'Round Over!'
-      clearInterval(this.intervalId)
-      clearInterval(this.countdownId)
-      clearInterval(this.hardIntervalId)
-      clearInterval(this.readyCountdownId)
-      this.soundRef.current.pause()
       this.redirect()
     }
   }

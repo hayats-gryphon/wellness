@@ -224,7 +224,6 @@ class PunchABug extends React.Component {
       <div id="grandparent">
         <div id="play-container" ref={this.playContainerRef}>
           <div id="score-timer">
-            {/* <div ref = {this.readyRef}> Get Ready....</div> */}
             <Scoreboard />
             <h2 id="timer" ref={this.timerRef}>
               Get Ready...
