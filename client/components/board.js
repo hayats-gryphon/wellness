@@ -19,7 +19,8 @@ class Board extends React.Component {
         {hasBug: false, hasFlower: false},
         {hasBug: false, hasFlower: false}
       ],
-      countdownTimer: 10
+      countdownTimer: 10,
+      readyCountdown: 8
     }
     this.soundRef = React.createRef()
     this.holeRef0 = React.createRef()
@@ -35,6 +36,8 @@ class Board extends React.Component {
     this.intervalId = 0
     this.countdownId = 0
     this.hardIntervalId = 0
+    this.delayTimerId = 0
+    this.readyCountdownId = 0
 
     this.generateRandomIdx = this.generateRandomIdx.bind(this)
   }
@@ -49,29 +52,40 @@ class Board extends React.Component {
 
     this.props.updateHoles(holeRefArr)
 
-    if (
-      this.props.location.pathname === '/punchabug' ||
-      this.props.location.pathname === '/punchabug-hard'
-    ) {
-      this.intervalId = setInterval(() => {
-        this.generateBug()
-      }, 300)
-    }
+    this.readyCountdownId = setInterval(() => {
+      this.props.timerRef.current.textContent = `Get Ready...${
+        this.state.readyCountdown
+      }`
 
-    if (this.props.location.pathname === '/punchabug-beginner') {
-      this.intervalId = setInterval(() => {
-        this.generateBug()
-      }, 1000)
-    }
+      this.setState(prevState => {
+        prevState.readyCountdown--
+      })
+      if (this.state.readyCountdown === -1) {
+        this.props.timerRef.current.textContent = `GO!`
+        if (
+          this.props.location.pathname === '/punchabug' ||
+          this.props.location.pathname === '/punchabug-hard'
+        ) {
+          this.intervalId = setInterval(() => {
+            this.generateBug()
+          }, 300)
+        }
 
-    if (this.props.location.pathname === '/punchabug-hard') {
-      this.hardIntervalId = setInterval(() => {
-        this.generateFlower()
-      }, 1500)
-    }
+        if (this.props.location.pathname === '/punchabug-beginner') {
+          this.intervalId = setInterval(() => {
+            this.generateBug()
+          }, 1000)
+        }
 
-    this.countdownId = setInterval(() => {
-      this.countdown()
+        if (this.props.location.pathname === '/punchabug-hard') {
+          this.hardIntervalId = setInterval(() => {
+            this.generateFlower()
+          }, 1500)
+        }
+        this.countdownId = setInterval(() => {
+          this.countdown()
+        }, 1000)
+      }
     }, 1000)
   }
 
@@ -79,6 +93,7 @@ class Board extends React.Component {
     clearInterval(this.intervalId)
     clearInterval(this.countdownId)
     clearInterval(this.hardIntervalId)
+    clearInterval(this.readyCountdownId)
   }
 
   generateBug = () => {
@@ -106,6 +121,7 @@ class Board extends React.Component {
       clearInterval(this.intervalId)
       clearInterval(this.countdownId)
       clearInterval(this.hardIntervalId)
+      clearInterval(this.readyCountdownId)
       this.soundRef.current.pause()
       this.redirect()
     }
@@ -146,6 +162,7 @@ class Board extends React.Component {
 
         <div id="whack-a-mole">
           <div id="" />
+
           {this.state.holes.map((hole, idx) => {
             return (
               <div
