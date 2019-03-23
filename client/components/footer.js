@@ -18,7 +18,7 @@ const Footer = ({handleClick, isLoggedIn}) => (
     ) : (
       <div className="footer-menu">
         {/* The navbar will show these links before you log in */}
-        <Link to="/punchabug">Home</Link>
+        <Link to="/">Home</Link>
         <Link to="/login">Login</Link>
         <Link to="/signup">Sign Up</Link>
       </div>
