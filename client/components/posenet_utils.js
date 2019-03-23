@@ -54,11 +54,13 @@ export const hitAMole = (
 
         if (x > left && x < right && y > top && y < bottom) {
           if (Array.from(holeRef.classList).includes('mole')) {
+            console.log('has mole', holeRef.classList)
             holeRef.classList.toggle('mole')
             soundElem.current.play()
             updateScore(1)
           }
           if (Array.from(holeRef.classList).includes('flower')) {
+            console.log('has flower', holeRef.classList)
             holeRef.classList.toggle('flower')
             soundElem.current.play()
             updateScore(-1)
