@@ -83,6 +83,11 @@ export const hitAMole = (
             soundElem.current.play()
             updateScore(-1)
           }
+          if (Array.from(holeRef.classList).includes('bee')) {
+            holeRef.classList.toggle('bee')
+            soundElem.current.play()
+            updateScore(10)
+          }
         }
       })
     }

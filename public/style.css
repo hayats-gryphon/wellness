@@ -55,6 +55,10 @@ form div {
   background-image: url('flower-with-leaf.png');
 }
 
+.bee {
+  background-image: url('bee-with-leaf.png');
+}
+
 .face-space {
   width: 110px;
   height: 100px;
