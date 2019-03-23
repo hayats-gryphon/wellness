@@ -56,6 +56,9 @@ class PunchABug extends React.Component {
         request: 0
       }
     }
+
+    this.generateRandomSound = this.generateRandomSound.bind(this)
+    this.generateRandomIdx = this.generateRandomIdx.bind(this)
   }
 
   /**
@@ -218,6 +221,22 @@ class PunchABug extends React.Component {
     cancelAnimationFrame(this.state.request)
   }
 
+  generateRandomIdx() {
+    const randomIdx = Math.floor(Math.random() * 5)
+    return randomIdx
+  }
+
+  generateRandomSound() {
+    let idx = this.generateRandomIdx(1, 5)
+
+    let mySounds = ['sound1', 'sound2', 'sound3', 'sound4', 'sound5']
+
+    const sound = mySounds[idx]
+
+    console.log('CURRENT SOUND======>', sound)
+    return sound
+  }
+
   render() {
     return (
       <div id="grandparent">
@@ -231,7 +250,7 @@ class PunchABug extends React.Component {
               Playtime
             </h2>
             <audio
-              src="/no2.mp3"
+              src={this.generateRandomSound()}
               ref={this.splatSoundRef}
               preload="auto"
               controls="none"
