@@ -13,7 +13,7 @@ class LearderBoard extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="leaderboard">
         <h1>Leader Board</h1>
         <table id="leader-table" className="table">
           <tbody>

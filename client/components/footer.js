@@ -4,10 +4,10 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
-const Menu = ({handleClick, isLoggedIn}) => (
-  <div className="menu-container">
+const Footer = ({handleClick, isLoggedIn}) => (
+  <div className="footer">
     {isLoggedIn ? (
-      <div className="entrance-menu">
+      <div className="footer-menu">
         {/* The navbar will show these links after you log in */}
         <Link to="/home">Home</Link>
         <a href="#" onClick={handleClick}>
@@ -16,23 +16,11 @@ const Menu = ({handleClick, isLoggedIn}) => (
         <Link to="/punchabug">Puncha Bug</Link>
       </div>
     ) : (
-      <div className="entrance-menu">
+      <div className="footer-menu">
         {/* The navbar will show these links before you log in */}
-        <Link className="grow" to="/punchabug-beginner">
-          Beginner
-        </Link>
-        <Link className="grow" to="/punchabug">
-          Medium
-        </Link>
-        <Link className="grow" to="/punchabug-hard">
-          Hard
-        </Link>
-        <Link className="grow" to="/login">
-          Login
-        </Link>
-        <Link className="grow" to="/signup">
-          Sign Up
-        </Link>
+        <Link to="/punchabug">Home</Link>
+        <Link to="/login">Login</Link>
+        <Link to="/signup">Sign Up</Link>
       </div>
     )}
   </div>
@@ -55,12 +43,12 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(mapState, mapDispatch)(Menu)
+export default connect(mapState, mapDispatch)(Footer)
 
 /**
  * PROP TYPES
  */
-Menu.propTypes = {
+Footer.propTypes = {
   handleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }

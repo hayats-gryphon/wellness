@@ -19,7 +19,7 @@ class Board extends React.Component {
         {hasBug: false, hasFlower: false},
         {hasBug: false, hasFlower: false}
       ],
-      countdownTimer: 10
+      countdownTimer: 20
     }
     this.soundRef = React.createRef()
     this.holeRef0 = React.createRef()
@@ -137,7 +137,7 @@ class Board extends React.Component {
     return (
       <div>
         <audio
-          src="/bgMusic.mp3"
+          src="/theme-song.mp3"
           ref={this.soundRef}
           preload="auto"
           controls="none"

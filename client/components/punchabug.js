@@ -222,13 +222,16 @@ class PunchABug extends React.Component {
     return (
       <div id="grandparent">
         <div id="play-container" ref={this.playContainerRef}>
+          <div className="game-logo">
+            <img src="images/punchabug-logo.png" />
+          </div>
           <div id="score-timer">
             <Scoreboard />
             <h2 id="timer" ref={this.timerRef}>
               Playtime
             </h2>
             <audio
-              src="/splat_sound.mp3"
+              src="/no2.mp3"
               ref={this.splatSoundRef}
               preload="auto"
               controls="none"
