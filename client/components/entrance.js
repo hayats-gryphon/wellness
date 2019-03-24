@@ -10,7 +10,7 @@ export default class EntrancePage extends React.Component {
     return (
       <div className="outer-div">
         <div className="entrance-container">
-          <img className="media" src="images/punchabug-logo.png" />
+          <img className="media img-fluid" src="images/punchabug-logo.png" />
           <Menu />
           <Footer />
         </div>
