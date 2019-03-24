@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
@@ -9,61 +8,18 @@ class Menu extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {isOpen: false}
+    this.state = {
+      isOpen: false
+    }
 
     this.toggleModal = this.toggleModal.bind(this)
   }
 
-  // showModal = () => {
-  //   this.setState({showModal: true})
-  // }
-
-  // hideModal = () => {
-  //   this.setState({showModal: false})
-  // }
-
   toggleModal = () => {
-    console.log('clicked show modal======>')
-
     this.setState({
       isOpen: !this.state.isOpen
     })
-
-    console.log('this.state is=======>', this.state)
   }
-
-  // toggleModal = () => {
-
-  //   console.log('clicked show modal======>')
-
-  //   this.setState({
-  //     showModal: !this.state.showModal
-  //   });
-
-  //   console.log('this.state is=======>', this.state)
-
-  // }
-
-  // showModal = () => {
-  //   // this.setState(state => {
-  //   //   return {showModal: true}
-  //   // })
-
-  //   // this.setState({
-  //   //   showModal: !this.state.showModal
-  //   // });
-
-  //   this.setState({
-  //     showModal: true
-  //   });
-
-  //   // this.setState(prevState => {
-  //   //   prevState.showModal = !prevState.showModal
-  //   // })
-
-  //   console.log('this.state is=======>', this.state)
-
-  // }
 
   render() {
     return (
@@ -71,21 +27,23 @@ class Menu extends React.Component {
         {this.props.isLoggedIn ? (
           <div>
             <div className="user-welcome">
-              <h3>Welcome, {name}!</h3>
+              <h3>Welcome back, {this.props.name}!</h3>
             </div>
+
             <div className="entrance-menu">
               {/* The navbar will show these links before you log in */}
+              <button
+                type="button"
+                className="play-btn"
+                onClick={this.toggleModal}
+              >
+                PLAY
+              </button>
+
+              <MenuLevels show={this.state.isOpen} onClose={this.toggleModal} />
+
               <Link className="grow" to="/instruction">
-                Instruction
-              </Link>
-              <Link className="grow" to="/punchabug-beginner">
-                Beginner
-              </Link>
-              <Link className="grow" to="/punchabug">
-                Medium
-              </Link>
-              <Link className="grow" to="/punchabug-hard">
-                Hard
+                Instructions
               </Link>
             </div>
           </div>
@@ -112,12 +70,6 @@ class Menu extends React.Component {
   }
 }
 
-// {this.state.showModal ? (
-//   <MenuLevels/>
-// ) : null
-
-// }
-
 /**
  * CONTAINER
  */
@@ -129,13 +81,6 @@ const mapState = state => {
 }
 
 export default connect(mapState, null)(Menu)
-
-/**
- * PROP TYPES
- */
-Menu.propTypes = {
-  isLoggedIn: PropTypes.bool.isRequired
-}
 
 // import React from 'react'
 // import PropTypes from 'prop-types'

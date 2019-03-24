@@ -3,21 +3,6 @@ import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 class MenuLevels extends React.Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     showModal: false
-  //   }
-
-  //   this.hideModal = this.hideModal.bind(this)
-  // }
-
-  // hideModal = () => {
-  //   //take previous state
-  //   //set show modal to false
-  //   this.setState({showModal: false})
-  // }
-
   render() {
     if (!this.props.show) {
       return null
@@ -31,7 +16,7 @@ class MenuLevels extends React.Component {
       left: 0,
       right: 0,
       backgroundColor: 'rgba(0,0,0,0.5)',
-      padding: 50
+      padding: 300
     }
 
     // The modal "window"
@@ -39,7 +24,8 @@ class MenuLevels extends React.Component {
       backgroundColor: '#fff',
       borderRadius: 5,
       maxWidth: 500,
-      minHeight: 300,
+      minHeight: 250,
+      textAlign: 'center',
       margin: '0 auto',
       padding: 30
     }
