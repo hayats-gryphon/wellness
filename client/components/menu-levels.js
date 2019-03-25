@@ -21,10 +21,10 @@ class MenuLevels extends React.Component {
 
     // The modal "window"
     const modalStyle = {
-      backgroundColor: '#fff',
-      borderRadius: 5,
+      backgroundColor: '#b5c829',
+      borderRadius: 80,
       maxWidth: 500,
-      minHeight: 250,
+      minHeight: 180,
       textAlign: 'center',
       margin: '0 auto',
       padding: 30
@@ -34,8 +34,7 @@ class MenuLevels extends React.Component {
       <div className="backdrop" style={backdropStyle}>
         <div className="modal" style={modalStyle}>
           <div className="modal-exit-btn" onClick={this.props.onClose} />
-
-          <h3>CHOOSE YOUR LEVEL</h3>
+          <h4>Select Your Level</h4>
           <Link className="grow" to="/punchabug-beginner">
             Easy
           </Link>
