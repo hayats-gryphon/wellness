@@ -9,8 +9,12 @@ const Footer = ({handleClick, isLoggedIn}) => (
     {isLoggedIn ? (
       <div className="footer-menu">
         {/* The navbar will show these links after you log in */}
+        <div />
         <NavButton linkTo="/home" linkText="Home" />
-        <NavButton linkTo="/" linkText="Logout" />
+        <div onClick={handleClick}>
+          <NavButton linkTo="/" linkText="Logout" />
+        </div>
+        <div />
       </div>
     ) : (
       <div className="footer-menu">
