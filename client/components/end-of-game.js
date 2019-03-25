@@ -30,26 +30,28 @@ class EndOfGame extends React.Component {
 
   render() {
     return (
-      <div id="end-of-game-container">
+      <div className="end-of-game-container">
         <img className="img-fluid" src="/great-job.png" />
 
-        <h3 className="end-game-score">SCORE: {this.props.score}</h3>
-        <h3 className="end-game-score">
-          {this.props.isLoggedIn ? (
-            <div>YOUR HIGH SCORE: {this.props.highScore}</div>
-          ) : null}
-        </h3>
-        <div>
-          <LeaderBoard />
+        <div className="flex-container-row">
+          <h3 className="end-game-score">SCORE: {this.props.score}</h3>
+          <h3 className="end-game-score">
+            {this.props.isLoggedIn ? (
+              <div>YOUR HIGH SCORE: {this.props.highScore}</div>
+            ) : null}
+          </h3>
+          <div>
+            <LeaderBoard />
+          </div>
+          <Footer />
+          <button
+            type="button"
+            className="play-again-btn"
+            onClick={this.resetHandler}
+          >
+            Play Again
+          </button>
         </div>
-        <Footer />
-        <button
-          type="button"
-          className="play-again-btn"
-          onClick={this.resetHandler}
-        >
-          Play Again
-        </button>
       </div>
     )
   }

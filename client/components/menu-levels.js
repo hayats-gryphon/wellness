@@ -8,7 +8,6 @@ class MenuLevels extends React.Component {
       return null
     }
 
-    // The gray background
     const backdropStyle = {
       position: 'fixed',
       top: 0,
@@ -19,7 +18,6 @@ class MenuLevels extends React.Component {
       padding: 300
     }
 
-    // The modal "window"
     const modalStyle = {
       backgroundColor: '#b5c829',
       borderRadius: 80,
