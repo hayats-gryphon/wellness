@@ -13,9 +13,9 @@ class LearderBoard extends React.Component {
 
   render() {
     return (
-      <div id="leaderboard">
+      <div className="leaderboard">
         <h1>Leader Board</h1>
-        <table id="leader-table" className="table">
+        <table className="leaderboard-table">
           <tbody>
             <tr id="row">
               <td id="cell0-0">High Score</td>
