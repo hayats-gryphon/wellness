@@ -33,7 +33,6 @@ export const me = () => async dispatch => {
 
 export const auth = (name, password, method, highscore) => async dispatch => {
   let res
-  console.log('highscore in auth thunk creator: ', highscore)
   try {
     res = await axios.post(`/auth/${method}`, {name, password, highscore})
   } catch (authError) {

@@ -9,7 +9,6 @@ import scoreboard from '../store/scoreboard'
  */
 const AuthForm = props => {
   const {name, displayName, handleSubmit, error, highscore} = props
-  console.log('highscore in AuthForm: ', highscore)
   return (
     <div>
       <form onSubmit={handleSubmit} name={name}>
@@ -75,8 +74,6 @@ const mapDispatch = dispatch => {
       if (evt.target.savescore.checked) {
         highscore = Number(evt.target.savescore.value)
       }
-      console.log('highscore in handleSubmit: ', highscore)
-      console.log('typeof highscore in handleSubmit: ', typeof highscore)
       dispatch(auth(username, password, formName, highscore))
     }
   }
