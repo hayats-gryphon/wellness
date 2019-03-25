@@ -11,8 +11,6 @@ class Menu extends React.Component {
     this.state = {
       isOpen: false
     }
-
-    this.toggleModal = this.toggleModal.bind(this)
   }
 
   toggleModal = () => {

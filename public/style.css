@@ -333,16 +333,28 @@ h4 {
   color: #7e9020;
 }
 
+/*-------FOOTER------*/
+
+.centered-nav {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .footer {
+  <<<<<<<HEAD
   left: 0;
   bottom: 0;
+  =======>>>>>>> e9086d73eb959b045156e72a4c494db592f9d3e9
   width: 100%;
   text-align: center;
 }
 
-.footer-menu a {
-  display: inline-block;
-  width: 33%;
+.footer-menu {
+  display: flex;
+  height: 30%;
+  justify-content: space-between;
   text-align: center;
 }
 
@@ -350,6 +362,15 @@ h4 {
   background: url('images/leaderboard.png');
   background-size: cover;
 } */
+.footer-link {
+  position: relative;
+  text-align: center;
+}
+
+.footer-link img {
+  width: 200px;
+  height: auto;
+}
 
 .leaderboard-table tr#row {
   font-family: 'dotty';

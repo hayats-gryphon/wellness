@@ -9,26 +9,41 @@ const Footer = ({handleClick, isLoggedIn}) => (
     {isLoggedIn ? (
       <div className="footer-menu">
         {/* The navbar will show these links after you log in */}
-        <Link to="/home">Home</Link>
-        <a href="#" onClick={handleClick}>
-          Logout
-        </a>
-        <Link to="/punchabug">Puncha Bug</Link>
+        <div />
+        <NavButton linkTo="/home" linkText="Home" />
+        <div onClick={handleClick}>
+          <NavButton linkTo="/" linkText="Logout" />
+        </div>
+        <div />
       </div>
     ) : (
       <div className="footer-menu">
         {/* The navbar will show these links before you log in */}
-        <Link to="/">Home</Link>
-        <Link to="/login">Login</Link>
-        <Link to="/signup">Sign Up</Link>
+        <div />
+        <NavButton linkTo="/" linkText="Home" />
+        <NavButton linkTo="/login" linkText="Login" />
+        <NavButton linkTo="/signup" linkText="Sign Up" />
+        <div />
       </div>
     )}
   </div>
 )
 
-/**
- * CONTAINER
- */
+//Separate component for each Nav link in footer
+const NavButton = props => {
+  const {linkTo, linkText} = props
+  return (
+    <div className="img-fluid play-btn grow">
+      <Link to={linkTo}>
+        <div className="footer-link">
+          <img src="play-btn.png" />
+          <div className="centered-nav">{linkText}</div>
+        </div>
+      </Link>
+    </div>
+  )
+}
+
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id
