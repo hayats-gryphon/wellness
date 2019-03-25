@@ -9,53 +9,37 @@ const Footer = ({handleClick, isLoggedIn}) => (
     {isLoggedIn ? (
       <div className="footer-menu">
         {/* The navbar will show these links after you log in */}
-        <Link to="/home">
-          <img className="media img-fluid" src="images/punchabug-logo.png" />Home
-        </Link>
-        <a href="#" onClick={handleClick}>
-          Logout
-        </a>
-        <Link to="/punchabug">Puncha Bug</Link>
+        <NavFooter linkTo="/home" linkText="Home" />
+        <NavFooter linkTo="/" linkText="Logout" />
       </div>
     ) : (
       <div className="footer-menu">
         {/* The navbar will show these links before you log in */}
         <div />
-        <div className="img-fluid play-btn grow">
-          <Link to="/">
-            <div className="footer-link">
-              <img src="play-btn.png" />
-              <div className="centered-nav">Home</div>
-            </div>
-          </Link>
-        </div>
-
-        <div className="img-fluid play-btn grow">
-          <Link to="/login">
-            <div className="footer-link">
-              <img src="play-btn.png" />
-              <div className="centered-nav">Login</div>
-            </div>
-          </Link>
-        </div>
-
-        <div className="img-fluid play-btn grow">
-          <Link to="/signup">
-            <div className="footer-link">
-              <img src="play-btn.png" />
-              <div className="centered-nav">Signup</div>
-            </div>
-          </Link>
-        </div>
+        <NavFooter linkTo="/" linkText="Home" />
+        <NavFooter linkTo="/login" linkText="Login" />
+        <NavFooter linkTo="/signup" linkText="Sign Up" />
         <div />
       </div>
     )}
   </div>
 )
 
-/**
- * CONTAINER
- */
+//Separate component for each Nav link in footer
+const NavFooter = props => {
+  const {linkTo, linkText} = props
+  return (
+    <div className="img-fluid play-btn grow">
+      <Link to={linkTo}>
+        <div className="footer-link">
+          <img src="play-btn.png" />
+          <div className="centered-nav">{linkText}</div>
+        </div>
+      </Link>
+    </div>
+  )
+}
+
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id
