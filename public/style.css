@@ -80,11 +80,11 @@ h4 {
 }
 
 .mole {
-  background-image: url('bug-with-leaf.png');
+  background-image: url('bug-with-leaf-2.png');
 }
 
 .flower {
-  background-image: url('flower-with-leaf.png');
+  background-image: url('flower-with-leaf-2.png');
 }
 
 .bee {
@@ -123,7 +123,7 @@ h4 {
   position: fixed;
   top: 0;
   left: 0;
-  background: url('images/game-screen.png');
+  background: url('images/game-screen-flowers.png');
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -280,8 +280,9 @@ h4 {
   justify-content: center;
   align-items: center;
   display: flex;
-  background: url('images/game-screen.png');
+  background: url('images/game-screen-flowers.png');
   background-size: cover;
+  overflow-x: hidden;
 }
 
 #play-container {
@@ -308,7 +309,7 @@ h4 {
   top: 0;
   left: 0;
   display: flex-wrap;
-  background: url('images/game-screen.png');
+  background: url('images/game-screen-flowers.png');
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -430,7 +431,7 @@ h4 {
   position: fixed;
   top: 0;
   left: 0;
-  background: url('images/game-screen.png');
+  background: url('images/game-screen-flowers.png');
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
