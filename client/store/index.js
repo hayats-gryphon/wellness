@@ -6,8 +6,9 @@ import user from './user'
 import board from './board'
 import scoreboard from './scoreboard'
 import leaderboard from './leaderboard'
+import load from './load'
 
-const reducer = combineReducers({user, board, scoreboard, leaderboard})
+const reducer = combineReducers({user, board, scoreboard, leaderboard, load})
 
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))

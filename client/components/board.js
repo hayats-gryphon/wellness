@@ -81,7 +81,7 @@ class Board extends React.Component {
           }, 2400)
           this.hardBeeIntervalId = setInterval(() => {
             this.generateBee()
-          }, 4800)
+          }, 4200)
         }
         this.countdownId = setInterval(() => {
           this.countdown()

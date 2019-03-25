@@ -16,17 +16,15 @@
  */
 import * as posenet from '@tensorflow-models/posenet'
 import React from 'react'
-import {Board, Scoreboard} from '../components'
 import {connect} from 'react-redux'
+import {Board, Scoreboard} from '../components'
+import {drawKeypoints, hitAMole} from './posenet_utils'
 import {videoLoaded} from '../store/board'
 import {updateScore, resetScore} from '../store/scoreboard'
-
-import {drawKeypoints, hitAMole} from './posenet_utils'
 
 class PunchABug extends React.Component {
   constructor() {
     super()
-
     this.splatSoundRef = React.createRef()
     this.playContainerRef = React.createRef()
     this.loadingRef = React.createRef()
@@ -55,7 +53,8 @@ class PunchABug extends React.Component {
           showVideo: true
         },
         net: null,
-        request: 0
+        request: 0,
+        loading: true
       }
     }
   }
@@ -199,6 +198,12 @@ class PunchABug extends React.Component {
         'This browser does not support video capture, or this device does not have a camera. Please try with another browser or device!'
       this.playContainerRef.current.style.display = 'none'
       throw e
+    } finally {
+      //setting time out for spinner
+      setTimeout(() => {
+        this.setState({loading: false})
+        this.props.sendLoadingState(false)
+      }, 200)
     }
 
     this.setState(state => {

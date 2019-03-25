@@ -308,3 +308,13 @@ form div {
   align-items: center;
   width: 100px;
 }
+
+/* -------Loading------ */
+.noShow {
+  display: none;
+}
+
+.loading {
+  width: 98vw;
+  height: 98vh;
+}
