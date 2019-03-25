@@ -33,11 +33,9 @@ export const me = () => async dispatch => {
 
 export const auth = (name, password, method, highscore) => async dispatch => {
   let res
+  console.log('highscore in auth thunk creator: ', highscore)
   try {
-    res = await axios.post(`/auth/${method}`, {name, password})
-    if (Number(highscore) > Number(res.data.highscore)) {
-      dispatch(updateHighScore(res.data.id, highscore))
-    }
+    res = await axios.post(`/auth/${method}`, {name, password, highscore})
   } catch (authError) {
     return dispatch(getUser({error: authError}))
   }

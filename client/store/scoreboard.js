@@ -39,6 +39,8 @@ export const resetScore = () => ({type: RESET_SCORE})
  * THUNK CREATOR
  */
 export const updateHighScore = (userId, score) => {
+  console.log('highscore in updateHighScore: ', score)
+  console.log('typeof highscore in updateHighScore: ', typeof score)
   return async dispatch => {
     if (userId) {
       try {
