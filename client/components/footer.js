@@ -9,16 +9,16 @@ const Footer = ({handleClick, isLoggedIn}) => (
     {isLoggedIn ? (
       <div className="footer-menu">
         {/* The navbar will show these links after you log in */}
-        <NavFooter linkTo="/home" linkText="Home" />
-        <NavFooter linkTo="/" linkText="Logout" />
+        <NavButton linkTo="/home" linkText="Home" />
+        <NavButton linkTo="/" linkText="Logout" />
       </div>
     ) : (
       <div className="footer-menu">
         {/* The navbar will show these links before you log in */}
         <div />
-        <NavFooter linkTo="/" linkText="Home" />
-        <NavFooter linkTo="/login" linkText="Login" />
-        <NavFooter linkTo="/signup" linkText="Sign Up" />
+        <NavButton linkTo="/" linkText="Home" />
+        <NavButton linkTo="/login" linkText="Login" />
+        <NavButton linkTo="/signup" linkText="Sign Up" />
         <div />
       </div>
     )}
@@ -26,7 +26,7 @@ const Footer = ({handleClick, isLoggedIn}) => (
 )
 
 //Separate component for each Nav link in footer
-const NavFooter = props => {
+const NavButton = props => {
   const {linkTo, linkText} = props
   return (
     <div className="img-fluid play-btn grow">
