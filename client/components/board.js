@@ -53,12 +53,14 @@ class Board extends React.Component {
         clearInterval(this.readyCountdownId)
         this.props.timerRef.current.textContent = `GO!`
 
+        /*----------- BEGINNER PLAY---------*/
         if (this.props.location.pathname === '/punchabug-beginner') {
           this.beginnerIntervalId = setInterval(() => {
             this.generateBug()
           }, 1000)
         }
 
+        /*----------- MEDIUM PLAY---------*/
         if (this.props.location.pathname === '/punchabug') {
           this.intervalId = setInterval(() => {
             this.generateBug()
@@ -69,6 +71,7 @@ class Board extends React.Component {
           }, 3000)
         }
 
+        /*----------- HARD PLAY---------*/
         if (this.props.location.pathname === '/punchabug-hard') {
           this.hardIntervalId = setInterval(() => {
             this.generateBug()
@@ -76,8 +79,10 @@ class Board extends React.Component {
           this.hardFlowerIntervalId = setInterval(() => {
             this.generateFlower()
           }, 2400)
+          this.hardBeeIntervalId = setInterval(() => {
+            this.generateBee()
+          }, 4800)
         }
-
         this.countdownId = setInterval(() => {
           this.countdown()
         }, 1000)
@@ -94,14 +99,7 @@ class Board extends React.Component {
     clearInterval(this.hardFlowerIntervalId)
     clearInterval(this.countdownId)
     clearInterval(this.readyCountdownId)
-  }
-
-  generateBug = () => {
-    const randomHoleIndex = this.generateRandomIdx()
-    let currRef = this[`holeRef${randomHoleIndex}`].current
-    let classNames = Array.from(currRef.classList)
-    if (classNames.includes('flower')) currRef.classList.toggle('flower')
-    currRef.classList.toggle('mole')
+    clearInterval(this.hardBeeIntervalId)
   }
 
   countdown = () => {
@@ -119,7 +117,15 @@ class Board extends React.Component {
       this.redirect()
     }
   }
-
+  /*----------- GENERATE BUG ---------*/
+  generateBug = () => {
+    const randomHoleIndex = this.generateRandomIdx()
+    let currRef = this[`holeRef${randomHoleIndex}`].current
+    let classNames = Array.from(currRef.classList)
+    if (classNames.includes('flower')) currRef.classList.toggle('flower')
+    currRef.classList.toggle('mole')
+  }
+  /*----------- GENERATE FLOWER ---------*/
   generateFlower = () => {
     let randomHoleIndex = this.generateRandomIdx()
     let currRef = this[`holeRef${randomHoleIndex}`].current
@@ -129,6 +135,27 @@ class Board extends React.Component {
       currRef = this[`holeRef${randomHoleIndex}`].current
     }
     currRef.classList.toggle('flower')
+  }
+
+  /*----------- GENERATE BEE ---------*/
+  generateBee = () => {
+    //generating random index for each hole
+    let randomHoleIndex = this.generateRandomIdx()
+    //this is the node of the hole with the mole
+    let currRef = this[`holeRef${randomHoleIndex}`].current
+    //this is the array with classname ["hole", "mole"];
+    let classNames = Array.from(currRef.classList)
+    //need to check if the classname includes mole and flower....
+
+    if (classNames.includes('mole')) {
+      randomHoleIndex = this.generateRandomIdx()
+      currRef = this[`holeRef${randomHoleIndex}`].current
+    }
+    if (classNames.includes('flower')) {
+      randomHoleIndex = this.generateRandomIdx()
+      currRef = this[`holeRef${randomHoleIndex}`].current
+    }
+    currRef.classList.toggle('bee')
   }
 
   redirect = () => {

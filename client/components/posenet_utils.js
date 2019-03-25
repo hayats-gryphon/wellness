@@ -29,11 +29,11 @@ export function drawPoint(ctx, y, x) {
 export function generateRandomSound() {
   let randomIdx = Math.floor(Math.random() * 5)
   const sounds = [
-    '/no2.mp3',
-    '/Hey 1.mp3',
-    '/Hey 2.mp3',
-    '/Hey 3.mp3',
-    '/no2.mp3'
+    'sounds/no2.mp3',
+    'sounds/Hey 1.mp3',
+    'sounds/Hey 2.mp3',
+    'sounds/Hey 3.mp3',
+    'sounds/no2.mp3'
   ]
 
   const sound = sounds[randomIdx]
@@ -84,6 +84,13 @@ export const hitAMole = (
             soundElem.current.load()
             soundElem.current.play()
             updateScore(-1)
+          }
+          if (Array.from(holeRef.classList).includes('bee')) {
+            holeRef.classList.toggle('bee')
+            soundElem.current.src = 'sounds/BONUS.mp3'
+            soundElem.current.load()
+            soundElem.current.play()
+            updateScore(10)
           }
         }
       })
