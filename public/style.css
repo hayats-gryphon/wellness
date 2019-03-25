@@ -1,12 +1,5 @@
 /*-------FONTS------*/
 
-/* @font-face {
-  font-family: 'dotty';
-  src: url('/public/fonts/dotty.ttf') format('ttf');
-  font-weight: normal;
-  font-style: normal;
-} */
-
 @font-face {
   font-family: 'dotty';
   src: url('fonts/dotty.woff') format('woff'),
@@ -60,13 +53,6 @@ h4 {
   font-size: 50px;
   letter-spacing: 4px;
   color: #7e9020;
-}
-
-.flex-container-row {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
 }
 
 /*--------IMAGES----------*/
@@ -342,16 +328,12 @@ h4 {
 }
 
 .end-game-score {
-  /* position: relative;
-  animation: moveright 1s;
-  animation-fill-mode: forwards; */
   font-size: 80px;
   letter-spacing: 4px;
   color: #7e9020;
 }
 
 .footer {
-  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -376,6 +358,28 @@ h4 {
   letter-spacing: 4px;
   color: #7e9020;
   margin: 20px;
+}
+
+.flex-container-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.leaderboard-row {
+  margin: 10px auto;
+}
+
+.leaderboard h1 {
+  font-size: 70px;
+  letter-spacing: 4px;
+  color: #7e9020;
+}
+
+.play-again-btn {
+  width: 100px;
+  height: auto;
 }
 
 /*---------instruction--------*/

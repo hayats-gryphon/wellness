@@ -5,6 +5,7 @@ import {updateHighScore, resetScore} from '../store/scoreboard'
 import {withRouter} from 'react-router-dom'
 import {Footer} from './index'
 import {fetchLeaderboard} from '../store/leaderboard'
+import {Link} from 'react-router-dom'
 
 class EndOfGame extends React.Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class EndOfGame extends React.Component {
   resetHandler(event) {
     event.preventDefault()
     this.props.resetScore()
-    this.props.history.push(`/punchabug`)
+    this.props.history.push(`/`)
   }
 
   componentDidMount() {
@@ -34,24 +35,28 @@ class EndOfGame extends React.Component {
         <img className="img-fluid" src="/great-job.png" />
 
         <div className="flex-container-row">
-          <h3 className="end-game-score">SCORE: {this.props.score}</h3>
-          <h3 className="end-game-score">
-            {this.props.isLoggedIn ? (
-              <div>YOUR HIGH SCORE: {this.props.highScore}</div>
-            ) : null}
-          </h3>
-          <div>
+          <div className="score leaderboard-row">
+            <h3 className="end-game-score">SCORE: {this.props.score}</h3>
+            <h3 className="end-game-score">
+              {this.props.isLoggedIn ? (
+                <div>YOUR HIGH SCORE: {this.props.highScore}</div>
+              ) : null}
+            </h3>
+          </div>
+
+          <div className="leaderboard-row">
             <LeaderBoard />
           </div>
-          <Footer />
-          <button
-            type="button"
-            className="play-again-btn"
-            onClick={this.resetHandler}
-          >
-            Play Again
-          </button>
         </div>
+
+        <div
+          className="img-fluid play-again-btn grow"
+          onClick={this.resetHandler}
+        >
+          <img src="images/play-again-btn.png" />
+        </div>
+
+        <Footer />
       </div>
     )
   }
