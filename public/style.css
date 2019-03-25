@@ -1,8 +1,16 @@
 /*-------FONTS------*/
 
-@font-face {
+/* @font-face {
   font-family: 'dotty';
   src: url('/public/fonts/dotty.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+} */
+
+@font-face {
+  font-family: 'dotty';
+  src: url('fonts/dotty.woff') format('woff'),
+    url('fonts/dotty.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
@@ -186,7 +194,7 @@ h4 {
 }
 
 .play-btn img {
-  width: 425px;
+  width: 400px;
   height: auto;
 }
 
