@@ -350,32 +350,41 @@ h4 {
 }
 
 .end-game-score {
-  /* position: relative;
-  animation: moveright 1s;
-  animation-fill-mode: forwards; */
   font-size: 80px;
   letter-spacing: 4px;
   color: #7e9020;
 }
 
+/*-------FOOTER------*/
+
+.centered-nav {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
   width: 100%;
   text-align: center;
 }
 
-.footer-menu a {
-  display: inline-block;
-  width: 33%;
+.footer-menu {
+  display: flex;
+  height: 30%;
+  justify-content: space-between;
   text-align: center;
 }
 
-/* #leaderboard {
-  background: url('images/leaderboard.png');
-  background-size: cover;
-} */
+.footer-link {
+  position: relative;
+  text-align: center;
+}
+
+.footer-link img {
+  width: 200px;
+  height: auto;
+}
 
 /*---------instruction--------*/
 .how-to {
