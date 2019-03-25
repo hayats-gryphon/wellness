@@ -9,7 +9,9 @@ const Footer = ({handleClick, isLoggedIn}) => (
     {isLoggedIn ? (
       <div className="footer-menu">
         {/* The navbar will show these links after you log in */}
-        <Link to="/home">Home</Link>
+        <Link to="/home">
+          <img className="media img-fluid" src="images/punchabug-logo.png" />Home
+        </Link>
         <a href="#" onClick={handleClick}>
           Logout
         </a>
@@ -18,9 +20,34 @@ const Footer = ({handleClick, isLoggedIn}) => (
     ) : (
       <div className="footer-menu">
         {/* The navbar will show these links before you log in */}
-        <Link to="/">Home</Link>
-        <Link to="/login">Login</Link>
-        <Link to="/signup">Sign Up</Link>
+        <div />
+        <div className="img-fluid play-btn grow">
+          <Link to="/">
+            <div className="footer-link">
+              <img src="play-btn.png" />
+              <div className="centered-nav">Home</div>
+            </div>
+          </Link>
+        </div>
+
+        <div className="img-fluid play-btn grow">
+          <Link to="/login">
+            <div className="footer-link">
+              <img src="play-btn.png" />
+              <div className="centered-nav">Login</div>
+            </div>
+          </Link>
+        </div>
+
+        <div className="img-fluid play-btn grow">
+          <Link to="/signup">
+            <div className="footer-link">
+              <img src="play-btn.png" />
+              <div className="centered-nav">Signup</div>
+            </div>
+          </Link>
+        </div>
+        <div />
       </div>
     )}
   </div>
