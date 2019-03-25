@@ -1,5 +1,6 @@
 import axios from 'axios'
 import history from '../history'
+import {updateHighScore} from './scoreboard'
 
 /**
  * ACTION TYPES
@@ -30,10 +31,10 @@ export const me = () => async dispatch => {
   }
 }
 
-export const auth = (name, password, method) => async dispatch => {
+export const auth = (name, password, method, highscore) => async dispatch => {
   let res
   try {
-    res = await axios.post(`/auth/${method}`, {name, password})
+    res = await axios.post(`/auth/${method}`, {name, password, highscore})
   } catch (authError) {
     return dispatch(getUser({error: authError}))
   }
@@ -50,7 +51,7 @@ export const logout = () => async dispatch => {
   try {
     await axios.post('/auth/logout')
     dispatch(removeUser())
-    history.push('/login')
+    history.push('/')
   } catch (err) {
     console.error(err)
   }

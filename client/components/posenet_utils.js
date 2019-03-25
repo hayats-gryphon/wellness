@@ -54,6 +54,8 @@ export const hitAMole = (
     if (keypoint.score < minConfidence) {
       continue
     }
+
+    if (!parentBox) return
     let parent = parentBox.current.getBoundingClientRect()
     const {y, x} = keypoint.position
 
