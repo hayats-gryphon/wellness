@@ -24,11 +24,9 @@ const mapState = state => {
   }
 }
 
-export default connect(mapState)(UserHome)
-
-/**
+export default /**
  * PROP TYPES
  */
-UserHome.propTypes = {
+(connect(mapState)(UserHome).propTypes = {
   name: PropTypes.string
-}
+})
