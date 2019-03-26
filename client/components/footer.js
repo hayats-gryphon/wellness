@@ -33,7 +33,7 @@ const Footer = ({handleClick, isLoggedIn}) => (
 const NavButton = props => {
   const {linkTo, linkText} = props
   return (
-    <div className="img-fluid play-btn grow">
+    <div className="nav-btn grow">
       <Link to={linkTo}>
         <div className="footer-link">
           <img src="play-btn.png" />

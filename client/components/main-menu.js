@@ -32,10 +32,10 @@ class Menu extends React.Component {
               {/* The navbar will show these links before you log in */}
 
               <div
-                className="img-fluid play-btn grow"
+                className="img-fluid start-btn grow"
                 onClick={this.toggleModal}
               >
-                <img src="play-btn.png" />
+                <img src="images/start-btn.png" />
               </div>
 
               <MenuLevels show={this.state.isOpen} onClose={this.toggleModal} />
@@ -48,8 +48,11 @@ class Menu extends React.Component {
         ) : (
           <div className="entrance-menu">
             {/* The navbar will show these links before you log in */}
-            <div className="img-fluid play-btn grow" onClick={this.toggleModal}>
-              <img src="play-btn.png" />
+            <div
+              className="img-fluid start-btn grow"
+              onClick={this.toggleModal}
+            >
+              <img src="images/start-btn.png" />
             </div>
 
             <MenuLevels show={this.state.isOpen} onClose={this.toggleModal} />
