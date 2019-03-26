@@ -13,10 +13,10 @@ class MenuLevels extends React.Component {
         <div className="modal">
           <div className="modal-exit-btn" onClick={this.props.onClose} />
           <h4>Select Your Level</h4>
-          <Link className="grow" to="/punchabug-beginner">
+          <Link className="grow" to="/punchabug-easy">
             Easy
           </Link>
-          <Link className="grow" to="/punchabug">
+          <Link className="grow" to="/punchabug-medium">
             Medium
           </Link>
           <Link className="grow" to="/punchabug-hard">

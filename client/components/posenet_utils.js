@@ -74,12 +74,14 @@ export const hitAMole = (
             //toggle mole
 
             // holeRef.classList.add('stars')
-            holeRef.remove('mole')
-            setTimeout(() => holeRef.classList.add('stars'), 200)
+            holeRef.classList.toggle('mole')
+            holeRef.classList.toggle('stars')
+            // setTimeout(() => holeRef.classList.add('stars'), 200)
             const randomSound = generateRandomSound()
             soundElem.current.src = randomSound
             soundElem.current.load()
             soundElem.current.play()
+            holeRef.classList.toggle('hole')
             updateScore(1)
           }
           if (Array.from(holeRef.classList).includes('flower')) {

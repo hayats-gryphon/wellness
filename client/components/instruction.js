@@ -9,7 +9,7 @@ const Instruction = props => {
       <img className="img-fluid" src="images/how-to-play.png" />
       <div className="instruction-container">
         <div className="instruction">
-          <h2>BEGINNER</h2>
+          <h2>EASY</h2>
           <p>Hit all the bugs with your nose!</p>
           <h2>MEDIUM</h2>
           <p>

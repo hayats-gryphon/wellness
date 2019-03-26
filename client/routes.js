@@ -38,8 +38,8 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/punchabug" component={PunchABug} />
-        <Route path="/punchabug-beginner" component={PunchABug} />
+        <Route path="/punchabug-medium" component={PunchABug} />
+        <Route path="/punchabug-easy" component={PunchABug} />
         <Route path="/punchabug-hard" component={PunchABug} />
         <Route path="/end-of-game" component={EndOfGame} />
         <Route path="/instruction" component={Instruction} />

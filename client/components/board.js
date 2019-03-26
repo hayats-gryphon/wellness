@@ -52,15 +52,15 @@ class Board extends React.Component {
         clearInterval(this.readyCountdownId)
         this.props.timerRef.current.textContent = `GO!`
 
-        /*----------- BEGINNER PLAY---------*/
-        if (this.props.location.pathname === '/punchabug-beginner') {
-          this.beginnerIntervalId = setInterval(() => {
+        /*----------- EASY PLAY---------*/
+        if (this.props.location.pathname === '/punchabug-easy') {
+          this.easyIntervalId = setInterval(() => {
             this.generateBug()
           }, 1000)
         }
 
         /*----------- MEDIUM PLAY---------*/
-        if (this.props.location.pathname === '/punchabug') {
+        if (this.props.location.pathname === '/punchabug-medium') {
           this.intervalId = setInterval(() => {
             this.generateBug()
           }, 800)
@@ -91,7 +91,7 @@ class Board extends React.Component {
 
   componentWillUnmount() {
     this.soundRef.current.pause()
-    clearInterval(this.beginnerIntervalId)
+    clearInterval(this.easyIntervalId)
     clearInterval(this.intervalId)
     clearInterval(this.flowerIntervalId)
     clearInterval(this.hardIntervalId)
