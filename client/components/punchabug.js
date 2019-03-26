@@ -17,6 +17,7 @@
 import * as posenet from '@tensorflow-models/posenet'
 import React from 'react'
 import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
 import {Board, Scoreboard, Loading} from '../components'
 import {drawKeypoints, hitAMole} from './posenet_utils'
 import {videoLoaded} from '../store/board'
@@ -233,6 +234,9 @@ class PunchABug extends React.Component {
             <div className="videoload-container">
               <div id="score-timer">
                 <Scoreboard />
+                <h2>
+                  {this.props.location.pathname.slice(11).toUpperCase()} LEVEL
+                </h2>
                 <h2 id="timer" ref={this.timerRef}>
                   Get Ready...
                 </h2>
@@ -290,4 +294,6 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(PunchABug)
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(PunchABug)
+)
