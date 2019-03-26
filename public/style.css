@@ -458,6 +458,14 @@ table {
   height: auto;
 }
 
+.login-text {
+  color: #fff;
+  margin: 40px;
+  letter-spacing: 4px;
+  font-size: 30px;
+  border-bottom: 1.3px solid #fff;
+}
+
 /*---------instruction--------*/
 .how-to {
   font-size: 70px;
@@ -544,4 +552,25 @@ table {
   -o-background-size: cover;
   align-items: center;
   justify-content: center;
+}
+
+/*-------MENU LEVELS-------*/
+.backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 300px;
+}
+
+.modal {
+  background-color: #b5c829;
+  border-radius: 80px;
+  max-width: 500px;
+  min-height: 180px;
+  text-align: center;
+  margin: 0px auto;
+  padding: 30px;
 }

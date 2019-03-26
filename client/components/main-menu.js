@@ -1,7 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {logout} from '../store'
 import {MenuLevels} from './index'
 
 class Menu extends React.Component {
@@ -14,8 +13,8 @@ class Menu extends React.Component {
   }
 
   toggleModal = () => {
-    this.setState({
-      isOpen: !this.state.isOpen
+    this.setState(prevState => {
+      return {isOpen: !prevState.isOpen}
     })
   }
 
@@ -78,11 +77,3 @@ const mapState = state => {
 }
 
 export default connect(mapState, null)(Menu)
-
-// /**
-//  * PROP TYPES
-//  */
-// Menu.propTypes = {
-//   handleClick: PropTypes.func.isRequired,
-//   isLoggedIn: PropTypes.bool.isRequired
-// }

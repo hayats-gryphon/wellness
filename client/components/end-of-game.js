@@ -24,7 +24,12 @@ class EndOfGame extends React.Component {
     if (this.props.score > this.props.highScore) {
       this.props.updateUserHighScore(this.props.user.id, this.props.score)
     }
-    this.props.fetchLeaderboard()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.highScore !== prevProps.highScore) {
+      this.props.fetchLeaderboard()
+    }
   }
 
   render() {
