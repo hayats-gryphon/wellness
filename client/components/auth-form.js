@@ -2,34 +2,39 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
-
 /**
  * COMPONENT
  */
 const AuthForm = props => {
-  const {name, displayName, handleSubmit, error} = props
+  const {name, displayName, handleSubmit, error, onClose, show} = props
+  if (!show) {
+    return null
+  }
 
   return (
-    <div className="login-container">
-      <div>
-        <form onSubmit={handleSubmit} name={name}>
-          <div>
-            <label htmlFor="username">
-              <small>Username</small>
-            </label>
-            <input name="username" type="text" />
-          </div>
-          <div>
-            <label htmlFor="password">
-              <small>Password</small>
-            </label>
-            <input name="password" type="password" />
-          </div>
-          <div>
-            <button type="submit">{displayName}</button>
-          </div>
-          {error && error.response && <div> {error.response.data} </div>}
-        </form>
+    <div className="backdrop">
+      <div className="modal">
+        <div className="modal-exit-btn" onClick={onClose} />
+        <div>
+          <form onSubmit={handleSubmit} name={name}>
+            <div>
+              <label htmlFor="username">
+                <h5 className="login-text">Username</h5>
+              </label>
+              <input name="username" type="text" />
+            </div>
+            <div>
+              <label htmlFor="password">
+                <h5 className="login-text">Password</h5>
+              </label>
+              <input name="password" type="password" />
+            </div>
+            <div>
+              <button type="submit">{displayName}</button>
+            </div>
+            {error && error.response && <div> {error.response.data} </div>}
+          </form>
+        </div>
       </div>
     </div>
   )
