@@ -2,7 +2,6 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {gotHoles} from '../store/board'
 import {withRouter} from 'react-router-dom'
-import {Loading} from './loading'
 class Board extends React.Component {
   constructor(props) {
     super(props)
@@ -81,7 +80,7 @@ class Board extends React.Component {
           }, 2400)
           this.hardBeeIntervalId = setInterval(() => {
             this.generateBee()
-          }, 4200)
+          }, 4800)
         }
         this.countdownId = setInterval(() => {
           this.countdown()
