@@ -26,7 +26,7 @@ class Routes extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.isLoggedIn !== prevProps.isLoggedIn) {
+    if (this.props.isLoggedIn && !prevProps.isLoggedIn) {
       this.props.fetchHighScore(this.props.userHighScore)
     }
   }
