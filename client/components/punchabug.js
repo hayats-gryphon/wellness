@@ -234,7 +234,7 @@ class PunchABug extends React.Component {
               Get Ready...
             </h2>
             <audio
-              src="/no2.mp3"
+              src="sounds/no2.mp3"
               ref={this.splatSoundRef}
               preload="auto"
               controls="none"
