@@ -70,7 +70,12 @@ export const hitAMole = (
 
         if (x > left && x < right && y > top && y < bottom) {
           if (Array.from(holeRef.classList).includes('mole')) {
-            holeRef.classList.toggle('mole')
+            //setTimeout for 1 sec, show stars, holeRef.classList.add('stars')
+            //toggle mole
+
+            // holeRef.classList.add('stars')
+            holeRef.remove('mole')
+            setTimeout(() => holeRef.classList.add('stars'), 200)
             const randomSound = generateRandomSound()
             soundElem.current.src = randomSound
             soundElem.current.load()
