@@ -214,6 +214,7 @@ class PunchABug extends React.Component {
       navigator.webkitGetUserMedia ||
       navigator.mozGetUserMedia
     this.bindPage()
+    this.props.resetScore()
   }
 
   componentWillUnmount() {

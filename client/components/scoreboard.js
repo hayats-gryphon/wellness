@@ -1,7 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {resetScore} from '../store/scoreboard'
 
 class Scoreboard extends React.Component {
+  // componentDidMount () {
+
+  // }
+
   render() {
     return (
       <div>
@@ -15,4 +20,9 @@ const mapStateToProps = state => ({
   score: state.scoreboard.score
 })
 
-export default connect(mapStateToProps)(Scoreboard)
+const mapDispatchToProps = dispatch => ({
+  resetScore: () => {
+    dispatch(resetScore())
+  }
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Scoreboard)
