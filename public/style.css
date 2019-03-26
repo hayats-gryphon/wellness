@@ -451,6 +451,12 @@ table {
 .footer-link {
   position: relative;
   text-align: center;
+  font-family: 'dotty';
+  font-size: 32px;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .footer-link img {
