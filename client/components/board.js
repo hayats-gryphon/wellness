@@ -170,7 +170,7 @@ class Board extends React.Component {
     return (
       <div>
         <audio
-          src="/theme-song.mp3"
+          src="sounds/theme-song.mp3"
           ref={this.soundRef}
           preload="auto"
           controls="none"

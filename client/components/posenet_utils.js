@@ -19,7 +19,7 @@ const color = 'aqua'
 
 export function drawPoint(ctx, y, x) {
   let baseImage = new Image()
-  baseImage.src = '/swat.png'
+  baseImage.src = 'images/swat.png'
 
   baseImage.onload = function() {
     ctx.drawImage(baseImage, x - 30, y - 30)

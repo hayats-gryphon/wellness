@@ -81,7 +81,7 @@ h4 {
 }
 
 .hole {
-  background-image: url('leaf-only.png');
+  background-image: url('images/leaf-only.png');
   background-size: contain;
   width: 110px;
   height: 100px;
@@ -89,15 +89,15 @@ h4 {
 }
 
 .mole {
-  background-image: url('lightning-bug-with-leaf.png');
+  background-image: url('images/lightning-bug-with-leaf.png');
 }
 
 .flower {
-  background-image: url('flower-with-leaf-2.png');
+  background-image: url('images/flower-with-leaf-2.png');
 }
 
 .bee {
-  background-image: url('bee-with-leaf.png');
+  background-image: url('images/bee-with-leaf.png');
 }
 
 .face-space {
@@ -128,7 +128,7 @@ h4 {
   position: fixed;
   top: 0;
   left: 0;
-  background: url('images/game-screen-flowers.png');
+  background: url('images/home-screen.png');
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -313,7 +313,7 @@ h4 {
   left: 0;
   display: flex;
   flex-direction: column;
-  background: url('images/game-screen-flowers.png');
+  background: url('images/sunflowers-butterflies-screen.png');
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
