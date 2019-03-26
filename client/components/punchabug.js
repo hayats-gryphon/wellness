@@ -258,9 +258,7 @@ class PunchABug extends React.Component {
           <div ref={this.mainRef} style={{display: 'none'}} id="main">
             {this.props.videoLoaded ? (
               <Board timerRef={this.timerRef} readyRef={this.readyRef} />
-            ) : (
-              <div />
-            )}
+            ) : null}
             <video ref={this.videoRef} id="video" playsInline />
             <canvas ref={this.outputRef} />
           </div>

@@ -4,16 +4,9 @@ import {LeaderBoard} from '../components'
 import {updateHighScore, resetScore} from '../store/scoreboard'
 import {Footer} from './index'
 import {fetchLeaderboard} from '../store/leaderboard'
-import {Link} from 'react-router-dom'
 
 class EndOfGame extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.resetHandler = this.resetHandler.bind(this)
-  }
-
-  resetHandler(event) {
+  resetHandler = event => {
     event.preventDefault()
     this.props.resetScore()
     this.props.history.push(`/`)
@@ -34,8 +27,8 @@ class EndOfGame extends React.Component {
   render() {
     return (
       <div className="end-of-game-container">
+        <div />
         <img className="img-fluid" src="great-job.png" />
-
         <div className="flex-container-row">
           <div className="end-of-game-item">
             <h3 className="end-game-score">
@@ -61,6 +54,7 @@ class EndOfGame extends React.Component {
         </div>
 
         <Footer />
+        <div />
       </div>
     )
   }

@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {logout} from '../store'
 import {MenuLevels} from './index'
 
 class Menu extends React.Component {
@@ -11,8 +10,6 @@ class Menu extends React.Component {
     this.state = {
       showModal: false
     }
-
-    this.showModal = this.showModal.bind(this)
   }
 
   showModal = () => {
@@ -77,6 +74,5 @@ export default connect(mapState, null)(Menu)
  * PROP TYPES
  */
 Menu.propTypes = {
-  handleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }
