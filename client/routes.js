@@ -10,6 +10,7 @@ import {
   EntrancePage,
   Menu,
   Instruction,
+  About,
   Loading
 } from './components'
 
@@ -25,7 +26,7 @@ class Routes extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.isLoggedIn !== prevProps.isLoggedIn) {
+    if (this.props.isLoggedIn && !prevProps.isLoggedIn) {
       this.props.fetchHighScore(this.props.userHighScore)
     }
   }
@@ -44,6 +45,7 @@ class Routes extends Component {
         <Route path="/end-of-game" component={EndOfGame} />
         <Route path="/instruction" component={Instruction} />
         <Route path="/menu" component={Menu} />
+        <Route path="/about" component={About} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

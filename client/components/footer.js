@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {logout} from '../store'
+import {resetHighscore} from '../store/scoreboard'
 import {NavButton} from './'
 
 const Footer = ({handleClick, isLoggedIn}) => {
@@ -13,6 +14,7 @@ const Footer = ({handleClick, isLoggedIn}) => {
           <div />
           <NavButton linkText="Home" />
           <NavButton linkText="Logout" logoutClick={handleClick} />
+          <NavButton linkText="About" />
           <div />
         </div>
       ) : (
@@ -22,6 +24,7 @@ const Footer = ({handleClick, isLoggedIn}) => {
           <NavButton linkText="Home" />
           <NavButton linkText="Login" />
           <NavButton linkText="Sign Up" />
+          <NavButton linkText="About" />
           <div />
         </div>
       )}
@@ -37,8 +40,9 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    handleClick() {
-      dispatch(logout())
+    async handleClick() {
+      await dispatch(logout())
+      await dispatch(resetHighscore())
     }
   }
 }

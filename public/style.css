@@ -15,6 +15,14 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'mostlymonomedium';
+  src: url('fonts/mostlymono-webfont.woff2') format('woff2'),
+    url('fonts/mostlymono-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   font-family: sans-serif;
 }
@@ -36,6 +44,13 @@ label {
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+p,
+ul {
+  font-family: 'mostlymonomedium';
+  font-size: 18px;
+  letter-spacing: 0.05em;
 }
 
 h1,

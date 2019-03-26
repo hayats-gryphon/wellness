@@ -22,6 +22,7 @@ class NavButton extends React.Component {
     event.preventDefault()
     if (linkText === 'Home') history.push('/')
     if (linkText === 'Logout') logoutClick()
+    if (linkText === 'About') history.push('/About')
   }
 
   render() {
