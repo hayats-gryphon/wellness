@@ -11,7 +11,7 @@ const About = () => {
       </p>
       <p>
         We used PostgresSql, Sequelize.js, Node.js, Express.js, React.js,
-        Redux.js, HTML, and CSS, as well as TensorFlow's PoseNet, a pre-trained
+        Redux.js, HTML, and CSS, as well as TensorFlows PoseNet, a pre-trained
         machine learning model for realtime human pose estimation in the
         browser.
       </p>
