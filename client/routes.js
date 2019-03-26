@@ -9,7 +9,8 @@ import {
   EndOfGame,
   EntrancePage,
   Menu,
-  Instruction
+  Instruction,
+  Loading
 } from './components'
 
 import {me} from './store'
