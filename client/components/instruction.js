@@ -28,14 +28,13 @@ export default class Instruction extends React.Component {
               </p>
             </div>
           </div>
-          <div className="back-button">
-            <Link to="/">
-              {/* place holder for the image */}
-              <button type="button" name="all-button">
-                back
-              </button>
-            </Link>
-          </div>
+          <Link
+            className="back-button img-fluid grow"
+            to="/"
+            onClick={this.resetHandler}
+          >
+            <img src="images/back-btn.png" />
+          </Link>
         </div>
       </div>
     )

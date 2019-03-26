@@ -1,16 +1,16 @@
 /*-------FONTS------*/
 
-/* @font-face {
-  font-family: 'dotty';
-  src: url('/public/fonts/dotty.ttf') format('ttf');
-  font-weight: normal;
-  font-style: normal;
-} */
-
 @font-face {
   font-family: 'dotty';
   src: url('fonts/dotty.woff') format('woff'),
     url('fonts/dotty.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'bebas-neue';
+  src: url('fonts/BebasNeue.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -60,22 +60,6 @@ h4 {
   font-size: 50px;
   letter-spacing: 4px;
   color: #7e9020;
-}
-
-.flex-container-row {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.larger-item {
-  /* This will be twice as */
-  /* big as the small item. */
-  flex: 2 0 0;
-}
-.smaller-item {
-  flex: 1 0 0;
 }
 
 /*--------IMAGES----------*/
@@ -164,7 +148,17 @@ h4 {
   justify-content: center;
 }
 
-/*----------NAVBAR----------*/
+/*----------FOOTER/NAVBAR---------*/
+
+.nav-btn a {
+  font-family: 'dotty';
+  font-size: 35px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+/*----------MAIN MENU---------*/
 .menu-container {
   display: flex;
   margin: 0 auto;
@@ -204,8 +198,8 @@ h4 {
   transform: scale(1.1);
 }
 
-.play-btn img {
-  width: 400px;
+.start-btn img {
+  width: 350px;
   height: auto;
 }
 
@@ -327,7 +321,8 @@ h4 {
   position: fixed;
   top: 0;
   left: 0;
-  display: flex-wrap;
+  display: flex;
+  flex-direction: column;
   background: url('images/game-screen-flowers.png');
   background-size: cover;
   -webkit-background-size: cover;
@@ -338,8 +333,8 @@ h4 {
 .end-of-game-container .img-fluid {
   display: flex;
   margin: 0 auto;
-  max-height: 150px;
-  padding-top: 150px;
+  max-height: 120px;
+  padding-top: 5%;
   justify-content: center;
   display: -webkit-box;
   display: -moz-box;
@@ -347,12 +342,87 @@ h4 {
   display: -webkit-flex;
   display: flex;
   align-items: center;
+  padding-bottom: 5%;
 }
 
 .end-game-score {
-  font-size: 80px;
+  font-size: 65px;
   letter-spacing: 4px;
   color: #7e9020;
+  margin: 10px;
+  padding-bottom: 20px;
+}
+
+/* container for score and leaderboard */
+.flex-container-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 10%;
+  padding-top: 50px;
+}
+
+.end-of-game-item {
+  margin-right: 5%;
+}
+
+.end-of-game-container .play-again-btn {
+  display: flex;
+  margin: 0 auto;
+  max-height: 140px;
+  padding-top: 10px;
+  justify-content: center;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  padding-bottom: 70px;
+}
+
+.leaderboard h1 {
+  font-size: 65px;
+  letter-spacing: 4px;
+  color: #7e9020;
+  margin: 10px;
+}
+
+.leaderboard {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  /* background: url('modal.png');
+  background-size: cover; */
+}
+
+.leaderboard-table tr#row {
+  font-family: 'dotty';
+  text-transform: uppercase;
+  font-size: 35px;
+  text-align: center;
+  letter-spacing: 2px;
+  color: #7e9020;
+  margin: 20px;
+}
+
+table {
+  border-spacing: 10px;
+  border-collapse: separate;
+}
+
+.leaderboard-number {
+  /* font-family: 'bebas-neue'; */
+  color: #7e9020;
+  font-size: 45px;
+}
+
+/* using a different font for numbers for legibility */
+.score-number {
+  /* font-family: 'bebas-neue'; */
+  color: #7e9020;
+  font-size: 90px;
 }
 
 /*-------FOOTER------*/
@@ -365,6 +435,8 @@ h4 {
 }
 
 .footer {
+  left: 0;
+  bottom: 0;
   width: 100%;
   text-align: center;
 }
@@ -445,9 +517,15 @@ h4 {
   color: #5a7e26;
 }
 
+.instruction img {
+  height: 30%;
+}
+
 .back-button {
   display: flex;
+  padding-top: 10px;
   align-items: center;
+  margin: 0 auto;
   justify-content: center;
 }
 

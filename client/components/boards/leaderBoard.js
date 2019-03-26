@@ -13,19 +13,18 @@ class LearderBoard extends React.Component {
 
   render() {
     return (
-      <div id="leaderboard">
-        <h1>Leader Board</h1>
-        <table id="leader-table" className="table">
+      <div className="leaderboard">
+        <h1>Leaderboard</h1>
+
+        <table className="leaderboard-table">
           <tbody>
-            <tr id="row">
-              <td id="cell0-0">High Score</td>
-              <td id="cell0-1">Name</td>
-            </tr>
             {this.props.leaderboard.map(leader => {
               return (
                 <tr key={leader.id} id="row">
-                  <td id={leader.id}>{leader.highscore}</td>
                   <td id={leader.id}>{leader.name}</td>
+                  <td id={leader.id} className="leaderboard-number">
+                    {leader.highscore}
+                  </td>
                 </tr>
               )
             })}
@@ -51,3 +50,4 @@ const mapDispatchToProps = dispatch => {
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(LearderBoard)
 )
+
