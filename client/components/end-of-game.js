@@ -34,8 +34,8 @@ class EndOfGame extends React.Component {
   render() {
     return (
       <div className="end-of-game-container">
+        <div />
         <img className="img-fluid" src="great-job.png" />
-
         <div className="flex-container-row">
           <div className="end-of-game-item">
             <h3 className="end-game-score">
@@ -61,6 +61,7 @@ class EndOfGame extends React.Component {
         </div>
 
         <Footer />
+        <div />
       </div>
     )
   }
