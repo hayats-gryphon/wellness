@@ -221,39 +221,44 @@ class PunchABug extends React.Component {
   }
 
   render() {
+    console.log('this is the loadingref', this.loadingRef)
     return (
       <div id="grandparent">
         <div id="play-container" ref={this.playContainerRef}>
           <div className="game-logo">
             <img src="images/punchabug-logo.png" />
           </div>
-          <div id="score-timer">
-            <Scoreboard />
-            <h2 id="timer" ref={this.timerRef}>
-              Get Ready...
-            </h2>
-            <audio
-              src="/no2.mp3"
-              ref={this.splatSoundRef}
-              preload="auto"
-              controls="none"
-              style={{display: 'none'}}
-            />
-
-            <button
-              type="button"
-              onClick={() => {
-                if (window.confirm('Are you sure you want to exit?')) {
-                  this.props.history.push('/')
-                }
-              }}
-            >
-              EXIT
-            </button>
-          </div>
           <div ref={this.loadingRef} id="loading">
             Loading the model...
           </div>
+          {this.props.videoLoaded ? (
+            <div className="videoload-container">
+              <div id="score-timer">
+                <Scoreboard />
+                <h2 id="timer" ref={this.timerRef}>
+                  Get Ready...
+                </h2>
+                <audio
+                  src="/no2.mp3"
+                  ref={this.splatSoundRef}
+                  preload="auto"
+                  controls="none"
+                  style={{display: 'none'}}
+                />
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (window.confirm('Are you sure you want to exit?')) {
+                      this.props.history.push('/')
+                    }
+                  }}
+                >
+                  EXIT
+                </button>
+              </div>
+            </div>
+          ) : null}
           <div ref={this.mainRef} style={{display: 'none'}} id="main">
             {this.props.videoLoaded ? (
               <Board timerRef={this.timerRef} readyRef={this.readyRef} />
