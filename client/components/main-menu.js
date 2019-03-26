@@ -24,7 +24,7 @@ class Menu extends React.Component {
         {this.props.isLoggedIn ? (
           <div>
             <div className="user-welcome">
-              <h3>Welcome back, {this.props.name}!</h3>
+              <h3>Welcome {this.props.name}!</h3>
             </div>
 
             <div className="entrance-menu">

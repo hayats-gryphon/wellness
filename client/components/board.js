@@ -189,7 +189,6 @@ class Board extends React.Component {
                 />
               )
             })}
-          }
           <div ref={this.playDiv} />
         </div>
       </div>
