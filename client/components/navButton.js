@@ -30,7 +30,7 @@ class NavButton extends React.Component {
       <div>
         <div className="img-fluid play-btn grow" onClick={this.toggleModal}>
           <div className="footer-link" onClick={this.redirect}>
-            <img src="play-btn.png" />
+            <img src="images/play-btn.png" />
             <div className="centered-nav">{linkText}</div>
           </div>
         </div>
