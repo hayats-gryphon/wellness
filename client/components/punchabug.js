@@ -16,17 +16,15 @@
  */
 import * as posenet from '@tensorflow-models/posenet'
 import React from 'react'
-import {Board, Scoreboard} from '../components'
 import {connect} from 'react-redux'
+import {Board, Scoreboard, Loading} from '../components'
+import {drawKeypoints, hitAMole} from './posenet_utils'
 import {videoLoaded} from '../store/board'
 import {updateScore, resetScore} from '../store/scoreboard'
-
-import {drawKeypoints, hitAMole} from './posenet_utils'
 
 class PunchABug extends React.Component {
   constructor() {
     super()
-
     this.splatSoundRef = React.createRef()
     this.playContainerRef = React.createRef()
     this.loadingRef = React.createRef()
@@ -55,7 +53,8 @@ class PunchABug extends React.Component {
           showVideo: true
         },
         net: null,
-        request: 0
+        request: 0,
+        loading: true
       }
     }
   }
@@ -209,6 +208,7 @@ class PunchABug extends React.Component {
   }
 
   componentDidMount() {
+    this.props.resetScore()
     navigator.getUserMedia =
       navigator.getUserMedia ||
       navigator.webkitGetUserMedia ||
@@ -228,37 +228,41 @@ class PunchABug extends React.Component {
           <div className="game-logo">
             <img src="images/punchabug-logo.png" />
           </div>
-          <div id="score-timer">
-            <Scoreboard />
-            <h2 id="timer" ref={this.timerRef}>
-              Get Ready...
-            </h2>
-            <audio
-              src="sounds/no2.mp3"
-              ref={this.splatSoundRef}
-              preload="auto"
-              controls="none"
-              style={{display: 'none'}}
-            />
+          <div ref={this.loadingRef} id="loading" />
+          {this.props.videoLoaded ? (
+            <div className="videoload-container">
+              <div id="score-timer">
+                <Scoreboard />
+                <h2 id="timer" ref={this.timerRef}>
+                  Get Ready...
+                </h2>
+                <audio
+                  src="/no2.mp3"
+                  ref={this.splatSoundRef}
+                  preload="auto"
+                  controls="none"
+                  style={{display: 'none'}}
+                />
 
-            <button
-              type="button"
-              onClick={() => {
-                if (window.confirm('Are you sure you want to exit?')) {
-                  this.props.history.push('/')
-                }
-              }}
-            >
-              EXIT
-            </button>
-          </div>
-          <div ref={this.loadingRef} id="loading">
-            Loading the model...
-          </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (window.confirm('Are you sure you want to exit?')) {
+                      this.props.history.push('/')
+                    }
+                  }}
+                >
+                  EXIT
+                </button>
+              </div>
+            </div>
+          ) : null}
           <div ref={this.mainRef} style={{display: 'none'}} id="main">
             {this.props.videoLoaded ? (
               <Board timerRef={this.timerRef} readyRef={this.readyRef} />
-            ) : null}
+            ) : (
+              <Loading />
+            )}
             <video ref={this.videoRef} id="video" playsInline />
             <canvas ref={this.outputRef} />
           </div>
