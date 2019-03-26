@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {logout} from '../store'
+import {resetHighscore} from '../store/scoreboard'
 import {NavButton} from './'
 
 const Footer = ({handleClick, isLoggedIn}) => {
@@ -37,8 +38,9 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    handleClick() {
-      dispatch(logout())
+    async handleClick() {
+      await dispatch(logout())
+      await dispatch(resetHighscore())
     }
   }
 }
