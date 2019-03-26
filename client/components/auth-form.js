@@ -2,11 +2,13 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
+import scoreboard from '../store/scoreboard'
+
 /**
  * COMPONENT
  */
 const AuthForm = props => {
-  const {name, displayName, handleSubmit, error, onClose, show} = props
+  const {name, displayName, handleSubmit, error, onClose, show, highscore} = props
   if (!show) {
     return null
   }
@@ -30,6 +32,10 @@ const AuthForm = props => {
               <input name="password" type="password" />
             </div>
             <div>
+              <input name="savescore" type="checkbox" value={highscore} />{' '}
+              <small>Save score?</small>
+            </div>
+            <div>
               <button type="submit">{displayName}</button>
             </div>
             {error && error.response && <div> {error.response.data} </div>}
@@ -51,7 +57,8 @@ const mapLogin = state => {
   return {
     name: 'login',
     displayName: 'Login',
-    error: state.user.error
+    error: state.user.error,
+    highscore: state.scoreboard.highScore
   }
 }
 
@@ -59,7 +66,8 @@ const mapSignup = state => {
   return {
     name: 'signup',
     displayName: 'Sign Up',
-    error: state.user.error
+    error: state.user.error,
+    highscore: state.scoreboard.highScore
   }
 }
 
@@ -70,8 +78,11 @@ const mapDispatch = dispatch => {
       const formName = evt.target.name
       const username = evt.target.username.value
       const password = evt.target.password.value
-
-      dispatch(auth(username, password, formName))
+      let highscore = 0
+      if (evt.target.savescore.checked) {
+        highscore = Number(evt.target.savescore.value)
+      }
+      dispatch(auth(username, password, formName, highscore))
     }
   }
 }
@@ -86,5 +97,6 @@ AuthForm.propTypes = {
   name: PropTypes.string.isRequired,
   displayName: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  error: PropTypes.object
+  error: PropTypes.object,
+  highscore: PropTypes.number
 }

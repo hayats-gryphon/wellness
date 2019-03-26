@@ -4,7 +4,7 @@ module.exports = router
 
 router.post('/login', async (req, res, next) => {
   try {
-    const user = await User.findOne({where: {name: req.body.name}})
+    let user = await User.findOne({where: {name: req.body.name}})
     if (!user) {
       console.log('No such user found:', req.body.name)
       res.status(401).send('Wrong username and/or password')
@@ -12,6 +12,12 @@ router.post('/login', async (req, res, next) => {
       console.log('Incorrect password for user:', req.body.name)
       res.status(401).send('Wrong username and/or password')
     } else {
+      if (user.highscore < req.body.highscore) {
+        ;[, [user]] = await User.update(
+          {highscore: req.body.highscore},
+          {returning: true, where: {name: req.body.name}}
+        )
+      }
       req.login(user, err => (err ? next(err) : res.json(user)))
     }
   } catch (err) {
