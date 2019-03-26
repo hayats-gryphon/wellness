@@ -13,6 +13,7 @@ const Footer = ({handleClick, isLoggedIn}) => {
           <div />
           <NavButton linkText="Home" />
           <NavButton linkText="Logout" logoutClick={handleClick} />
+          <NavButton linkText="About" />
           <div />
         </div>
       ) : (
@@ -22,6 +23,7 @@ const Footer = ({handleClick, isLoggedIn}) => {
           <NavButton linkText="Home" />
           <NavButton linkText="Login" />
           <NavButton linkText="Sign Up" />
+          <NavButton linkText="About" />
           <div />
         </div>
       )}
