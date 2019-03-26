@@ -54,6 +54,8 @@ export const hitAMole = (
     if (keypoint.score < minConfidence) {
       continue
     }
+
+    if (!parentBox) return
     let parent = parentBox.current.getBoundingClientRect()
     const {y, x} = keypoint.position
 
@@ -85,7 +87,7 @@ export const hitAMole = (
           }
           if (Array.from(holeRef.classList).includes('bee')) {
             holeRef.classList.toggle('bee')
-            soundElem.current.src = 'sounds/BONUS.mp3'
+            soundElem.current.src = 'sounds/WIN.mp3'
             soundElem.current.load()
             soundElem.current.play()
             updateScore(10)

@@ -2,56 +2,59 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {LeaderBoard} from '../components'
 import {updateHighScore, resetScore} from '../store/scoreboard'
-import {withRouter} from 'react-router-dom'
 import {Footer} from './index'
 import {fetchLeaderboard} from '../store/leaderboard'
 
 class EndOfGame extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.resetHandler = this.resetHandler.bind(this)
-  }
-
-  resetHandler(event) {
+  resetHandler = event => {
     event.preventDefault()
     this.props.resetScore()
-    this.props.history.push(`/punchabug`)
+    this.props.history.push(`/`)
   }
 
   componentDidMount() {
-    if (this.props.isLoggedIn) {
-      if (this.props.score > this.props.highScore) {
-        this.props.updateUserHighScore(this.props.user.id, this.props.score)
-      }
+    if (this.props.score > this.props.highScore) {
+      this.props.updateUserHighScore(this.props.user.id, this.props.score)
     }
-    this.props.fetchLeaderboard()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.highScore !== prevProps.highScore) {
+      this.props.fetchLeaderboard()
+    }
   }
 
   render() {
     return (
       <div className="end-of-game-container">
-        <img className="img-fluid" src="/great-job.png" />
-
+        <div />
+        <img className="img-fluid" src="great-job.png" />
         <div className="flex-container-row">
-          <h3 className="end-game-score">SCORE: {this.props.score}</h3>
-          <h3 className="end-game-score">
+          <div className="end-of-game-item">
+            <h3 className="end-game-score">
+              SCORE: <span className="score-number">{this.props.score}</span>
+            </h3>
             {this.props.isLoggedIn ? (
-              <div>YOUR HIGH SCORE: {this.props.highScore}</div>
+              <div>
+                <h3 className="end-game-score">
+                  YOUR HIGH SCORE:{' '}
+                  <span className="score-number">{this.props.highScore}</span>
+                </h3>
+              </div>
             ) : null}
-          </h3>
-          <div>
+          </div>
+
+          <div className="end-of-game-item">
             <LeaderBoard />
           </div>
-          <Footer />
-          <button
-            type="button"
-            className="play-again-btn"
-            onClick={this.resetHandler}
-          >
-            Play Again
-          </button>
         </div>
+
+        <div className="play-again-btn grow" onClick={this.resetHandler}>
+          <img src="images/play-again-btn.png" />
+        </div>
+
+        <Footer />
+        <div />
       </div>
     )
   }

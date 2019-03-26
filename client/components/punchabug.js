@@ -262,6 +262,7 @@ class PunchABug extends React.Component {
             ) : (
               <Loading />
             )}
+            ) : null}
             <video ref={this.videoRef} id="video" playsInline />
             <canvas ref={this.outputRef} />
           </div>

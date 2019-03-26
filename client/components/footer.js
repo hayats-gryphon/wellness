@@ -1,34 +1,34 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import {NavButton} from './'
 
-const Footer = ({handleClick, isLoggedIn}) => (
-  <div className="footer">
-    {isLoggedIn ? (
-      <div className="footer-menu">
-        {/* The navbar will show these links after you log in */}
-        <Link to="/home">Home</Link>
-        <a href="#" onClick={handleClick}>
-          Logout
-        </a>
-        <Link to="/punchabug">Puncha Bug</Link>
-      </div>
-    ) : (
-      <div className="footer-menu">
-        {/* The navbar will show these links before you log in */}
-        <Link to="/">Home</Link>
-        <Link to="/login">Login</Link>
-        <Link to="/signup">Sign Up</Link>
-      </div>
-    )}
-  </div>
-)
+const Footer = ({handleClick, isLoggedIn}) => {
+  return (
+    <div className="footer">
+      {isLoggedIn ? (
+        <div className="footer-menu">
+          {/* The navbar will show these links after you log in */}
+          <div />
+          <NavButton linkText="Home" />
+          <NavButton linkText="Logout" logoutClick={handleClick} />
+          <div />
+        </div>
+      ) : (
+        <div className="footer-menu">
+          {/* The navbar will show these links before you log in */}
+          <div />
+          <NavButton linkText="Home" />
+          <NavButton linkText="Login" />
+          <NavButton linkText="Sign Up" />
+          <div />
+        </div>
+      )}
+    </div>
+  )
+}
 
-/**
- * CONTAINER
- */
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id

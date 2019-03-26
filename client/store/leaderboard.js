@@ -20,12 +20,17 @@ const defaultLeaderboard = {
 const getLeaderboard = leaderboard => ({type: GET_LEADERBOARD, leaderboard})
 
 /**
- * THUNK CREATOR
+ * THUNK CREATORS
  */
 export const fetchLeaderboard = () => async dispatch => {
-  const {data} = await Axios.get(`/api/users/leaderboard`)
-  dispatch(getLeaderboard(data))
+  try {
+    const {data} = await Axios.get(`/api/users/leaderboard`)
+    dispatch(getLeaderboard(data))
+  } catch (err) {
+    console.error(err)
+  }
 }
+
 /**
  * REDUCER
  */

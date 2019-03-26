@@ -8,7 +8,7 @@ class Board extends React.Component {
 
     this.state = {
       countdownTimer: 20,
-      readyCountdown: 8,
+      readyCountdown: 5,
       numOfHoles: 9
     }
 
