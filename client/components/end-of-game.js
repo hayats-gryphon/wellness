@@ -4,16 +4,9 @@ import {LeaderBoard} from '../components'
 import {updateHighScore, resetScore} from '../store/scoreboard'
 import {Footer} from './index'
 import {fetchLeaderboard} from '../store/leaderboard'
-import {Link} from 'react-router-dom'
 
 class EndOfGame extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.resetHandler = this.resetHandler.bind(this)
-  }
-
-  resetHandler(event) {
+  resetHandler = event => {
     event.preventDefault()
     this.props.resetScore()
     this.props.history.push(`/`)
