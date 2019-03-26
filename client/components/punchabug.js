@@ -221,16 +221,13 @@ class PunchABug extends React.Component {
   }
 
   render() {
-    console.log('this is the loadingref', this.loadingRef)
     return (
       <div id="grandparent">
         <div id="play-container" ref={this.playContainerRef}>
           <div className="game-logo">
             <img src="images/punchabug-logo.png" />
           </div>
-          <div ref={this.loadingRef} id="loading">
-            Loading the model...
-          </div>
+          <div ref={this.loadingRef} id="loading" />
           {this.props.videoLoaded ? (
             <div className="videoload-container">
               <div id="score-timer">
