@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {gotHoles} from '../store/board'
+import {gotHoles} from '../../store/board'
 import {withRouter} from 'react-router-dom'
 class Board extends React.Component {
   constructor(props) {

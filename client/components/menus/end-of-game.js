@@ -1,9 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {LeaderBoard} from '../components'
-import {updateHighScore, resetScore} from '../store/scoreboard'
-import {Footer} from './index'
-import {fetchLeaderboard} from '../store/leaderboard'
+import {LeaderBoard} from '..'
+import {updateHighScore, resetScore} from '../../store/scoreboard'
+import {Footer} from '../index'
+import {fetchLeaderboard} from '../../store/leaderboard'
 
 class EndOfGame extends React.Component {
   resetHandler = event => {
