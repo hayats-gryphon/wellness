@@ -2,13 +2,17 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
-import scoreboard from '../store/scoreboard'
 
-/**
- * COMPONENT
- */
 const AuthForm = props => {
-  const {name, displayName, handleSubmit, error, onClose, show, highscore} = props
+  const {
+    name,
+    displayName,
+    handleSubmit,
+    error,
+    onClose,
+    show,
+    highscore
+  } = props
   if (!show) {
     return null
   }

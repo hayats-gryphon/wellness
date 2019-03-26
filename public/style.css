@@ -148,16 +148,6 @@ h4 {
   justify-content: center;
 }
 
-/*----------FOOTER/NAVBAR---------*/
-
-.nav-btn a {
-  font-family: 'dotty';
-  font-size: 35px;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-}
-
 /*----------MAIN MENU---------*/
 .menu-container {
   display: flex;
@@ -359,8 +349,6 @@ h4 {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding-bottom: 10%;
-  padding-top: 50px;
 }
 
 .end-of-game-item {
@@ -432,6 +420,11 @@ table {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  font-family: 'dotty';
+  font-size: 30px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 3px;
 }
 
 .footer {
