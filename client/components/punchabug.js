@@ -208,6 +208,7 @@ class PunchABug extends React.Component {
   }
 
   componentDidMount() {
+    this.props.resetScore()
     navigator.getUserMedia =
       navigator.getUserMedia ||
       navigator.webkitGetUserMedia ||
