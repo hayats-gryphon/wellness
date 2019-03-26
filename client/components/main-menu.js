@@ -1,7 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-// import {logout} from '../store'
 import {MenuLevels} from './index'
 
 class Menu extends React.Component {
@@ -75,11 +74,3 @@ const mapState = state => {
 }
 
 export default connect(mapState, null)(Menu)
-
-// /**
-//  * PROP TYPES
-//  */
-// Menu.propTypes = {
-//   handleClick: PropTypes.func.isRequired,
-//   isLoggedIn: PropTypes.bool.isRequired
-// }
