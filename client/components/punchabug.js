@@ -35,7 +35,6 @@ class PunchABug extends React.Component {
     this.errorMsgRef = React.createRef()
     this.readyRef = React.createRef()
     this.countDownRef = React.createRef()
-    this.src = '/images/countdown.gif'
 
     this.state = {
       videoWidth: 600,
@@ -211,19 +210,12 @@ class PunchABug extends React.Component {
   }
 
   componentDidMount() {
-    console.log('BEFORE SET STATE ====>', this.state.loaded)
     this.props.resetScore()
     navigator.getUserMedia =
       navigator.getUserMedia ||
       navigator.webkitGetUserMedia ||
       navigator.mozGetUserMedia
     this.bindPage()
-    this.setState({loaded: ''})
-    console.log('AFTER SET STATE====>', this.state.loaded)
-    setTimeout(() => {
-      this.setState({loaded: this.state.gif})
-    }, 0)
-    console.log('FINAL STATE ====>', this.state.loaded)
   }
 
   componentWillUnmount() {
@@ -232,9 +224,6 @@ class PunchABug extends React.Component {
   }
 
   render() {
-    if (this.gif) {
-      this.gif.src = this.src
-    }
     return (
       <div id="grandparent">
         <div id="play-container" ref={this.playContainerRef}>
@@ -276,8 +265,13 @@ class PunchABug extends React.Component {
                   countDownRef={this.countDownRef}
                   readyRef={this.readyRef}
                 />
-                <div ref={this.countDownRef} className="testing">
-                  <img src={this.state.loaded} className="img-fluid" /> }
+                <div className="countLoad">
+                  <img
+                    ref={this.countDownRef}
+                    src="/images/countdown.gif"
+                    className="img-fluid"
+                  />{' '}
+                  }
                 </div>
               </>
             ) : (

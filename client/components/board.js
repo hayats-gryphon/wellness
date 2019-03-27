@@ -40,7 +40,6 @@ class Board extends React.Component {
     }
 
     this.props.updateHoles(holeRefArr)
-
     this.readyCountdownId = setInterval(() => {
       // this.props.timerRef.current.textContent = `Get Ready...${
       //   this.state.readyCountdown
@@ -102,6 +101,7 @@ class Board extends React.Component {
     clearInterval(this.countdownId)
     clearInterval(this.readyCountdownId)
     clearInterval(this.hardBeeIntervalId)
+    this.props.countDownRef.current.src = ''
   }
 
   countdown = () => {
@@ -170,7 +170,6 @@ class Board extends React.Component {
   }
 
   render() {
-    console.log('BOARD COMPONENT ')
     return (
       <div>
         <audio
