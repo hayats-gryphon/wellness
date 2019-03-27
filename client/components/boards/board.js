@@ -160,7 +160,7 @@ class Board extends React.Component {
       currRef = this[`holeRef${randomHoleIndex}`].current
     }
 
-    //if there was a recently hit bug, toggle classList 'stars'
+    //if there was a recently hit bee, toggle classList 'stars'
     if (classNames.includes('stars')) currRef.classList.toggle('stars')
     currRef.classList.toggle('bee')
   }
