@@ -48,13 +48,6 @@ form div {
   display: inline-block;
 }
 
-p,
-ul {
-  font-family: 'mostlymonomedium';
-  font-size: 18px;
-  letter-spacing: 0.05em;
-}
-
 h1,
 h2,
 h3,
@@ -458,6 +451,40 @@ table {
   /* font-family: 'bebas-neue'; */
   color: #7e9020;
   font-size: 90px;
+}
+
+/*-------ABOUT------*/
+
+.about-parent {
+  display: flex;
+  justify-content: center;
+  background: url(images/sunflowers-butterflies-screen.png);
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+}
+
+.about {
+  margin-top: 15%;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-bottom: 15%;
+}
+
+.about p {
+  font-family: 'mostlymonomedium';
+  font-size: 18px;
+  letter-spacing: 0.05em;
+}
+
+.about ul {
+  font-family: 'mostlymonomedium';
+  font-size: 18px;
+  letter-spacing: 0.05em;
 }
 
 /*-------FOOTER------*/
