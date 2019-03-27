@@ -2,11 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchLeaderboard} from '../../store/leaderboard'
 import {withRouter} from 'react-router-dom'
-class LearderBoard extends React.Component {
-  constructor() {
-    super()
-  }
 
+class LearderBoard extends React.Component {
   componentDidMount() {
     this.props.fetchLeaderboard()
   }
@@ -50,4 +47,3 @@ const mapDispatchToProps = dispatch => {
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(LearderBoard)
 )
-

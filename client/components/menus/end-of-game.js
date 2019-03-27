@@ -27,7 +27,7 @@ class EndOfGame extends React.Component {
   render() {
     return (
       <div className="end-of-game-container">
-        <div />
+        {/* <div /> */}
         <img className="img-fluid" src="images/great-job.png" />
         <div className="flex-container-row">
           <div className="end-of-game-item">
@@ -35,13 +35,18 @@ class EndOfGame extends React.Component {
               SCORE: <span className="score-number">{this.props.score}</span>
             </h3>
             {this.props.isLoggedIn ? (
-              <div>
-                <h3 className="end-game-score">
-                  YOUR HIGH SCORE:{' '}
-                  <span className="score-number">{this.props.highScore}</span>
-                </h3>
-              </div>
-            ) : null}
+              <h3 className="end-game-score">
+                YOUR HIGH SCORE:{' '}
+                <span className="score-number">{this.props.highScore}</span>
+              </h3>
+            ) : (
+              <h3 className="end-game-score">
+                SESSION HIGH SCORE:{' '}
+                <span className="score-number">{this.props.highScore}</span>
+              </h3>
+            )
+            // null
+            }
           </div>
 
           <div className="end-of-game-item">
@@ -54,7 +59,7 @@ class EndOfGame extends React.Component {
         </div>
 
         <Footer />
-        <div />
+        {/* <div /> */}
       </div>
     )
   }
