@@ -295,12 +295,15 @@ h4 {
 }
 
 #grandparent {
+  width: 100vw;
   height: 100vh;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   justify-content: center;
   align-items: center;
   display: flex;
-  background: url('images/game-screen-flowers.png');
+  background: url('images/game-screen-flowers.png') yellow;
   background-size: cover;
   overflow-x: hidden;
 }
