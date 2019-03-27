@@ -80,6 +80,22 @@ h4 {
   flex-wrap: wrap;
 }
 
+.testing {
+  /* background-image: url('/images/placeholder.gif'); */
+  /* display: inline-block; */
+  position: absolute;
+  top: 250px;
+  left: 150px;
+  width: 250px;
+  height: 250px;
+  /* margin: 30px 40px 5px 40px; */
+  /* z-index: 1; */
+}
+
+/* .countDown {
+  z-index: 10;
+} */
+
 .hole {
   background-image: url('leaf-only.png');
   background-size: contain;

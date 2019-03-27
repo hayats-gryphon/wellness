@@ -34,6 +34,7 @@ class PunchABug extends React.Component {
     this.timerRef = React.createRef()
     this.errorMsgRef = React.createRef()
     this.readyRef = React.createRef()
+    this.countDownRef = React.createRef()
     this.state = {
       videoWidth: 600,
       videoHeight: 500,
@@ -106,9 +107,9 @@ class PunchABug extends React.Component {
    */
   detectPoseInRealTime = video => {
     const {guiState, videoWidth, videoHeight} = this.state
-
     const canvas = this.outputRef.current
     const ctx = canvas.getContext('2d')
+
     // since images are being fed from a webcam
     const flipHorizontal = true
 
@@ -222,6 +223,7 @@ class PunchABug extends React.Component {
   }
 
   render() {
+    console.log('COUNTDOWNREF INSIDE PUNCHABUG ===>', this.countDownRef)
     return (
       <div id="grandparent">
         <div id="play-container" ref={this.playContainerRef}>
@@ -259,11 +261,19 @@ class PunchABug extends React.Component {
           ) : null}
           <div ref={this.mainRef} style={{display: 'none'}} id="main">
             {this.props.videoLoaded ? (
-              <Board timerRef={this.timerRef} readyRef={this.readyRef} />
+              <>
+                <Board
+                  timerRef={this.timerRef}
+                  countDownRef={this.countDownRef}
+                  readyRef={this.readyRef}
+                />
+                <div ref={this.countDownRef} className="testing">
+                  <img src="/images/placeholder.gif" />
+                </div>
+              </>
             ) : (
               <Loading />
             )}
-            ) : null}
             <video ref={this.videoRef} id="video" playsInline />
             <canvas ref={this.outputRef} />
           </div>

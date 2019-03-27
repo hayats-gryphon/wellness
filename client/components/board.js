@@ -2,13 +2,14 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {gotHoles} from '../store/board'
 import {withRouter} from 'react-router-dom'
+import {Loading} from './loading'
 class Board extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
       countdownTimer: 20,
-      readyCountdown: 5,
+      readyCountdown: 8,
       numOfHoles: 9
     }
 
@@ -51,6 +52,7 @@ class Board extends React.Component {
       if (this.state.readyCountdown === -1) {
         clearInterval(this.readyCountdownId)
         this.props.timerRef.current.textContent = `GO!`
+        this.props.countDownRef.current.style.display = 'none'
 
         /*----------- BEGINNER PLAY---------*/
         if (this.props.location.pathname === '/punchabug-beginner') {
@@ -80,7 +82,7 @@ class Board extends React.Component {
           }, 2400)
           this.hardBeeIntervalId = setInterval(() => {
             this.generateBee()
-          }, 4800)
+          }, 4200)
         }
         this.countdownId = setInterval(() => {
           this.countdown()
@@ -167,6 +169,7 @@ class Board extends React.Component {
   }
 
   render() {
+    console.log('COUNTDOWNREF INSIDE BOARD ===>', this.props.countDownRef)
     return (
       <div>
         <audio
@@ -176,7 +179,6 @@ class Board extends React.Component {
           controls="none"
           style={{display: 'none'}}
         />
-
         <div id="whack-a-mole">
           {Array(this.state.numOfHoles)
             .fill('')
@@ -189,7 +191,6 @@ class Board extends React.Component {
                 />
               )
             })}
-          }
           <div ref={this.playDiv} />
         </div>
       </div>
