@@ -35,6 +35,7 @@ class PunchABug extends React.Component {
     this.timerRef = React.createRef()
     this.errorMsgRef = React.createRef()
     this.readyRef = React.createRef()
+    this.request = 0
     this.state = {
       videoWidth: 600,
       videoHeight: 500,
@@ -54,7 +55,7 @@ class PunchABug extends React.Component {
           showVideo: true
         },
         net: null,
-        request: 0,
+
         loading: true
       }
     }
@@ -166,9 +167,7 @@ class PunchABug extends React.Component {
         }
       })
 
-      this.setState({
-        request: requestAnimationFrame(poseDetectionFrame)
-      })
+      this.request = requestAnimationFrame(poseDetectionFrame)
     }
 
     poseDetectionFrame()
@@ -218,7 +217,7 @@ class PunchABug extends React.Component {
   }
 
   componentWillUnmount() {
-    cancelAnimationFrame(this.state.request)
+    cancelAnimationFrame(this.request)
     clearInterval(this.soundIntervalId)
   }
 

@@ -55,7 +55,7 @@ export const hitAMole = (
       continue
     }
 
-    if (!parentBox) return
+    if (parentBox.current === null) return
     let parent = parentBox.current.getBoundingClientRect()
     const {y, x} = keypoint.position
 
