@@ -128,7 +128,7 @@ class Board extends React.Component {
     let classNames = Array.from(currRef.classList)
     if (classNames.includes('mole')) {
       randomHoleIndex = this.generateRandomIdx()
-      currRef = this[`holeRef${randomHoleIndex}`].current
+      currRef = this[`giholeRef${randomHoleIndex}`].current
     }
     currRef.classList.toggle('flower')
   }
