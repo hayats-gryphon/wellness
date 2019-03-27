@@ -12,9 +12,9 @@ const About = () => {
         </p>
         <p>
           We used PostgresSql, Sequelize.js, Node.js, Express.js, React.js,
-          Redux.js, HTML, and CSS, as well as TensorFlows PoseNet, a pre-trained
-          machine learning model for realtime human pose estimation in the
-          browser.
+          Redux.js, HTML, and CSS, as well as PoseNet (from TensorFlow), a
+          pre-trained machine learning model for realtime human pose estimation
+          in the browser.
         </p>
         <p>Special thanks are owed to the creators of our images and sounds:</p>
         <ul>
