@@ -83,8 +83,8 @@ export const hitAMole = (
             updateScore(1)
           }
           if (Array.from(holeRef.classList).includes('flower')) {
-            holeRef.classList.replace('flower', 'stars')
-            setTimeout(() => holeRef.classList.toggle('stars'), 500)
+            holeRef.classList.replace('flower', 'minus-points')
+            setTimeout(() => holeRef.classList.toggle('minus-points'), 500)
             soundElem.current.src = generateRandomSound()
             soundElem.current.load()
             soundElem.current.play()
