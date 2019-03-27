@@ -27,7 +27,7 @@ class EndOfGame extends React.Component {
   render() {
     return (
       <div className="end-of-game-container">
-        <div />
+        {/* <div /> */}
         <img className="img-fluid" src="images/great-job.png" />
         <div className="flex-container-row">
           <div className="end-of-game-item">
@@ -54,7 +54,7 @@ class EndOfGame extends React.Component {
         </div>
 
         <Footer />
-        <div />
+        {/* <div /> */}
       </div>
     )
   }
