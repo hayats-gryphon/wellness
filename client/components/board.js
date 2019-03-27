@@ -2,7 +2,6 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {gotHoles} from '../store/board'
 import {withRouter} from 'react-router-dom'
-import {Loading} from './loading'
 class Board extends React.Component {
   constructor(props) {
     super(props)
@@ -41,17 +40,12 @@ class Board extends React.Component {
 
     this.props.updateHoles(holeRefArr)
     this.readyCountdownId = setInterval(() => {
-      // this.props.timerRef.current.textContent = `Get Ready...${
-      //   this.state.readyCountdown
-      // }`
       this.setState(prevState => {
         prevState.readyCountdown--
       })
 
-      if (this.state.readyCountdown === -1) {
+      if (this.state.readyCountdown === 0) {
         clearInterval(this.readyCountdownId)
-        // this.props.timerRef.current.textContent = `GO!`
-        // this.props.countDownRef.current.style.display = 'none';
         this.props.countDownRef.current.style.visibility = 'hidden'
 
         /*----------- BEGINNER PLAY---------*/

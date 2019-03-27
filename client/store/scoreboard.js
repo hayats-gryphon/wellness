@@ -9,6 +9,7 @@ const GET_SCORE = 'GET_SCORE'
 const GET_HIGHSCORE = 'GET_HIGHSCORE'
 const UPDATE_SCORE = 'UPDATE_SCORE'
 const RESET_SCORE = 'RESET_SCORE'
+const RESET_HIGHSCORE = 'RESET_HIGHSCORE'
 const GET_HIGHSCORE_FROM_USER = 'GET_HIGHSCORE_FROM_USER'
 const UPDATE_USER_HIGHSCORE = 'UPDATE_USER_HIGHSCORE'
 /**
@@ -34,6 +35,9 @@ export const getHighScoreFromUser = highScore => ({
 })
 export const updateScore = increaseBy => ({type: UPDATE_SCORE, increaseBy})
 export const resetScore = () => ({type: RESET_SCORE})
+export const resetHighscore = () => {
+  return {type: RESET_HIGHSCORE}
+}
 
 /**
  * THUNK CREATOR
@@ -55,6 +59,7 @@ export const updateHighScore = (userId, score) => {
 /**
  * REDUCER
  */
+// eslint-disable-next-line complexity
 export default function(state = defaultScore, action) {
   switch (action.type) {
     case GET_SCORE:
@@ -79,6 +84,11 @@ export default function(state = defaultScore, action) {
       return {
         ...state,
         score: 0
+      }
+    case RESET_HIGHSCORE:
+      return {
+        ...state,
+        highScore: 0
       }
     case GET_HIGHSCORE_FROM_USER:
       return {

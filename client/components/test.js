@@ -31,10 +31,10 @@ class Menu extends React.Component {
               <Link className="grow" to="/instruction">
                 Instruction
               </Link>
-              <Link className="grow" to="/punchabug-beginner">
-                Beginner
+              <Link className="grow" to="/punchabug-easy">
+                EASY
               </Link>
-              <Link className="grow" to="/punchabug">
+              <Link className="grow" to="/punchabug-medium">
                 Medium
               </Link>
               <Link className="grow" to="/punchabug-hard">
