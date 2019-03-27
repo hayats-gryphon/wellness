@@ -247,17 +247,17 @@ class PunchABug extends React.Component {
                   controls="none"
                   style={{display: 'none'}}
                 />
-
-                <button
-                  type="button"
+                <div
+                  className="footer-link"
                   onClick={() => {
                     if (window.confirm('Are you sure you want to exit?')) {
                       this.props.history.push('/')
                     }
                   }}
                 >
-                  EXIT
-                </button>
+                  <img src="images/play-btn.png" style={{width: 100}} />
+                  <div className="centered-nav">Exit</div>
+                </div>
               </div>
             </div>
           ) : null}
