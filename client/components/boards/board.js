@@ -136,7 +136,7 @@ class Board extends React.Component {
       randomHoleIndex = this.generateRandomIdx()
       currRef = this[`holeRef${randomHoleIndex}`].current
     }
-    //if there was a recently hit bug, toggle classList 'stars'
+    //if there was a recently hit flower, toggle classList 'stars'
     if (classNames.includes('stars')) currRef.classList.toggle('stars')
     currRef.classList.toggle('flower')
   }
