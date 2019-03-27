@@ -323,13 +323,12 @@ h4 {
 /*-------END OF GAME-------*/
 .end-of-game-container {
   width: 100%;
-  height: 100%;
-  position: relative;
+  height: 100vh;
+  position: absolute;
   top: 0;
   left: 0;
   display: flex;
   flex-direction: column;
-  background-attachment: fixed;
   background: url('images/sunflowers-butterflies-screen.png');
   background-size: cover;
   -webkit-background-size: cover;
