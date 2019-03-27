@@ -70,27 +70,33 @@ export const hitAMole = (
 
         if (x > left && x < right && y > top && y < bottom) {
           if (Array.from(holeRef.classList).includes('mole')) {
-            holeRef.classList.toggle('mole')
-            const randomSound = generateRandomSound()
-            soundElem.current.src = randomSound
+            //Replace mole class with stars
+            holeRef.classList.replace('mole', 'stars')
+
+            //After a delay, turn off stars to just show the leaf
+            setTimeout(() => holeRef.classList.toggle('stars'), 500)
+
+            //Generate random sound effect
+            soundElem.current.src = generateRandomSound()
             soundElem.current.load()
             soundElem.current.play()
-            updateScore(1)
+            updateScore(20)
           }
           if (Array.from(holeRef.classList).includes('flower')) {
-            holeRef.classList.toggle('flower')
-            const randomSound = generateRandomSound()
-            soundElem.current.src = randomSound
+            holeRef.classList.replace('flower', 'minus-points')
+            setTimeout(() => holeRef.classList.toggle('minus-points'), 500)
+            soundElem.current.src = generateRandomSound()
             soundElem.current.load()
             soundElem.current.play()
-            updateScore(-1)
+            updateScore(-15)
           }
           if (Array.from(holeRef.classList).includes('bee')) {
-            holeRef.classList.toggle('bee')
+            holeRef.classList.replace('bee', 'bonus')
+            setTimeout(() => holeRef.classList.toggle('bonus'), 500)
             soundElem.current.src = 'sounds/WIN.mp3'
             soundElem.current.load()
             soundElem.current.play()
-            updateScore(10)
+            updateScore(30)
           }
         }
       })

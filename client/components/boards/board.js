@@ -119,6 +119,9 @@ class Board extends React.Component {
     let currRef = this[`holeRef${randomHoleIndex}`].current
     let classNames = Array.from(currRef.classList)
     if (classNames.includes('flower')) currRef.classList.toggle('flower')
+
+    //if there was a recently hit bug, toggle classList 'stars'
+    if (classNames.includes('stars')) currRef.classList.toggle('stars')
     currRef.classList.toggle('mole')
   }
   /*----------- GENERATE FLOWER ---------*/
@@ -130,6 +133,8 @@ class Board extends React.Component {
       randomHoleIndex = this.generateRandomIdx()
       currRef = this[`holeRef${randomHoleIndex}`].current
     }
+    //if there was a recently hit flower, toggle classList 'stars'
+    if (classNames.includes('stars')) currRef.classList.toggle('stars')
     currRef.classList.toggle('flower')
   }
 
@@ -151,6 +156,9 @@ class Board extends React.Component {
       randomHoleIndex = this.generateRandomIdx()
       currRef = this[`holeRef${randomHoleIndex}`].current
     }
+
+    //if there was a recently hit bee, toggle classList 'stars'
+    if (classNames.includes('stars')) currRef.classList.toggle('stars')
     currRef.classList.toggle('bee')
   }
 
