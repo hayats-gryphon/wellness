@@ -9,7 +9,7 @@ class Board extends React.Component {
 
     this.state = {
       countdownTimer: 20,
-      readyCountdown: 8,
+      readyCountdown: 5,
       numOfHoles: 9
     }
 
@@ -42,17 +42,18 @@ class Board extends React.Component {
     this.props.updateHoles(holeRefArr)
 
     this.readyCountdownId = setInterval(() => {
-      this.props.timerRef.current.textContent = `Get Ready...${
-        this.state.readyCountdown
-      }`
+      // this.props.timerRef.current.textContent = `Get Ready...${
+      //   this.state.readyCountdown
+      // }`
       this.setState(prevState => {
         prevState.readyCountdown--
       })
 
       if (this.state.readyCountdown === -1) {
         clearInterval(this.readyCountdownId)
-        this.props.timerRef.current.textContent = `GO!`
-        this.props.countDownRef.current.style.display = 'none'
+        // this.props.timerRef.current.textContent = `GO!`
+        // this.props.countDownRef.current.style.display = 'none';
+        this.props.countDownRef.current.style.visibility = 'hidden'
 
         /*----------- BEGINNER PLAY---------*/
         if (this.props.location.pathname === '/punchabug-beginner') {
@@ -169,7 +170,7 @@ class Board extends React.Component {
   }
 
   render() {
-    console.log('COUNTDOWNREF INSIDE BOARD ===>', this.props.countDownRef)
+    console.log('BOARD COMPONENT ')
     return (
       <div>
         <audio

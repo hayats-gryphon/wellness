@@ -4,7 +4,7 @@ export default class Loading extends React.Component {
   render() {
     return (
       <div className="grandparent">
-        <img className="loading" src="images/output2.gif" />
+        <img className="loading" src="images/cameraloading.gif" />
       </div>
     )
   }
