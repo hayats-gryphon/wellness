@@ -25,6 +25,8 @@
 
 body {
   font-family: sans-serif;
+  /* background: url('images/sunflowers-butterflies-screen.png') no-repeat;
+  object-fit: fill; */
 }
 
 html,
@@ -301,12 +303,15 @@ h4 {
 }
 
 #grandparent {
+  width: 100vw;
   height: 100vh;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   justify-content: center;
   align-items: center;
   display: flex;
-  background: url('images/game-screen-flowers.png');
+  background: url('images/game-screen-flowers.png') yellow;
   background-size: cover;
   overflow-x: hidden;
 }
@@ -330,33 +335,36 @@ h4 {
 
 /*-------END OF GAME-------*/
 .end-of-game-container {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
   display: flex;
   flex-direction: column;
-  background: url('images/sunflowers-butterflies-screen.png');
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
+  justify-content: space-around;
+  /* align-content: space-around;
+  align-items: space-around; */
+  background: url('images/sunflowers-butterflies-screen.png') yellow;
+  background-size: fill;
+  -webkit-background-size: fill;
+  -moz-background-size: fill;
+  -o-background-size: fill;
 }
 
 .end-of-game-container .img-fluid {
-  display: flex;
+  /* display: flex; */
   margin: 0 auto;
   max-height: 120px;
   padding-top: 5%;
-  justify-content: center;
-  display: -webkit-box;
+  /* justify-content: center; */
+  /* display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  align-items: center;
-  padding-bottom: 5%;
+  display: -webkit-flex; */
+  /* display: flex; */
+  /* align-items: center; */
+  /* padding-bottom: 10px; */
 }
 
 .end-game-score {
@@ -364,7 +372,8 @@ h4 {
   letter-spacing: 4px;
   color: #7e9020;
   margin: 10px;
-  padding-bottom: 20px;
+  /* padding-bottom: 20px; */
+  text-align: right;
 }
 
 /* container for score and leaderboard */
@@ -380,19 +389,21 @@ h4 {
 }
 
 .end-of-game-container .play-again-btn {
-  display: flex;
+  /* display: flex; */
   margin: 0 auto;
   max-height: 140px;
-  padding-top: 10px;
-  justify-content: center;
-  display: -webkit-box;
+  /* padding-top: 10px; */
+  /* justify-content: center; */
+  /* display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  align-items: center;
-  padding-bottom: 70px;
+  display: -webkit-flex; */
+  /* display: flex; */
+  /* align-items: center; */
+  /* padding-bottom: 10px; */
 }
+
+/*-------LEADERBOARD (END OF GAME)-------*/
 
 .leaderboard h1 {
   font-size: 65px;
@@ -416,7 +427,7 @@ h4 {
   text-align: center;
   letter-spacing: 2px;
   color: #7e9020;
-  margin: 20px;
+  /* margin: 20px; */
 }
 
 table {
@@ -461,8 +472,8 @@ table {
 .footer-menu {
   display: flex;
   height: 30%;
-  justify-content: space-between;
-  text-align: center;
+  justify-content: space-around;
+  /* text-align: center; */
 }
 
 .footer-link {
