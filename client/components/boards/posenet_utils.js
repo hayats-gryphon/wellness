@@ -85,16 +85,14 @@ export const hitAMole = (
           if (Array.from(holeRef.classList).includes('flower')) {
             holeRef.classList.replace('flower', 'stars')
             setTimeout(() => holeRef.classList.toggle('stars'), 500)
-            holeRef.classList.toggle('flower')
             soundElem.current.src = generateRandomSound()
             soundElem.current.load()
             soundElem.current.play()
             updateScore(-1)
           }
           if (Array.from(holeRef.classList).includes('bee')) {
-            holeRef.classList.replace('bee', 'stars')
-            setTimeout(() => holeRef.classList.toggle('stars'), 500)
-            holeRef.classList.toggle('bee')
+            holeRef.classList.replace('bee', 'bonus')
+            setTimeout(() => holeRef.classList.toggle('bonus'), 500)
             soundElem.current.src = 'sounds/WIN.mp3'
             soundElem.current.load()
             soundElem.current.play()
