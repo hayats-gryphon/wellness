@@ -329,6 +329,7 @@ h4 {
 #score-timer {
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
 }
 
 /*-------END OF GAME-------*/
