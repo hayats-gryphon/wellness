@@ -70,29 +70,30 @@ export const hitAMole = (
 
         if (x > left && x < right && y > top && y < bottom) {
           if (Array.from(holeRef.classList).includes('mole')) {
-            //setTimeout for 1 sec, show stars, holeRef.classList.add('stars')
-            //toggle mole
+            //Replace mole class with stars
+            holeRef.classList.replace('mole', 'stars')
 
-            // holeRef.classList.add('stars')
-            holeRef.classList.toggle('mole')
-            holeRef.classList.toggle('stars')
-            // setTimeout(() => holeRef.classList.add('stars'), 200)
-            const randomSound = generateRandomSound()
-            soundElem.current.src = randomSound
+            //After a delay, turn off stars to just show the leaf
+            setTimeout(() => holeRef.classList.toggle('stars'), 500)
+
+            //Generate random sound effect
+            soundElem.current.src = generateRandomSound()
             soundElem.current.load()
             soundElem.current.play()
-            holeRef.classList.toggle('hole')
             updateScore(1)
           }
           if (Array.from(holeRef.classList).includes('flower')) {
+            holeRef.classList.replace('flower', 'stars')
+            setTimeout(() => holeRef.classList.toggle('stars'), 500)
             holeRef.classList.toggle('flower')
-            const randomSound = generateRandomSound()
-            soundElem.current.src = randomSound
+            soundElem.current.src = generateRandomSound()
             soundElem.current.load()
             soundElem.current.play()
             updateScore(-1)
           }
           if (Array.from(holeRef.classList).includes('bee')) {
+            holeRef.classList.replace('bee', 'stars')
+            setTimeout(() => holeRef.classList.toggle('stars'), 500)
             holeRef.classList.toggle('bee')
             soundElem.current.src = 'sounds/WIN.mp3'
             soundElem.current.load()
