@@ -80,7 +80,7 @@ export const hitAMole = (
             soundElem.current.src = generateRandomSound()
             soundElem.current.load()
             soundElem.current.play()
-            updateScore(1)
+            updateScore(20)
           }
           if (Array.from(holeRef.classList).includes('flower')) {
             holeRef.classList.replace('flower', 'minus-points')
@@ -88,7 +88,7 @@ export const hitAMole = (
             soundElem.current.src = generateRandomSound()
             soundElem.current.load()
             soundElem.current.play()
-            updateScore(-1)
+            updateScore(-15)
           }
           if (Array.from(holeRef.classList).includes('bee')) {
             holeRef.classList.replace('bee', 'bonus')
@@ -96,7 +96,7 @@ export const hitAMole = (
             soundElem.current.src = 'sounds/WIN.mp3'
             soundElem.current.load()
             soundElem.current.play()
-            updateScore(10)
+            updateScore(30)
           }
         }
       })
