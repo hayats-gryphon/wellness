@@ -97,6 +97,14 @@ h4 {
   flex-wrap: wrap;
 }
 
+.countLoad {
+  position: absolute;
+  top: 250px;
+  left: 160px;
+  width: 260px;
+  height: 260px;
+}
+
 .hole {
   background-image: url('images/leaf-only.png');
   background-size: contain;

@@ -39,18 +39,14 @@ class Board extends React.Component {
     }
 
     this.props.updateHoles(holeRefArr)
-
     this.readyCountdownId = setInterval(() => {
-      this.props.timerRef.current.textContent = `Get Ready...${
-        this.state.readyCountdown
-      }`
       this.setState(prevState => {
         prevState.readyCountdown--
       })
 
       if (this.state.readyCountdown === -1) {
         clearInterval(this.readyCountdownId)
-        this.props.timerRef.current.textContent = `GO!`
+        this.props.countDownRef.current.style.visibility = 'hidden'
 
         /*----------- EASY PLAY---------*/
         if (this.props.location.pathname === '/punchabug-easy') {
@@ -80,7 +76,7 @@ class Board extends React.Component {
           }, 2400)
           this.hardBeeIntervalId = setInterval(() => {
             this.generateBee()
-          }, 4800)
+          }, 4200)
         }
         this.countdownId = setInterval(() => {
           this.countdown()
@@ -99,6 +95,7 @@ class Board extends React.Component {
     clearInterval(this.countdownId)
     clearInterval(this.readyCountdownId)
     clearInterval(this.hardBeeIntervalId)
+    this.props.countDownRef.current.src = ''
   }
 
   countdown = () => {
@@ -176,7 +173,6 @@ class Board extends React.Component {
           controls="none"
           style={{display: 'none'}}
         />
-
         <div id="whack-a-mole">
           {Array(this.state.numOfHoles)
             .fill('')

@@ -35,6 +35,8 @@ class PunchABug extends React.Component {
     this.timerRef = React.createRef()
     this.errorMsgRef = React.createRef()
     this.readyRef = React.createRef()
+    this.countDownRef = React.createRef()
+
     this.request = 0
     this.state = {
       videoWidth: 600,
@@ -108,9 +110,9 @@ class PunchABug extends React.Component {
    */
   detectPoseInRealTime = video => {
     const {guiState, videoWidth, videoHeight} = this.state
-
     const canvas = this.outputRef.current
     const ctx = canvas.getContext('2d')
+
     // since images are being fed from a webcam
     const flipHorizontal = true
 
@@ -236,9 +238,7 @@ class PunchABug extends React.Component {
                 <h2>
                   {this.props.location.pathname.slice(11).toUpperCase()} LEVEL
                 </h2>
-                <h2 id="timer" ref={this.timerRef}>
-                  Get Ready...
-                </h2>
+                <h2 id="timer" ref={this.timerRef} />
                 <audio
                   src="sounds/no2.mp3"
                   ref={this.splatSoundRef}
@@ -262,7 +262,21 @@ class PunchABug extends React.Component {
           ) : null}
           <div ref={this.mainRef} style={{display: 'none'}} id="main">
             {this.props.videoLoaded ? (
-              <Board timerRef={this.timerRef} readyRef={this.readyRef} />
+              <>
+                <Board
+                  timerRef={this.timerRef}
+                  countDownRef={this.countDownRef}
+                  readyRef={this.readyRef}
+                />
+                <div className="countLoad">
+                  <img
+                    ref={this.countDownRef}
+                    src="/images/countdown.gif"
+                    className="img-fluid"
+                  />{' '}
+                  }
+                </div>
+              </>
             ) : (
               <Loading />
             )}
