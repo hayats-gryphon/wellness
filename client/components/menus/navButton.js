@@ -1,4 +1,4 @@
-import {Login, Signup} from './'
+import {Login, Signup} from '..'
 import React from 'react'
 import {withRouter} from 'react-router-dom'
 
