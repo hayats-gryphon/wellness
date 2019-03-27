@@ -1,5 +1,5 @@
 import React from 'react'
-import {Menu, Footer} from './index'
+import {Menu, Footer} from '../index'
 
 /**
  * COMPONENT

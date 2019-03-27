@@ -18,10 +18,10 @@ import * as posenet from '@tensorflow-models/posenet'
 import React from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import {Board, Scoreboard, Loading} from '../components'
+import {Board, Scoreboard, Loading} from '..'
 import {drawKeypoints, hitAMole} from './posenet_utils'
-import {videoLoaded} from '../store/board'
-import {updateScore, resetScore} from '../store/scoreboard'
+import {videoLoaded} from '../../store/board'
+import {updateScore, resetScore} from '../../store/scoreboard'
 
 class PunchABug extends React.Component {
   constructor() {
