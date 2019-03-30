@@ -18,8 +18,8 @@ const Instruction = props => {
           </p>
           <h2>HARD</h2>
           <p>
-            Hit all the bugs and watch out for Golden Bug! You can earn extra 10
-            points hitting the Golden Bug.
+            Hit all the bugs and watch out for the Golden Bug! You can earn
+            extra points hitting the Golden Bug.
           </p>
         </div>
       </div>

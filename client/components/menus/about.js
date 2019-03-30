@@ -19,7 +19,7 @@ const About = () => {
         <p>Special thanks are owed to the creators of our images and sounds:</p>
         <ul>
           <li>
-            Leaf and flower icons made by{' '}
+            Leaf, butterfly, stars, explosion, and flower icons made by{' '}
             <a
               href="http://www.freepik.com/"
               rel="noopener noreferrer"
@@ -36,24 +36,6 @@ const About = () => {
               www.flaticon.com
             </a>
           </li>
-          {/* <li>
-          Flower icon made by{' '}
-          <a
-            href="http://www.freepik.com/"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Freepik
-          </a>{' '}
-          from{' '}
-          <a
-            href="http://www.flaticon.com"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            www.flaticon.com
-          </a>
-        </li> */}
           <li>
             Ladybug icon made by Rwida A. Kamel from{' '}
             <a
@@ -65,7 +47,7 @@ const About = () => {
             </a>
           </li>
           <li>
-            Lightning bug icon from the public domain, sourced from by{' '}
+            Lightning bug icon from the public domain, sourced from{' '}
             <a
               href="http://www.clker.com"
               rel="noopener noreferrer"
