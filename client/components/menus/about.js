@@ -19,7 +19,7 @@ const About = () => {
         <p>Special thanks are owed to the creators of our images and sounds:</p>
         <ul>
           <li>
-            Leaf and flower icons made by{' '}
+            Leaf, butterfly, stars, explosion, and flower icons made by{' '}
             <a
               href="http://www.freepik.com/"
               rel="noopener noreferrer"
