@@ -44,7 +44,7 @@ class Board extends React.Component {
         prevState.readyCountdown--
       })
 
-      if (this.state.readyCountdown === -1) {
+      if (this.state.readyCountdown === 0) {
         clearInterval(this.readyCountdownId)
         this.props.countDownRef.current.style.visibility = 'hidden'
 
