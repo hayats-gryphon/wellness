@@ -273,8 +273,7 @@ class PunchABug extends React.Component {
                     ref={this.countDownRef}
                     src="/images/countdown.gif"
                     className="img-fluid"
-                  />{' '}
-                  }
+                  />
                 </div>
               </>
             ) : (
