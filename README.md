@@ -1,3 +1,25 @@
-Inspired by the classic game Whack-a-Mole, Punchabug is an augmented reality web game where a player uses their nose to "punch" virtual bugs off their leaves to earn points. The player can choose from three difficulty levels, each with unique features, such as obstacles to avoid.
+# Punchabug
 
-In building Punchabug, we used Node.js, Express, PostgreSQL, Sequelize, React, React-Redux and Posenet, a pre-trained machine learning model that detects key points on the user's body via their device's webcam. We utilized the react lifecycle to implement augmented reality components that respond to user interaction. We focused on user experience, incorporating feedback from test users. Features include giving the user a combined visual and auditory response to their actions, increasing game complexity at higher levels, and displaying a persistent leaderboard for high scorers.
+Punchabug is a web based game, a spin-off of the classic “Whack-a-mole”. The game uses a player’s webcam to create an augmented reality. The goal of the game is to have the player use their nose to swat virtual bugs to earn points. Players can play various levels, have their own accounts, save their score, and be on the leaderboard. 
+
+## Installation
+1. Clone this repo to your local machine
+2. Install packages:
+```
+npm i
+```
+
+## Usage
+1. Start the server
+```
+npm run start-dev
+```
+2. Navigate to http://localhost:8080
+
+## Credits
+<ul>
+  <li>Leaf, butterfly, stars, explosion, and flower icons made by Freepik from www.flaticon.com.</li>
+  <li>Ladybug icon made by Rwida A. Kamel from www.pngtree.com.</li>
+  <li>Lightning bug icon from the public domain, sourced from www.clker.com.</li>
+  <li>Music and sounds by Pierre Malleret.</li>
+</ul>
