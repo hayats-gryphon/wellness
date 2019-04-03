@@ -1,6 +1,6 @@
 # Punchabug
 
-Punchabug is a web based game, a spin-off of the classic “Whack-a-mole”. The game uses a player’s webcam to create an augmented reality. The goal of the game is to have the player use their nose to swat virtual bugs to earn points. Players can play various levels, have their own accounts, save their score, and be on the leaderboard. 
+Punchabug is a web based game, a spin-off of the classic “Whack-a-mole”. The game uses a player’s webcam to create an augmented reality. The goal of the game is to have the player use their nose to swat virtual bugs to earn points. Players can play various levels, have their own accounts, save their scores, and be on the leaderboard. 
 
 ## Installation
 1. Clone this repo to your local machine
